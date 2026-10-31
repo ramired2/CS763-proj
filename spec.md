@@ -82,5 +82,12 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 
 ## JSON Schemas
 
+```json
+{
+    "quick_ex": "rand",
+    "quick_example": "random"
+}
+```
+
 ### Mock Data
 
