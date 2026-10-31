@@ -5,9 +5,67 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 * Python/ FastAPI
 
 ## API Endpoints
-| Method | Path | Description |
-| :----- | ---- | ----------- |
-| GET    | /api/v1/rubric/getRubric{course_id} |             |
+### Rubric
+| Method | Path                                     | Description                      |
+| :----- | ---------------------------------------- | -------------------------------- |
+| GET    | /api/v1/rubric/getAllRubrics/{course_id} | Get all rubrics from a course    |
+| GET    | /api/v1/rubric/getRubric/{assignment_id} | Get the rubric for an assignment |
+| POST   | /api/v1/rubric/createRubric/{course_id}  | Create a rubric                  |
+| PUT    | /api/v1/rubric/editRurbic/{rubric_id}    | Edit a rurbic                    |
+| DELETE | /api/v1/rubric/deleteRubric/{rubric_id}  | Delete a rubric                  |
+
+### Rurbic_criteria
+| Method | Path                                                | Description                       |
+| :----- | --------------------------------------------------- | --------------------------------- |
+| GET    | /api/v1/rubricCriteria/getCriteria/{rubric_id}      | Get criteria for a rubric         |
+| POST   | /api/v1/rubricCriteria/addCriteria/{rurbic_id}      | Adds a new criteria to rubric     |
+| PUT    | /api/v1/rubricCriteria/editCriteria/{criteria_id}   | Edits a criterial field           |
+| DELETE | /api/v1/rurbicCriteria/deleteCriteria/{criteria_id} | Delete a criterie from the rubric |
+
+### Published_Work
+| Method | Path                                        | Description                          |
+| :----- | ------------------------------------------- | ------------------------------------ |
+| GET    | /api/v1/publishedWork/changeScore/{work_id} | Change the score of a published work |
+
+### Course
+| Method | Path                                            | Description                                  |
+| :----- | ----------------------------------------------- | -------------------------------------------- |
+| GET    | /api/v1/course/assignmentsPerCourse/{course_id} | Get all assignmnets from a particular course |
+
+### Review_session
+| Method | Path                                                            | Description                    |
+| :----- | --------------------------------------------------------------- | ------------------------------ |
+| POST   | /api/v1/reviewSession/createSession/{rubric_id}/{assignment_id} | Create a review session        |
+| PUT    | /api/v1/reviewSession/editSession/{session_id}                  | Edits a review session details |
+| DELETE | /api/v1/reviewSession/deleteSession/{session_id}                | Deletes a review session |
+
+### Assignment
+| Method | Path                                                | Description                                      |
+| :----- | --------------------------------------------------- | ------------------------------------------------ |
+| PUT    | /api/v1/assignment/{assignment_id}                  | Change the rubric associated with the assignment |
+| GET    | /api/v1/assignment/getCourseAssignments/{course_id} | Get all assignmnets from a course |
+
+### Evaluation
+| Method | Path                                                   | Description                                                    |
+| :----- | ------------------------------------------------------ | -------------------------------------------------------------- |
+| POST   | /api/v1/Evaluation/assignEvaluator/{published_work_id} | Sets a reviewer for a published work                           |
+| PUT    | /api/v1/Evaluation/editEvaluator/{published_work_id}   | Edit the reviewer for a published work                         |
+| DELETE | /api/v1/Evaluation/deleteEvaluation/{evaluation_id}    | Revokes a reviewer from evaluating a published work            |
+| POST   | /api/v1/Evaluation/makeEvaluation/{evaluation_id}      | Allows a reviewer to create an evaluation for a published work |
+| PUT    | /api/v1/Evaluation/editEvaluatin/{evaluation_id}       | Allows a reviewer to edit their evaluation                     |
+
+### Reviewer_type
+| Method | Path                                   | Description                                              |
+| :----- | -------------------------------------- | -------------------------------------------------------- |
+| GET    | /api/v1/Reviewer_type/getReviewerTypes | Get reviewing options (facilitator, instructor, student) |
+
+### Person
+| Method | Path                             | Description    |
+| :----- | -------------------------------- | -------------- |
+| GET    | /api/v1/Person/getUserId/{email} | Get a users id |
+
+
+
 
 ## Entity Relationships
 |     Entity      | Attributes                                                                     | Relationships/ Constrains                                                                                                                                                                                                         |
