@@ -23,13 +23,13 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 | DELETE | /api/v1/rurbicCriteria/deleteCriteria/{criteria_id} | Delete a criterie from the rubric |
 
 ### Published_Work
-| Method | Path                                                         | Description                          |
-| :----- | ------------------------------------------------------------ | ------------------------------------ |
-| PUT    | /api/v1/publishedWork/changeScore/{work_id}                  | Change the score of a published work |
-| GET    | /api/v1/publishedWork/getWork/{work_id}                      | Gets a single published work         |
-| GET    | /api/v1/publishedWork/getsWorksAuthor/{author_id}            | Get works of a single author         |
-| GET    | /api/v1/publishedWork/getWorksFromAssignment/{assignment_id} | Gets works from a single assignment  |
-| POST   | /api/v1/publishedWork/submitWork/{author_id}                 | A user can submit their work         |
+| Method | Path                                                         | Description                         |
+| :----- | ------------------------------------------------------------ | ----------------------------------- |
+| GET    | /api/v1/publishedWork/getWork/{work_id}                      | Gets a single published work        |
+| GET    | /api/v1/publishedWork/getsWorksAuthor/{author_id}            | Get works of a single author        |
+| GET    | /api/v1/publishedWork/getWorksFromAssignment/{assignment_id} | Gets works from a single assignment |
+| POST   | /api/v1/publishedWork/submitWork/{author_id}                 | A user can submit their work        |
+| DELETE | /api/v1/publishedWork/deleteWork/{work_id}                   | Deletes a published work            |
 
 ### Course
 | Method | Path                                            | Description                                  |
@@ -45,12 +45,12 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 | DELETE | /api/v1/reviewSession/deleteSession/{session_id}    | Deletes a review session       |
 
 ### Assignment
-| Method | Path                                                        | Description                                      |
-| :----- | ----------------------------------------------------------- | ------------------------------------------------ |
-| GET    | /api/v1/assignment/getAssignment/{assignment_id}            | Get a single assignment                          |
-| PUT    | /api/v1/assignment/changeRubric/{assignment_id}/{rubric_id} | Change the rubric associated with the assignment |
-| POST   | /api/v1/assignment/createAssignment/{rurbic_id}             | Create an assignment                             |
-| DELETE | /api/v1/assignment/{assignment_id}                          | Delete an assignment                             |
+| Method | Path                                             | Description                                      |
+| :----- | ------------------------------------------------ | ------------------------------------------------ |
+| GET    | /api/v1/assignment/getAssignment/{assignment_id} | Get a single assignment                          |
+| PUT    | /api/v1/assignment/changeRubric/{assignment_id}  | Change the rubric associated with the assignment |
+| POST   | /api/v1/assignment/createAssignment/{rurbic_id}  | Create an assignment                             |
+| DELETE | /api/v1/assignment/{assignment_id}               | Delete an assignment                             |
 
 ### Evaluation
 | Method | Path                                                   | Description                                                                           |
@@ -111,7 +111,7 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 |  Published_work  | work_id, author_id, assignment_id, file, submission_date                    | Multiple Evaluation have one Published_works<br>Primary key: work_id<br> Foregin Key: Published_work.author_id (Person.id)<br> Foregin Key: Published_work.assignment_id (Assignment.id)                                                                                        |
 |      Course      | course_id, name, instructor_id, start_date, end_date                        | One Person has multiple Courses<br>Primary key: course_id<br> Foregin Key: Course.instructor_id (Person.id)                                                                                                                                                                    |
 |  Review_session  | session_id, assignment_id, start_date, end_date                             | One Assignment has one Review_session<br>Primary key: session_id<br> Foregin Key: Review_session.assignment_id UNIQUE (Assignment.id)                                                                                                                                          |
-|    Assignment    | id, rubric_id, description                                                  | One Rubric has multiple Assignments<br>Primary key: id<br> Foregin Key: Assignment.rubric_id (Rubric.rubric_id)                                                                                                                                                                |
+|    Assignment    | id, name, rubric_id, description                                                  | One Rubric has multiple Assignments<br>Primary key: id<br> Foregin Key: Assignment.rubric_id (Rubric.rubric_id)                                                                                                                                                                |
 |    Evaluation    | evaluation_id, reviewer_id, work_id, submitted_date                         | One Person has multiple Evaluations <br>One Published_work has multiple Evaluations<br>Primary key: evaluation_id<br> Foregin Key: Evaluation.reviewer_id (Person.id)<br> Foregin Key: Evaluation.work_id NOT UNIQUE (Published_work.work_id)                                  |
 |  Reviewer_type   | reviewer_type_id, type (e.g. instructor, faculty member, student)           | One Person has many Reviewer_types<br>Primary_key: reviewer_type_id Reviewer_types                                                                                                                                                                                             |
 | Evaluation_score | evaluation_score_id, criteria_id, score, evaluation_id, feedback                              | One Rubric_criteria has many Evaluation_scores<br>Many Evaluations have many Evaluation_scores<br>primary key: evaluation_score_id<br>Foreign key: Evaluation_score.criteria (Rubric_criteria.criteria_id)<br>Foreign key: Evaluation_score.evaluation_id (Evaluation.evaluation_id) |
@@ -120,7 +120,8 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 |      Person      | id, user_id, reviewer_type_id, course_id                                    | One Reviewer_type has multiple Person<br>Primary key: id<br>Foreign key: Person.reviewer_type_id (Reviewer_type.reviewer_type_id)<br>Foreign key: Person.user_id (User.id)<br>Foreign key: Person.course_id (Course_id)                                                        |
 
 ## JSON Schemas
-#### Creating a Rubric
+### Rubric
+#### Creating a Rubric ```POST /api/v1/rubric/createRubric/{course_id}```
 ```json
 {
     "name": "Lab 1",
@@ -129,25 +130,145 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
         {
             "criteria_label":"Analysis",
             "description":"Student demonstrates thorough understanding of topic",
-            "weight":".5",
-            "min_score":"0",
-            "max_score":"5"
+            "weight": 0.5,
+            "min_score": 0,
+            "max_score":5
         },
         {
             "criteria_label":"Completion",
             "description":"Student answered all questiones to the best of their abilities and submitted work on time",
-            "weight":".5",
-            "min_score":"0",
-            "max_score":"5"
+            "weight":0.5,
+            "min_score":0,
+            "max_score":5
         }    
     ],
-    "date_ccreated": "",
-    "date_modified":"",
-    "course_id":""
 }
 ```
 
-#### template
+#### Editing a Rubric ```POST /api/v1/rubric/createRubric/{rubric_id}```
+```json
+{
+    "name": "Lab 1",
+    "description":"Rurbic for Lab 1 that fufilled this weeks learning goals.",
+    "rubric_criteria": [
+        {
+            "criteria_label":"Analysis",
+            "description":"Student demonstrates thorough understanding of topic",
+            "weight": 0.5,
+            "min_score": 0,
+            "max_score":5
+        },
+        {
+            "criteria_label":"Completion",
+            "description":"Student answered all questiones to the best of their abilities and submitted work on time",
+            "weight":0.5,
+            "min_score":0,
+            "max_score":5
+        }    
+    ],
+    "course_id":"cs100"
+}
+```
+### Rurbic_criteria
+#### Add a New Criteria ```POST /api/v1/rubricCriteria/addCriteria/{rurbic_id} ```
+```json
+{
+    "criteria_label":"Completion",
+    "description":"Student answered all questiones to the best of their abilities and submitted work on time",
+    "weight":0.5,
+    "min_score":0,
+    "max_score":5
+}
+```
+
+#### Edit a Criteria ```PUT /api/v1/rubricCriteria/editCriteria/{criteria_id}```
+```json
+{
+    "criteria_label":"Completion",
+    "description":"Student answered all questiones to the best of their abilities and submitted work on time",
+    "weight":0.5,
+    "min_score":0,
+    "max_score":5,
+    "rubric_id": "rubric-192"
+}
+```
+
+### Published_Work
+#### Publish a Work   ```POST /api/v1/publishedWork/submitWork/{author_id}```
+```json
+{
+    "assignment_id": "assign-134",
+    "file":"multipart/form-data",
+}
+```
+
+### Review_session
+#### Create/Edit a Reviewing Session ```POST /api/v1/reviewSession/createSession/{assignment_id}```/ ```PUT /api/v1/reviewSession/editSession/{session_id}```
+```json
+{
+    "start_date": "2025-10-31T00:00:00Z",
+    "end_date":"2025-11-10T00:00:00Z",
+}
+```
+
+### Assignment
+#### Create an Assignment ```POST /api/v1/assignment/createAssignment/{rurbic_id} ```
+```json
+{
+    "name": "Lab 1",
+    "description":"Instructions follow...",
+}
+```
+
+#### Edit an Assignment ```PUT /api/v1/assignment/changeRubric/{assignment_id}```
+```json
+{
+    "name": "Lab 2",
+    "description":"Instructions follow this...",
+    "rubrid_id":"rub-132"
+}
+```
+
+### Evaluation
+#### template ```POST PUT ```
+```json
+{
+    "other": "temp",
+    "temp":"temp",
+}
+```
+
+### Evaluation Score
+#### template ```POST PUT ```
+```json
+{
+    "other": "temp",
+    "temp":"temp",
+}
+```
+
+### Aggregate_Score
+#### template ```POST PUT ```
+```json
+{
+    "other": "temp",
+    "temp":"temp",
+}
+```
+
+### Person
+#### template ```POST PUT ```
+```json
+{
+    "other": "temp",
+    "temp":"temp",
+}
+```
+
+
+
+### Entity
+#### template ```POST PUT ```
 ```json
 {
     "other": "temp",
