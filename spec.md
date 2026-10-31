@@ -64,9 +64,29 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 | PUT    | /api/v1/Evaluation/editEvaluatin/{evaluation_id}       | Allows a reviewer to edit their evaluation                                            |
 
 ### Reviewer_type
-| Method | Path                                   | Description                                              |
-| :----- | -------------------------------------- | -------------------------------------------------------- |
+| Method | Path                                    | Description                                                 |
+| :----- | --------------------------------------- | ----------------------------------------------------------- |
 | GET    | /api/v1/Reviewer_type/getReviewerTypes/ | Get reviewing options (faculty member, instructor, student) |
+
+### Evaluation_score
+| Method | Path                                                                   | Description                                                |
+| :----- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| GET    | /api/v1/Evaluation_score/getAllScoresFromWork/{work_id}                | Get all the scores from a published work                   |
+| GET    | /api/v1/Evaluation_score/getScoresCriteria/{criteria_id}               | Get all scores per criteria                                |
+| GET    | /api/v1/Evaluation_score/getScoresFromReviewer/{reviewer_id}/{work_id} | Get all scores from an assignment from a specific reviewer |
+| POST   | /api/v1/Evaluation_score/scoreCriteria/{work_id/evaluation_id}         | Allows a reviewer to evaluate a criteria                   |
+| PUT    | /api/v1/Evaluation_score/editEvaluation/{evaluation_score_id}          | Allows a user to edit a previous evaluation score          |
+| DELTE  | /api/v1/Evaluation_score/deleteEvaluationScore/{evaluation_score_id}   | Deletes a evaluation score                                 |
+
+
+### Aggregate_Score
+| Method | Path                                                           | Description                                                                |
+| :----- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| GET    | /api/v1/Aggregate_Score/calculateScore/{criteria_id}           | Calculates all recorded scores for a single criteria                       |
+| GET    | /api/v1/Aggregate_Score/calculateAllCriteria/{work_id}         | Calculates all recorded scores for each criteria                           |
+| POST   | /api/v1/Aggregate_Score/createGrade{work_id}                   | Calculates and creates an entry of an assignments scores for each criteria |
+| PUT    | /api/v1/Aggregate_Score/updateScore/{aggregate_score}          | Updates the scores for all criteria for an assignment                      |
+| DELETE | /api/v1/Aggregate_Score/deleteAggregateScore/{aggregate_score} | Deletes an aggregated score                                                |
 
 ### User
 | Method | Path                           | Description    |
@@ -75,10 +95,10 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 |        |                                |                |
 
 ### Person
-| Method | Path                                                  | Description                                            |
-| :----- | ----------------------------------------------------- | ------------------------------------------------------ |
-| POST   | /api/v1/Person/setUserType/{user_id}/{course_id}      | Set the reviewer type for a user                       |
-| GET    | api/v1/Person/setUserType/{reviewer_type}/{course_id} | Get all [students, faculty, instructors] from a course |
+| Method | Path                                                   | Description                                            |
+| :----- | ------------------------------------------------------ | ------------------------------------------------------ |
+| POST   | /api/v1/Person/setUserType/{user_id}/{course_id}       | Set the reviewer type for a user                       |
+| GET    | /api/v1/Person/setUserType/{reviewer_type}/{course_id} | Get all [students, faculty, instructors] from a course |
 
 
 
