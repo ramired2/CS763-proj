@@ -42,15 +42,20 @@ jobs:
       - name: Run tests
         run: python -m pytest -q
 
-      - name: Scan dependencies with Trivy
-        uses: aquasecurity/trivy-action@915b19bbe73b92a6cf82a1bc12b087c9a19a5fe2 # v0.28.0
+      - name: Set up Trivy
+        uses: aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514 # v0.2.6
         with:
-          scan-type: fs
-          scan-ref: .
-          scanners: vuln
-          severity: HIGH,CRITICAL
-          ignore-unfixed: true
-          exit-code: "1"
+          version: v0.68.2
+
+      - name: Scan dependencies with Trivy
+        run: >-
+          trivy fs
+          --scanners vuln
+          --detection-priority comprehensive
+          --severity HIGH,CRITICAL
+          --ignore-unfixed
+          --exit-code 1
+          .
 
       - name: Run Semgrep SAST
         run: semgrep scan --config p/python --error app tests
