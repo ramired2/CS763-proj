@@ -42,20 +42,18 @@ jobs:
       - name: Run tests
         run: python -m pytest -q
 
-      - name: Set up Trivy
-        uses: aquasecurity/setup-trivy@3fb12ec12f41e471780db15c232d5dd185dcb514 # v0.2.6
-        with:
-          version: v0.68.2
-
       - name: Scan dependencies with Trivy
         run: >-
-          trivy fs
+          docker run --rm
+          -v "$GITHUB_WORKSPACE:/work:ro"
+          aquasec/trivy:0.68.2
+          fs
           --scanners vuln
           --detection-priority comprehensive
           --severity HIGH,CRITICAL
           --ignore-unfixed
           --exit-code 1
-          .
+          /work
 
       - name: Run Semgrep SAST
         run: semgrep scan --config p/python --error app tests
