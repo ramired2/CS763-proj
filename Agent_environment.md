@@ -1,14 +1,17 @@
-## Autonomous Developer AI Agent
+# Autonomous Developer AI Agent
 
-### Tool
+## Tools and Operating Mode
+* VS Code Copilot
+* autonomous developer AI assistant
+
+## Settings: Hyperparameters and Configuration
+### Configuration
+| Setting               | Information            |
+| --------------------- | ---------------------- |
+| Configuration Source  | Copilot SDK in VS Code |
+| LLM Model and Runtime | Not exposed            |
 
 
-### Operational Mode
-
-
-### LLM Model
-
-
-### Settings: Hyperparameters and Configuration
-
-### Host Environment
+## Host Environment
+* macOS
+* VS Code Version: VS Code 1.113
