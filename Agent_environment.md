@@ -3,6 +3,7 @@
 ## Tools and Operating Mode
 * VS Code Copilot
 * autonomous developer AI assistant
+* Copilot Fusion selected GPT-6 Luna
 
 ## Settings: Hyperparameters and Configuration
 ### Configuration
