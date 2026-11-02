@@ -115,7 +115,7 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 |  Reviewer_type   | reviewer_type_id, type (e.g. instructor, faculty member, student)                | One Person has many Reviewer_types<br>Primary_key: reviewer_type_id Reviewer_types                                                                                                                                                                                                   |
 | Evaluation_score | evaluation_score_id, criteria_id, score, evaluation_id, feedback, submitted_date | One Rubric_criteria has many Evaluation_scores<br>Many Evaluations have many Evaluation_scores<br>primary key: evaluation_score_id<br>Foreign key: Evaluation_score.criteria (Rubric_criteria.criteria_id)<br>Foreign key: Evaluation_score.evaluation_id (Evaluation.evaluation_id) |
 | Aggregate_score  | aggregate_score_id, work_id, criteria_id, score, evaluation_count                | One Aggregate_score has one Published work<br>One Aggregate_score has one Rubric_criteria<br> Foregin Key: Aggregate_score.criteria_id (Rurbic_criteria.criteria_id)<br> Foregin Key: Aggregate_score.work_id (Published_work.work_id)                                               |
-|       User       | id, name, email, username, password                                              | One user has multiple Persons<br>Primary key: id                                                                                                                                                                                                                                     |
+|       User       | id, name, email, username                                                        | One user has multiple Persons<br>Primary key: id                                                                                                                                                                                                                                     |
 |      Person      | id, user_id, reviewer_type_id, course_id                                         | One Reviewer_type has multiple Person<br>Primary key: id<br>Foreign key: Person.reviewer_type_id (Reviewer_type.reviewer_type_id)<br>Foreign key: Person.user_id (User.id)<br>Foreign key: Person.course_id (Course_id)                                                              |
 
 ## JSON Schemas
@@ -296,3 +296,201 @@ start_date < end_date
 
 ### Mock Data
 
+* IDs are fake
+* timestamps use UTC
+* Each evaluation score references a criterion in the rubric used by the work's assignment
+* Aggregate scores are averages of submitted evaluation scores for that work and criterion
+  * (sum of all scores submitted for a criterion from a single work) / (count of evaluations)
+
+```json
+{
+  "courses": [
+    {
+      "course_id": "course-101",
+      "name": "Introduction to Computing",
+      "instructor_id": "person-101",
+      "start_date": "2026-09-01",
+      "end_date": "2026-12-18"
+    }
+  ],
+  "reviewer_types": [
+    {
+      "reviewer_type_id": "role-student",
+      "type": "student"
+    },
+    {
+      "reviewer_type_id": "role-instructor",
+      "type": "instructor"
+    }
+  ],
+  "users": [
+    {
+      "id": "user-101",
+      "name": "Alex Chen",
+      "email": "alex@example.test",
+      "username": "alexchen"
+    },
+    {
+      "id": "user-102",
+      "name": "Jordan Lee",
+      "email": "jordan@example.test",
+      "username": "jordanlee"
+    },
+    {
+      "id": "user-103",
+      "name": "Sam Rivera",
+      "email": "sam@example.test",
+      "username": "samrivera"
+    },
+    {
+      "id": "user-104",
+      "name": "Taylor Morgan",
+      "email": "taylor@example.test",
+      "username": "taylormorgan"
+    }
+  ],
+  "persons": [
+    {
+      "id": "person-101",
+      "user_id": "user-101",
+      "reviewer_type_id": "role-instructor",
+      "course_id": "course-101"
+    },
+    {
+      "id": "person-102",
+      "user_id": "user-102",
+      "reviewer_type_id": "role-student",
+      "course_id": "course-101"
+    },
+    {
+      "id": "person-103",
+      "user_id": "user-103",
+      "reviewer_type_id": "role-student",
+      "course_id": "course-101"
+    },
+    {
+      "id": "person-104",
+      "user_id": "user-104",
+      "reviewer_type_id": "role-student",
+      "course_id": "course-101"
+    }
+  ],
+  "rubrics": [
+    {
+      "rubric_id": "rubric-101",
+      "name": "Lab 1 Rubric",
+      "description": "Evaluate the analysis and completeness of Lab 1.",
+      "date_created": "2026-09-05T16:00:00Z",
+      "date_modified": "2026-09-05T16:00:00Z",
+      "course_id": "course-101"
+    }
+  ],
+  "rubric_criteria": [
+    {
+      "criteria_id": "criterion-101",
+      "rubric_id": "rubric-101",
+      "criteria": "Analysis",
+      "description": "Explains the approach and reasoning.",
+      "min_score": 0,
+      "max_score": 5,
+      "weight": 0.6
+    },
+    {
+      "criteria_id": "criterion-102",
+      "rubric_id": "rubric-101",
+      "criteria": "Completion",
+      "description": "Addresses all required parts of the assignment.",
+      "min_score": 0,
+      "max_score": 5,
+      "weight": 0.4
+    }
+  ],
+  "assignments": [
+    {
+      "id": "assignment-101",
+      "name": "Lab 1",
+      "rubric_id": "rubric-101",
+      "description": "Submit a short analysis of the assigned problem."
+    }
+  ],
+  "review_sessions": [
+    {
+      "session_id": "session-101",
+      "assignment_id": "assignment-101",
+      "start_date": "2026-10-01T00:00:00Z",
+      "end_date": "2026-10-15T23:59:59Z"
+    }
+  ],
+  "published_works": [
+    {
+      "work_id": "work-101",
+      "author_id": "person-102",
+      "assignment_id": "assignment-101",
+      "file": "works/work-101.pdf",
+      "submission_date": "2026-10-02T18:30:00Z"
+    }
+  ],
+  "evaluations": [
+    {
+      "evaluation_id": "evaluation-101",
+      "reviewer_id": "person-103",
+      "work_id": "work-101"
+    },
+    {
+      "evaluation_id": "evaluation-102",
+      "reviewer_id": "person-104",
+      "work_id": "work-101"
+    }
+  ],
+  "evaluation_scores": [
+    {
+      "evaluation_score_id": "score-101",
+      "criteria_id": "criterion-101",
+      "score": 4,
+      "evaluation_id": "evaluation-101",
+      "feedback": "The reasoning is clear and well supported.",
+      "submitted_date": "2026-10-08T17:00:00Z"
+    },
+    {
+      "evaluation_score_id": "score-102",
+      "criteria_id": "criterion-102",
+      "score": 5,
+      "evaluation_id": "evaluation-101",
+      "feedback": "All required parts are included.",
+      "submitted_date": "2026-10-08T17:00:00Z"
+    },
+    {
+      "evaluation_score_id": "score-103",
+      "criteria_id": "criterion-101",
+      "score": 5,
+      "evaluation_id": "evaluation-102",
+      "feedback": "Strong analysis with a sound explanation.",
+      "submitted_date": "2026-10-09T14:30:00Z"
+    },
+    {
+      "evaluation_score_id": "score-104",
+      "criteria_id": "criterion-102",
+      "score": 4,
+      "evaluation_id": "evaluation-102",
+      "feedback": "One minor requirement could be clearer.",
+      "submitted_date": "2026-10-09T14:30:00Z"
+    }
+  ],
+  "aggregate_scores": [
+    {
+      "aggregate_score_id": "aggregate-101",
+      "work_id": "work-101",
+      "criteria_id": "criterion-101",
+      "score": 4.5,
+      "evaluation_count": 2
+    },
+    {
+      "aggregate_score_id": "aggregate-102",
+      "work_id": "work-101",
+      "criteria_id": "criterion-102",
+      "score": 4.5,
+      "evaluation_count": 2
+    }
+  ]
+}
+```
