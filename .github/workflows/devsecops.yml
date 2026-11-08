@@ -67,6 +67,11 @@ jobs:
       - name: Run Semgrep SAST
         run: semgrep scan --config p/python app tests
 
+      - name: Scan with SonarQube
+        uses: SonarSource/sonarqube-scan-action@v8.4.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   container:
     name: Build container
     runs-on: ubuntu-latest
