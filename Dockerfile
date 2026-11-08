@@ -1,3 +1,11 @@
+# Tool: Copilot Fusion
+#
+# Prompt summary: create a Dockerfile for a FastAPI app using Python with a virtual env 
+#
+# AI Contribution: 100%
+#
+# Human Modifications: I did not have to change anything
+
 FROM python:3.12-slim AS builder
 
 ENV VIRTUAL_ENV=/opt/venv

@@ -1,3 +1,11 @@
+## AI Usage Log
+| AI Contribution % | Summary of prompt                                               |
+| :---------------: | --------------------------------------------------------------- |
+|        15%        | Sanity checking my initial entities                             |
+|        5%         | explanation of what endpoints are usually used for JSON schemas |
+|        20%        | Checking soundness of my initial JSON schemas                   |
+|       100%        | Creation of mock data from my JSON schemas                      |
+
 ## Service Purpose
 The Peer Review and Evaluation Gateway will use Python/FastAPI in order to create a service that will facilitate the process of assigning and evaluating published works based on rubrics. The service will facilitate this process by creating and managing rubrics, assigning reviewers for published works, and tracking the scores of said reviews of published works into an aggregate score. Reviewers could be faculty members, course instructors, or students while all published works would belong to other students. 
 
@@ -6,101 +14,81 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 
 ## API Endpoints
 ### Rubric
-| Method | Path                                     | Description                      |
-| :----- | ---------------------------------------- | -------------------------------- |
-| GET    | /api/v1/rubric/getAllRubrics/{course_id} | Get all rubrics from a course    |
-| GET    | /api/v1/rubric/getRubric/{assignment_id} | Get the rubric for an assignment |
-| POST   | /api/v1/rubric/createRubric/{course_id}  | Create a rubric                  |
-| PUT    | /api/v1/rubric/editRurbic/{rubric_id}    | Edit a rurbic                    |
-| DELETE | /api/v1/rubric/deleteRubric/{rubric_id}  | Delete a rubric                  |
+| Path                               | Methods       | Description                                            |
+| ---------------------------------- | :------------ | ------------------------------------------------------ |
+| /api/v1/evals/rubrics/{course_id}     | GET<br>POST   | Initialize a rubric or get a rubric from the course ID |
+| /api/v1/evals/rubrics/{assignment_id} | GET           | Get the rubric for an assignment                       |
+| /api/v1/evals/rubrics/{rubric_id}     | PUT<br>DELETE | Edit or remove a rubric                                |
 
-### Rurbic_criteria
-| Method | Path                                                | Description                       |
-| :----- | --------------------------------------------------- | --------------------------------- |
-| GET    | /api/v1/rubricCriteria/getCriteria/{rubric_id}      | Get criteria for a rubric         |
-| POST   | /api/v1/rubricCriteria/addCriteria/{rurbic_id}      | Adds a new criteria to rubric     |
-| PUT    | /api/v1/rubricCriteria/editCriteria/{criteria_id}   | Edits a criterial field           |
-| DELETE | /api/v1/rurbicCriteria/deleteCriteria/{criteria_id} | Delete a criterie from the rubric |
+### rubric_criteria
+| Path                                      | Methods       | Description                                                     |
+| ----------------------------------------- | :------------ | --------------------------------------------------------------- |
+| /api/v1/evals/rubricCriterias/{rubric_id}    | GET<br>POST   | Get criteria for a rubric<br>Initialize a criteria for a rubric |
+| /api/v1/evals/rubricCriterias/{criteria_id} | PUT<br>DELETE | Edits a criterial field<br>Delete a criteria                    |
 
 ### Published_Work
-| Method | Path                                                         | Description                         |
-| :----- | ------------------------------------------------------------ | ----------------------------------- |
-| GET    | /api/v1/publishedWork/getWork/{work_id}                      | Gets a single published work        |
-| GET    | /api/v1/publishedWork/getsWorksAuthor/{author_id}            | Get works of a single author        |
-| GET    | /api/v1/publishedWork/getWorksFromAssignment/{assignment_id} | Gets works from a single assignment |
-| POST   | /api/v1/publishedWork/submitWork/{author_id}                 | A user can submit their work        |
-| DELETE | /api/v1/publishedWork/deleteWork/{work_id}                   | Deletes a published work            |
+| Path                                      | Methods       | Description                                                      |
+| ----------------------------------------- | :------------ | ---------------------------------------------------------------- |
+| /api/v1/evals/publishedWorks/{work_id}       | GET<br>DELETE | Gets a single published work<br>Deletes a published work         |
+| /api/v1/evals/publishedWorks/{author_id}     | GET<br>POST   | Get works of a single author<br>    A user can submit their work |
+| /api/v1/evals/publishedWorks/{assignment_id} | GET           | Gets works from a single assignment                              |
 
 ### Course
-| Method | Path                                            | Description                                  |
-| :----- | ----------------------------------------------- | -------------------------------------------- |
-| GET    | /api/v1/course/assignmentsPerCourse/{course_id} | Get all assignmnets from a particular course |
+| Path                              | Methods | Description                                  |
+| --------------------------------- | :------ | -------------------------------------------- |
+| /api/v1/evals/courses/{course_id} | GET     | Get all assignmnets from a particular course |
 
 ### Review_session
-| Method | Path                                                | Description                    |
-| :----- | --------------------------------------------------- | ------------------------------ |
-| GET    | /api/v1/reviewSession/getSession/{assignment_id}    | Get a review session's details |
-| POST   | /api/v1/reviewSession/createSession/{assignment_id} | Create a review session        |
-| PUT    | /api/v1/reviewSession/editSession/{session_id}      | Edits a review session details |
-| DELETE | /api/v1/reviewSession/deleteSession/{session_id}    | Deletes a review session       |
+| Path                                                   | Methods       | Description                                                |
+| ------------------------------------------------------ | :------------ | ---------------------------------------------------------- |
+| /api/v1/evals/reviewSessions/getSession/{assignment_id} | GET<br>POST   | Get a review session's details<br>Create a review session  |
+| /api/v1/evals/reviewSessions/editSession/{session_id}   | PUT<br>DELETE | Edits a review session details<br>Deletes a review session |
 
 ### Assignment
-| Method | Path                                             | Description                                      |
-| :----- | ------------------------------------------------ | ------------------------------------------------ |
-| GET    | /api/v1/assignment/getAssignment/{assignment_id} | Get a single assignment                          |
-| PUT    | /api/v1/assignment/changeRubric/{assignment_id}  | Change the rubric associated with the assignment |
-| POST   | /api/v1/assignment/createAssignment/{rubic_id}  | Create an assignment                             |
-| DELETE | /api/v1/assignment/{assignment_id}               | Delete an assignment                             |
+
+| Path                                      | Methods              | Description                                                                                         |
+| ----------------------------------------- | :------------------- | --------------------------------------------------------------------------------------------------- |
+| /api/v1/evals/assignments/{assignment_id} | GET<br>PUT<br>DELETE | Get a single assignment<br>Change the rubric associated with the assignment<br>Delete an assignment |
+| /api/v1/evals/assignments/{rubic_id}      | POST                 | Create an assignment                                                                                |
 
 ### Evaluation
-| Method | Path                                                   | Description                                                                    |
-| :----- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| GET    | /api/v1/Evaluations/getEvaluation/{evaluation_id}      | Get an evaluation                                                              |
-| GET    | /api/v1/Evaluations/getAssignedEvaluations/{user_id}   | Gets all evaluations assigned to a person                                      |
-| POST   | /api/v1/Evaluation/assignEvaluator/{published_work_id} | Creates an association with a reviewer and the published work they will review |
-| PUT    | /api/v1/Evaluation/editEvaluator/{published_work_id}   | Edit the reviewer for a published work                                         |
-| PUT    | /api/v1/Evaluation/setSubmisionDate/{evaluation_id}    | Edits the submission date for the evaluation                                   |
-| PUT    | /api/v1/Evaluation/editEvaluatin/{evaluation_id}       | Allows a reviewer to edit their evaluation                                     |
+| Path                                         | Methods     | Description                                                                                                              |
+| -------------------------------------------- | :---------- | ------------------------------------------------------------------------------------------------------------------------ |
+| /api/v1/evals/evaluations/{evaluation_id}    | GET<br>PUT  | Get an evaluation<br>Allows a reviewer to edit their evaluation                                                          |
+| /api/v1/evals/evaluations/{user_id}          | GET         | Gets all evaluations assigned to a person                                                                                |
+| /api/v1/evals/evaluations/{published_work_id}| POST<br>PUT | Creates an association with a reviewer and the published work they will review<br>Edit the reviewer for a published work |
 
 ### Reviewer_type
-| Method | Path                                    | Description                                                 |
-| :----- | --------------------------------------- | ----------------------------------------------------------- |
-| GET    | /api/v1/Reviewer_type/getReviewerTypes/ | Get reviewing options (faculty member, instructor, student) |
+| Path | Methods                     | Description                                                 |
+| ---- | :-------------------------- | ----------------------------------------------------------- |
+| GET  | /api/v1/evals/reviewerTypes | Get reviewing options (faculty member, instructor, student) |
 
 ### Evaluation_score
-| Method | Path                                                                   | Description                                                |
-| :----- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
-| GET    | /api/v1/Evaluation_score/getAllScoresFromWork/{work_id}                | Get all the scores from a published work                   |
-| GET    | /api/v1/Evaluation_score/getScoresCriteria/{criteria_id}               | Get all scores per criteria                                |
-| GET    | /api/v1/Evaluation_score/getScoresFromReviewer/{reviewer_id}/{work_id} | Get all scores from an assignment from a specific reviewer |
-| POST   | /api/v1/Evaluation_score/scoreCriteria/{work_id/evaluation_id}         | Allows a reviewer to evaluate a criteria                   |
-| PUT    | /api/v1/Evaluation_score/editEvaluation/{evaluation_score_id}                | Allows a user to edit an evaluation score they set          |
-| DELETE | /api/v1/Evaluation_score/deleteEvaluationScore/{evaluation_score_id}   | Deletes a evaluation score                                 |
-
+| Path                                                     | Methods       | Description                                                                      |
+| -------------------------------------------------------- | :------------ | -------------------------------------------------------------------------------- |
+| /api/v1/evals/evaluationScores/{work_id}                 | GET           | Get all the scores from a published work                                         |
+| /api/v1/evals/evaluationScores/{criteria_id}             | GET           | Get all scores per criteria                                                      |
+| /api/v1/evals/evaluationScores/{reviewer_id}/{work_id}   | GET           | Get all scores from an assignment from a specific reviewer                       |
+| /api/v1/evals/evaluationScores/{work_id}/{evaluation_id} | POST          | Allows a reviewer to evaluate a criteria                                         |
+| /api/v1/evals/evaluationScores/{evaluation_score_id}     | PUT<br>DELETE | Allows a user to edit an evaluation score they set<br>Deletes a evaluation score |
 
 ### Aggregate_Score
-| Method | Path                                                           | Description                                                                |
-| :----- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| GET    | /api/v1/Aggregate_Score/calculateScore/{criteria_id}           | Calculates all recorded scores for a single criteria                       |
-| GET    | /api/v1/Aggregate_Score/calculateAllCriteria/{work_id}         | Calculates all recorded scores for each criteria                           |
-| POST   | /api/v1/Aggregate_Score/createGrade{work_id}                   | Calculates and creates an entry of an assignments scores for each criteria |
-| PUT    | /api/v1/Aggregate_Score/updateScore/{aggregate_score_id}          | Updates the scores for all criteria for an assignment when a new evaluation score is updated.                     |
-| DELETE | /api/v1/Aggregate_Score/deleteAggregateScore/{aggregate_score_id} | Deletes an aggregated. score                                                |
+| Path                                               | Methods       | Description                                                                                                                    |
+| -------------------------------------------------- | :------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| /api/v1/evals/aggregateScores/{criteria_id}        | GET           | Calculates all recorded scores for a single criteria                                                                           |
+| /api/v1/evals/aggregateScores/{work_id}            | GET<br>POST   | Calculates all recorded scores for each criteria<br>Calculates and creates an entry of an assignments scores for each criteria |
+| /api/v1/evals/aggregateScores/{aggregate_score_id} | PUT<br>DELETE | Updates the scores for all criteria for an assignment when a new evaluation score is updated.<br>Deletes an aggregated. score  |
 
 ### User
-| Method | Path                           | Description    |
-| :----- | ------------------------------ | -------------- |
-| GET    | /api/v1/user/getUserId/{email} | Get a users id |
-|        |                                |                |
+| Path                        | Methods | Description     |
+| --------------------------- | :------ | --------------- |
+| /api/v1/evals/users/{email} | GET     | Get a user's ID |
 
 ### Person
-| Method | Path                                                   | Description                                            |
-| :----- | ------------------------------------------------------ | ------------------------------------------------------ |
-| POST   | /api/v1/Person/setUserType/{user_id}/{course_id}       | Set the reviewer type for a user per course            |
-| GET    | /api/v1/Person/setUserType/{reviewer_type}/{course_id} | Get all [students, faculty, instructors] from a course |
-
-
-
+| Path                                              | Methods | Description                                            |
+| ------------------------------------------------- | :------ | ------------------------------------------------------ |
+| /api/v1/evals/persons/{user_id}/{course_id}       | POST    | Set the reviewer type for a user per course            |
+| /api/v1/evals/persons/{reviewer_type}/{course_id} | GET     | Get all [students, faculty, instructors] from a course |
 
 ## Entity Relationships
 |      Entity      | Attributes                                                                       | Relationships/ Constrains                                                                                                                                                                                                                                                            |
@@ -114,17 +102,17 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 |    Evaluation    | evaluation_id, reviewer_id, work_id                                              | One Person has multiple Evaluations <br>One Published_work has multiple Evaluations<br>Primary key: evaluation_id<br> Foregin Key: Evaluation.reviewer_id (Person.id)<br> Foregin Key: Evaluation.work_id NOT UNIQUE (Published_work.work_id)                                        |
 |  Reviewer_type   | reviewer_type_id, type (e.g. instructor, faculty member, student)                | One Person has many Reviewer_types<br>Primary_key: reviewer_type_id Reviewer_types                                                                                                                                                                                                   |
 | Evaluation_score | evaluation_score_id, criteria_id, score, evaluation_id, feedback, submitted_date | One Rubric_criteria has many Evaluation_scores<br>Many Evaluations have many Evaluation_scores<br>primary key: evaluation_score_id<br>Foreign key: Evaluation_score.criteria (Rubric_criteria.criteria_id)<br>Foreign key: Evaluation_score.evaluation_id (Evaluation.evaluation_id) |
-| Aggregate_score  | aggregate_score_id, work_id, criteria_id, score, evaluation_count                | One Aggregate_score has one Published work<br>One Aggregate_score has one Rubric_criteria<br> Foregin Key: Aggregate_score.criteria_id (Rurbic_criteria.criteria_id)<br> Foregin Key: Aggregate_score.work_id (Published_work.work_id)                                               |
+| Aggregate_score  | aggregate_score_id, work_id, criteria_id, score, evaluation_count                | One Aggregate_score has one Published work<br>One Aggregate_score has one Rubric_criteria<br> Foregin Key: Aggregate_score.criteria_id (rubric_criteria.criteria_id)<br> Foregin Key: Aggregate_score.work_id (Published_work.work_id)                                               |
 |       User       | id, name, email, username                                                        | One user has multiple Persons<br>Primary key: id                                                                                                                                                                                                                                     |
 |      Person      | id, user_id, reviewer_type_id, course_id                                         | One Reviewer_type has multiple Person<br>Primary key: id<br>Foreign key: Person.reviewer_type_id (Reviewer_type.reviewer_type_id)<br>Foreign key: Person.user_id (User.id)<br>Foreign key: Person.course_id (Course_id)                                                              |
 
 ## JSON Schemas
 ### Rubric
-#### Creating a Rubric ```POST /api/v1/rubric/createRubric/{course_id}```
+#### Creating a Rubric ```POST /api/v1/evals/rubrics/{course_id}```
 ```json
 {
     "name": "Lab 1",
-    "description":"Rurbic for Lab 1 that fufilled this weeks learning goals.",
+    "description":"rubric for Lab 1 that fufilled this weeks learning goals.",
     "rubric_criteria": [
         {
             "criteria":"Analysis",
@@ -144,11 +132,11 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 }
 ```
 
-#### Editing a Rubric ```PUT /api/v1/rubric/createRubric/{rubric_id}```
+#### Editing a Rubric ```PUT /api/v1/evals/rubrics/{rubric_id}```
 ```json
 {
     "name": "Lab 1",
-    "description":"Rurbic for Lab 1 that fufilled this weeks learning goals.",
+    "description":"rubric for Lab 1 that fufilled this weeks learning goals.",
     "rubric_criteria": [
         {
             "criteria":"Analysis",
@@ -167,8 +155,8 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
     ]
 }
 ```
-### Rurbic_criteria
-#### Add a New Criteria ```POST /api/v1/rubricCriteria/addCriteria/{rurbic_id} ```
+### rubric_criteria
+#### Add a New Criteria ```POST /api/v1/evals/rubricCriterias/{rubric_id} ```
 ```json
 {
     "criteria":"Completion",
@@ -179,7 +167,7 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 }
 ```
 
-#### Edit a Criteria ```PUT /api/v1/rubricCriteria/editCriteria/{criteria_id}```
+#### Edit a Criteria ```PUT /api/v1/evals/rubricCriterias/{criteria_id}```
 ```json
 {
     "criteria":"Completion",
@@ -192,7 +180,7 @@ The Peer Review and Evaluation Gateway will use Python/FastAPI in order to creat
 Weight sums for criteria must equal to 1. 
 
 ### Published_Work
-#### Publish a Work   ```POST /api/v1/publishedWork/submitWork/{author_id}```
+#### Publish a Work   ```POST /api/v1/evals/publishedWorks/{author_id}```
 ```json
 {
     "assignment_id": "assign-134",
@@ -201,7 +189,7 @@ Weight sums for criteria must equal to 1.
 ```
 
 ### Review_session
-#### Create/Edit a Reviewing Session ```POST /api/v1/reviewSession/createSession/{assignment_id}```/ ```PUT /api/v1/reviewSession/editSession/{session_id}```
+#### Create/Edit a Reviewing Session ```POST/PUT /api/v1/evals/reviewSessions/{assignment_id}```
 ```json
 {
     "start_date": "2025-10-31T00:00:00Z",
@@ -211,7 +199,7 @@ Weight sums for criteria must equal to 1.
 start_date < end_date
 
 ### Assignment
-#### Create an Assignment ```POST /api/v1/assignment/createAssignment/{rubic_id} ```
+#### Create an Assignment ```POST /api/v1/evals/assignments/{rubic_id} ```
 ```json
 {
     "name": "Lab 1",
@@ -219,7 +207,7 @@ start_date < end_date
 }
 ```
 
-#### Edit an Assignment ```PUT /api/v1/assignment/changeRubric/{assignment_id}```
+#### Edit an Assignment ```PUT /api/v1/evals/assignments/{assignment_id}```
 ```json
 {
     "name": "Lab 2",
@@ -228,14 +216,14 @@ start_date < end_date
 ```
 
 ### Evaluation
-#### Create an Evaluation ```POST /api/v1/Evaluation/assignEvaluator/{published_work_id} ```
+#### Create an Evaluation/ Edit Reviewer for Published Work ```POST /api/v1/evals/evaluations/{published_work_id}```
 ```json
 {
     "reviewer_id": "person-1573"
 }
 ```
 
-#### Edit en Evaluation ```PUT /api/v1/Evaluation/editEvaluatin/{evaluation_id}```
+#### Edit en Evaluation ```PUT /api/v1/evals/evaluations/{evaluation_id}```
 ```json
 {
     "reviewer_id": "person-389",
@@ -243,16 +231,8 @@ start_date < end_date
 }
 ```
 
-#### Edits the Date of an Evaluation Submission Date ```PUT /api/v1/Evaluation/setSubmisionDate/{evaluation_id}```
-```json
-{
-    "submission_date": "2025-11-10T00:00:00Z"
-}
-```
-
-
 ### Evaluation Score
-#### Create an Evaluation Score ```POST /api/v1/Evaluation_score/scoreCriteria/{work_id}/{evaluation_id} ```
+#### Create an Evaluation Score ```POST /api/v1/evals/evaluationScores/{work_id}/{evaluation_id} ```
 ```json
 {
     "criteria_id": "criteria-134",
@@ -260,7 +240,7 @@ start_date < end_date
     "feedback":"good job showcasing analysis of lab questions"
 }
 ```
-#### Edit an Evaluation ```PUT /api/v1/Evaluation_score/editEvaluation/{evaluation_score_id}```
+#### Edit an Evaluation ```PUT /api/v1/evals/evaluationScores/{evaluation_score_id}```
 ```json
 {
     "score": 4,
@@ -269,7 +249,7 @@ start_date < end_date
 ```
 
 ### Aggregate_Score
-#### Create an Agrgegated Score for a Criteria ```POST /api/v1/Aggregate_Score/createGrade{work_id}```
+#### Create an Agrgegated Score for a Criteria ```POST /api/evals/aggregateScores/{work_id}```
 ```json
 {
     "criteria_id": "temp",
@@ -277,7 +257,7 @@ start_date < end_date
     "evaluation_count": 3
 }
 ```
-#### Update an Agrgegated Score for a Criteria ```POST /api/v1/Aggregate_Score/createGrade{aggregate_score_id}```
+#### Update an Agrgegated Score for a Criteria ```POST /api/evals/aggregateScores/{aggregate_score_id}```
 ```json
 {
     "criteria_id": "temp",
@@ -287,7 +267,7 @@ start_date < end_date
 ```
 
 ### Person
-#### Set a Person's Reviewer Type (Student, Facilitator, Instructor) ```POST /api/v1/Person/setUserType/{user_id}/{course_id} ```
+#### Set a Person's Reviewer Type (Student, Facilitator, Instructor) ```POST /api/evals/persons/{user_id}/{course_id} ```
 ```json
 {
     "reviewer_type_id": "instructor-12"

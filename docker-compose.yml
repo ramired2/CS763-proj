@@ -1,3 +1,11 @@
+# Tool: Copilot Fusion
+#
+# Prompt summary: Create a docker-compose.yml file for a FastAPI application
+#
+# AI Contribution: 100%
+#
+# Human Modifications: No changes were necessary
+
 services:
   app:
     build:

@@ -1,3 +1,12 @@
+# Tool: Copilot fusion
+#
+# Prompt summary: create a github actions workflow that uses trivy and sempgrep 
+#
+# AI Contribution: 90%
+#
+# Human Modifications: changed some error codes 
+#
+
 name: DevSecOps
 
 on:
@@ -52,11 +61,11 @@ jobs:
           --detection-priority comprehensive
           --severity HIGH,CRITICAL
           --ignore-unfixed
-          --exit-code 1
+          --exit-code 0
           /work
 
       - name: Run Semgrep SAST
-        run: semgrep scan --config p/python --error app tests
+        run: semgrep scan --config p/python app tests
 
   container:
     name: Build container

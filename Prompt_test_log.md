@@ -1,3 +1,9 @@
+## AI Usage Log
+| AI Contribution % | Summary of prompt                                            |
+| :---------------: | ------------------------------------------------------------ |
+|       100%        | Append the frist prompt 1st made into the prompt_test_log file |
+|       100%        | Append the frist prompt 2nd made into the prompt_test_log file |
+|       100%        | Append the frist prompt 3rd made into the prompt_test_log file |
 # Prompt Test Log
 
 ## Test 001 — FastAPI CI/CD and Docker bootstrap
