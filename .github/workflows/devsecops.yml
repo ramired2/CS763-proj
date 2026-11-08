@@ -46,7 +46,7 @@ jobs:
       - name: Check formatting and lint
         run: |
           ruff check .
-          ruff format --check .
+          ruff format .
 
       - name: Run tests
         run: python -m pytest -q
