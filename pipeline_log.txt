@@ -1,0 +1,1129 @@
+﻿2026-11-08T02:09:34.1003013Z Current runner version: '2.338.2'
+2026-11-08T02:09:34.1027558Z ##[group]Runner Image Provisioner
+2026-11-08T02:09:34.1028321Z Hosted Compute Agent
+2026-11-08T02:09:34.1028860Z Version: 20261028.624
+2026-11-08T02:09:34.1029426Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-08T02:09:34.1030037Z Build Date: 2026-10-28T21:51:42Z
+2026-11-08T02:09:34.1030695Z Worker ID: {fb1824ba-304d-42ba-a118-c35ba9867d6a}
+2026-11-08T02:09:34.1031286Z Region: westus2
+2026-11-08T02:09:34.1031768Z Cloud: Azure
+2026-11-08T02:09:34.1032330Z ##[endgroup]
+2026-11-08T02:09:34.1034014Z ##[group]Operating System
+2026-11-08T02:09:34.1034632Z Ubuntu
+2026-11-08T02:09:34.1035079Z 26.04.1
+2026-11-08T02:09:34.1035541Z LTS
+2026-11-08T02:09:34.1036013Z ##[endgroup]
+2026-11-08T02:09:34.1036482Z ##[group]Runner Image
+2026-11-08T02:09:34.1037069Z Image: ubuntu-26.04
+2026-11-08T02:09:34.1037554Z Version: 20261101.186.1
+2026-11-08T02:09:34.1039084Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+2026-11-08T02:09:34.1040302Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+2026-11-08T02:09:34.1041134Z ##[endgroup]
+2026-11-08T02:09:34.1042058Z ##[group]GITHUB_TOKEN Permissions
+2026-11-08T02:09:34.1044449Z Contents: read
+2026-11-08T02:09:34.1044954Z Metadata: read
+2026-11-08T02:09:34.1045476Z ##[endgroup]
+2026-11-08T02:09:34.1047540Z Secret source: Actions
+2026-11-08T02:09:34.1048348Z Cache mode: write
+2026-11-08T02:09:34.1049037Z Prepare workflow directory
+2026-11-08T02:09:34.1357036Z Prepare all required actions
+2026-11-08T02:09:34.1414916Z Getting action download info
+2026-11-08T02:09:34.4733578Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)
+2026-11-08T02:09:34.5988797Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-08T02:09:34.7191395Z Download action repository 'SonarSource/sonarqube-scan-action@v8.4.1' (SHA:e805d875275f728fac1885b413934be6d7c63f65)
+2026-11-08T02:09:35.1576059Z Complete job name: Tests and security checks
+2026-11-08T02:09:35.2487060Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+2026-11-08T02:09:35.2487992Z with:
+2026-11-08T02:09:35.2488405Z   repository: ramired2/CS763-proj
+2026-11-08T02:09:35.2492000Z   token: ***
+2026-11-08T02:09:35.2492392Z   ssh-strict: true
+2026-11-08T02:09:35.2492787Z   ssh-user: git
+2026-11-08T02:09:35.2493187Z   persist-credentials: true
+2026-11-08T02:09:35.2493632Z   clean: true
+2026-11-08T02:09:35.2494181Z   sparse-checkout-cone-mode: true
+2026-11-08T02:09:35.2494644Z   fetch-depth: 1
+2026-11-08T02:09:35.2495027Z   fetch-tags: false
+2026-11-08T02:09:35.2495424Z   show-progress: true
+2026-11-08T02:09:35.2495824Z   lfs: false
+2026-11-08T02:09:35.2496211Z   submodules: false
+2026-11-08T02:09:35.2496627Z   set-safe-directory: true
+2026-11-08T02:09:35.2497233Z ##[endgroup]
+2026-11-08T02:09:35.4701206Z Syncing repository: ramired2/CS763-proj
+2026-11-08T02:09:35.4703255Z ##[group]Getting Git version info
+2026-11-08T02:09:35.4704385Z Working directory is '/home/runner/work/CS763-proj/CS763-proj'
+2026-11-08T02:09:35.4705403Z [command]/usr/bin/git version
+2026-11-08T02:09:35.4715028Z git version 2.56.0
+2026-11-08T02:09:35.4733429Z ##[endgroup]
+2026-11-08T02:09:35.4751587Z Temporarily overriding HOME='/home/runner/work/_temp/40c1d053-8b0a-4f73-8c0e-fbfc86293f67' before making global git config changes
+2026-11-08T02:09:35.4753914Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-08T02:09:35.4755678Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:09:35.4825484Z Deleting the contents of '/home/runner/work/CS763-proj/CS763-proj'
+2026-11-08T02:09:35.4828963Z ##[group]Initializing the repository
+2026-11-08T02:09:35.4834634Z [command]/usr/bin/git init /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:09:35.4925335Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-08T02:09:35.4926878Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-08T02:09:35.4927980Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-08T02:09:35.4928846Z hint: call:
+2026-11-08T02:09:35.4929431Z hint:
+2026-11-08T02:09:35.4930190Z hint: 	git config --global init.defaultBranch <name>
+2026-11-08T02:09:35.4930930Z hint:
+2026-11-08T02:09:35.4931702Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-08T02:09:35.4932735Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-08T02:09:35.4933636Z hint:
+2026-11-08T02:09:35.4934465Z hint: 	git branch -m <name>
+2026-11-08T02:09:35.4935484Z hint:
+2026-11-08T02:09:35.4936331Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-08T02:09:35.4937430Z Initialized empty Git repository in /home/runner/work/CS763-proj/CS763-proj/.git/
+2026-11-08T02:09:35.4948373Z [command]/usr/bin/git remote add origin https://github.com/ramired2/CS763-proj
+2026-11-08T02:09:35.5004047Z ##[endgroup]
+2026-11-08T02:09:35.5005394Z ##[group]Disabling automatic garbage collection
+2026-11-08T02:09:35.5006720Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-08T02:09:35.5042218Z ##[endgroup]
+2026-11-08T02:09:35.5043537Z ##[group]Setting up auth
+2026-11-08T02:09:35.5049291Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-08T02:09:35.5084611Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-08T02:09:35.5514855Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-08T02:09:35.5545806Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-08T02:09:35.5791789Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-08T02:09:35.5836265Z ##[endgroup]
+2026-11-08T02:09:35.5837018Z ##[group]Fetching the repository
+2026-11-08T02:09:35.5846069Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +18cfa7d2b13a4e690cb99902df2f11b12e319709:refs/remotes/origin/main
+2026-11-08T02:09:35.8622886Z From https://github.com/ramired2/CS763-proj
+2026-11-08T02:09:35.8624308Z  * [new ref]         18cfa7d2b13a4e690cb99902df2f11b12e319709 -> origin/main
+2026-11-08T02:09:35.8628839Z ##[endgroup]
+2026-11-08T02:09:35.8629824Z ##[group]Determining the checkout info
+2026-11-08T02:09:35.8631267Z ##[endgroup]
+2026-11-08T02:09:35.8636520Z [command]/usr/bin/git sparse-checkout disable
+2026-11-08T02:09:35.8683451Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-08T02:09:35.8716016Z ##[group]Checking out the ref
+2026-11-08T02:09:35.8717345Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-11-08T02:09:35.8776871Z Switched to a new branch 'main'
+2026-11-08T02:09:35.8781078Z branch 'main' set up to track 'origin/main'.
+2026-11-08T02:09:35.8787979Z ##[endgroup]
+2026-11-08T02:09:35.8831208Z [command]/usr/bin/git log -1 --format=%H
+2026-11-08T02:09:35.8855836Z 18cfa7d2b13a4e690cb99902df2f11b12e319709
+2026-11-08T02:09:35.9300154Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-11-08T02:09:35.9301573Z with:
+2026-11-08T02:09:35.9302320Z   python-version: 3.12
+2026-11-08T02:09:35.9303151Z   cache: pip
+2026-11-08T02:09:35.9304122Z   cache-dependency-path: requirements*.txt
+2026-11-08T02:09:35.9305195Z   check-latest: false
+2026-11-08T02:09:35.9313814Z   token: ***
+2026-11-08T02:09:35.9314614Z   update-environment: true
+2026-11-08T02:09:35.9315728Z   allow-prereleases: false
+2026-11-08T02:09:35.9316608Z   freethreaded: false
+2026-11-08T02:09:35.9317424Z ##[endgroup]
+2026-11-08T02:09:36.0547015Z ##[group]Installed versions
+2026-11-08T02:09:36.0639874Z (node:2173) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-08T02:09:36.0644275Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-08T02:09:36.0646775Z Successfully set up CPython (3.12.16)
+2026-11-08T02:09:36.0649410Z ##[endgroup]
+2026-11-08T02:09:36.1060941Z [command]/opt/hostedtoolcache/Python/3.12.16/x64/bin/pip cache dir
+2026-11-08T02:09:36.3481352Z /home/runner/.cache/pip
+2026-11-08T02:09:36.6057760Z Cache hit for: setup-python-Linux-x64-26.04-Ubuntu-python-3.12.16-pip-360620dd44eec96aebc712595ab701d0de6303728273928567a6e4921dfbdd6b
+2026-11-08T02:09:36.6152047Z (node:2173) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-08T02:09:37.9000131Z Received 4194304 of 114726266 (3.7%), 4.0 MBs/sec
+2026-11-08T02:09:38.8229784Z Received 114726266 of 114726266 (100.0%), 56.9 MBs/sec
+2026-11-08T02:09:38.8230548Z Cache Size: ~109 MB (114726266 B)
+2026-11-08T02:09:38.8345302Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f726119b-6f10-4b11-90ee-c51a6ac457ae/cache.tzst -P -C /home/runner/work/CS763-proj/CS763-proj --use-compress-program unzstd
+2026-11-08T02:09:39.0418873Z Cache restored successfully
+2026-11-08T02:09:39.0475042Z Cache restored from key: setup-python-Linux-x64-26.04-Ubuntu-python-3.12.16-pip-360620dd44eec96aebc712595ab701d0de6303728273928567a6e4921dfbdd6b
+2026-11-08T02:09:39.0675164Z ##[group]Run python -m pip install --upgrade pip
+2026-11-08T02:09:39.0675611Z [36;1mpython -m pip install --upgrade pip[0m
+2026-11-08T02:09:39.0675980Z [36;1mpython -m pip install -r requirements-dev.txt[0m
+2026-11-08T02:09:39.0729615Z shell: /usr/bin/bash -e {0}
+2026-11-08T02:09:39.0729931Z env:
+2026-11-08T02:09:39.0730250Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:39.0730700Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:09:39.0731097Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:39.0731487Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:39.0731875Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:39.0732224Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:09:39.0732538Z ##[endgroup]
+2026-11-08T02:09:39.4982170Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages (26.2.2)
+2026-11-08T02:09:39.5868469Z Collecting pip
+2026-11-08T02:09:39.5882494Z   Using cached pip-26.3-py3-none-any.whl.metadata (4.6 kB)
+2026-11-08T02:09:39.5911902Z Using cached pip-26.3-py3-none-any.whl (2.0 MB)
+2026-11-08T02:09:39.6286167Z Installing collected packages: pip
+2026-11-08T02:09:39.6286836Z   Attempting uninstall: pip
+2026-11-08T02:09:39.6302000Z     Found existing installation: pip 26.2.2
+2026-11-08T02:09:39.6939704Z     Uninstalling pip-26.2.2:
+2026-11-08T02:09:39.6993628Z       Successfully uninstalled pip-26.2.2
+2026-11-08T02:09:40.7230961Z Successfully installed pip-26.3
+2026-11-08T02:09:41.2875030Z Collecting fastapi<1.0,>=0.115 (from -r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:41.2888771Z   Using cached fastapi-0.162.2-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:41.3275535Z Collecting uvicorn<1.0,>=0.34 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:41.3286595Z   Using cached uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-08T02:09:41.4969572Z Collecting httpx<1.0,>=0.28 (from -r requirements-dev.txt (line 2))
+2026-11-08T02:09:41.4980480Z   Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-11-08T02:09:41.5687590Z Collecting pytest<10.0,>=9.0.3 (from -r requirements-dev.txt (line 3))
+2026-11-08T02:09:41.5698582Z   Using cached pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-08T02:09:41.8666742Z Collecting ruff<1.0,>=0.11 (from -r requirements-dev.txt (line 4))
+2026-11-08T02:09:41.8677972Z   Using cached ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:41.9487006Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:41.9501428Z   Using cached semgrep-1.184.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:41.9861458Z Collecting starlette>=0.46.0 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:41.9874940Z   Using cached starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-08T02:09:42.0664403Z Collecting pydantic>=2.9.0 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:42.0675172Z   Using cached pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-08T02:09:42.0901687Z Collecting typing-extensions>=4.8.0 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:42.0911883Z   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-08T02:09:42.1185281Z Collecting typing-inspection>=0.4.2 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:42.1194079Z   Using cached typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:42.1428432Z Collecting annotated-doc>=0.0.2 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:42.1437797Z   Using cached annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+2026-11-08T02:09:42.1801297Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:42.1811035Z   Using cached opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-08T02:09:42.2005288Z Collecting click>=7.0 (from uvicorn<1.0,>=0.34->uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:42.2016279Z   Using cached click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:42.2212098Z Collecting h11>=0.8 (from uvicorn<1.0,>=0.34->uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:42.2222036Z   Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-08T02:09:42.2440096Z Collecting anyio (from httpx<1.0,>=0.28->-r requirements-dev.txt (line 2))
+2026-11-08T02:09:42.2450902Z   Using cached anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-08T02:09:42.2841008Z Collecting certifi (from httpx<1.0,>=0.28->-r requirements-dev.txt (line 2))
+2026-11-08T02:09:42.2852574Z   Using cached certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-08T02:09:42.3009790Z Collecting httpcore==1.* (from httpx<1.0,>=0.28->-r requirements-dev.txt (line 2))
+2026-11-08T02:09:42.3020486Z   Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-11-08T02:09:42.3174073Z Collecting idna (from httpx<1.0,>=0.28->-r requirements-dev.txt (line 2))
+2026-11-08T02:09:42.3184737Z   Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:42.4090909Z Collecting iniconfig>=2 (from pytest<10.0,>=9.0.3->-r requirements-dev.txt (line 3))
+2026-11-08T02:09:42.4101207Z   Using cached iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-08T02:09:42.4275585Z Collecting packaging>=24 (from pytest<10.0,>=9.0.3->-r requirements-dev.txt (line 3))
+2026-11-08T02:09:42.4286739Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-08T02:09:42.4504602Z Collecting pluggy<2,>=1.6 (from pytest<10.0,>=9.0.3->-r requirements-dev.txt (line 3))
+2026-11-08T02:09:42.4515848Z   Using cached pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-08T02:09:42.4748677Z Collecting pygments>=2.15 (from pytest<10.0,>=9.0.3->-r requirements-dev.txt (line 3))
+2026-11-08T02:09:42.4760037Z   Using cached pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-08T02:09:42.4936584Z Collecting attrs>=21.3 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.4947080Z   Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-08T02:09:42.5107119Z Collecting boltons~=21.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.5117269Z   Using cached boltons-21.0.0-py2.py3-none-any.whl.metadata (1.5 kB)
+2026-11-08T02:09:42.5247139Z Collecting click-option-group~=0.5 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.5257672Z   Using cached click_option_group-0.5.9-py3-none-any.whl.metadata (5.8 kB)
+2026-11-08T02:09:42.5283402Z Collecting click>=7.0 (from uvicorn<1.0,>=0.34->uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:42.5294183Z   Using cached click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:42.5450045Z Collecting colorama~=0.4.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.5460983Z   Using cached colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+2026-11-08T02:09:42.5603653Z Collecting exceptiongroup~=1.2.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.5899112Z   Using cached exceptiongroup-1.2.2-py3-none-any.whl.metadata (6.6 kB)
+2026-11-08T02:09:42.6120793Z Collecting glom>=23.3 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.6131877Z   Using cached glom-25.12.0-py3-none-any.whl.metadata (5.2 kB)
+2026-11-08T02:09:42.6488250Z Collecting jsonschema~=4.25.1 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.6499756Z   Using cached jsonschema-4.25.1-py3-none-any.whl.metadata (7.6 kB)
+2026-11-08T02:09:42.6751410Z Collecting mcp==1.29.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.6763248Z   Using cached mcp-1.29.0-py3-none-any.whl.metadata (9.3 kB)
+2026-11-08T02:09:42.6797296Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.6808195Z   Using cached semgrep-1.183.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.6835686Z INFO: pip is looking at multiple versions of semgrep to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:42.6849836Z   Using cached semgrep-1.182.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.6888419Z   Using cached semgrep-1.182.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.6927889Z   Using cached semgrep-1.181.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.6966600Z   Using cached semgrep-1.181.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7003472Z   Using cached semgrep-1.180.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7040618Z   Using cached semgrep-1.179.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7066271Z INFO: pip is still looking at multiple versions of semgrep to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:42.7080221Z   Using cached semgrep-1.178.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7116797Z   Using cached semgrep-1.177.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7152595Z   Using cached semgrep-1.176.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7188615Z   Using cached semgrep-1.176.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7224121Z   Using cached semgrep-1.175.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7250153Z INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+2026-11-08T02:09:42.7263602Z   Using cached semgrep-1.175.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7299307Z   Using cached semgrep-1.174.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7334566Z   Using cached semgrep-1.173.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7369925Z   Using cached semgrep-1.172.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7408452Z Collecting mcp==1.23.3 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.7418519Z   Using cached mcp-1.23.3-py3-none-any.whl.metadata (89 kB)
+2026-11-08T02:09:42.7473512Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.7483924Z   Using cached semgrep-1.171.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7520766Z   Using cached semgrep-1.170.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7551412Z Collecting click>=7.0 (from uvicorn<1.0,>=0.34->uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:42.7561023Z   Using cached click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+2026-11-08T02:09:42.7578806Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.7588851Z   Using cached semgrep-1.170.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7624310Z   Using cached semgrep-1.169.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7661038Z   Using cached semgrep-1.168.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7698809Z   Using cached semgrep-1.167.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7734323Z   Using cached semgrep-1.166.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7769984Z   Using cached semgrep-1.165.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7806615Z   Using cached semgrep-1.164.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7843146Z   Using cached semgrep-1.163.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7879420Z   Using cached semgrep-1.162.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7915093Z   Using cached semgrep-1.161.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7951462Z   Using cached semgrep-1.160.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.7986971Z   Using cached semgrep-1.159.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.8023236Z   Using cached semgrep-1.158.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_35_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.8059293Z   Using cached semgrep-1.157.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux2014_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.8094937Z   Using cached semgrep-1.156.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux2014_x86_64.whl.metadata (22 kB)
+2026-11-08T02:09:42.8131665Z   Using cached semgrep-1.155.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8167456Z   Using cached semgrep-1.154.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8203913Z   Using cached semgrep-1.153.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8239682Z   Using cached semgrep-1.153.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8275222Z   Using cached semgrep-1.152.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8311060Z   Using cached semgrep-1.151.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:42.8346522Z   Using cached semgrep-1.150.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.2 kB)
+2026-11-08T02:09:42.8370012Z Collecting glom~=22.1 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.8379547Z   Using cached glom-22.1.0-py2.py3-none-any.whl.metadata (4.9 kB)
+2026-11-08T02:09:42.8397337Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.8407199Z   Using cached semgrep-1.149.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8435646Z   Using cached semgrep-1.148.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8464091Z   Using cached semgrep-1.147.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8492534Z   Using cached semgrep-1.146.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8521799Z   Using cached semgrep-1.145.2-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8546053Z Collecting mcp==1.16.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.8555457Z   Using cached mcp-1.16.0-py3-none-any.whl.metadata (80 kB)
+2026-11-08T02:09:42.8606992Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.8617370Z   Using cached semgrep-1.145.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8646826Z   Using cached semgrep-1.145.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8676199Z   Using cached semgrep-1.144.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8706091Z   Using cached semgrep-1.144.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8734777Z   Using cached semgrep-1.143.3-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8763543Z   Using cached semgrep-1.143.2-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8792283Z   Using cached semgrep-1.143.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8821165Z   Using cached semgrep-1.143.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+2026-11-08T02:09:42.8850545Z   Using cached semgrep-1.142.3-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.8878930Z   Using cached semgrep-1.142.2-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.8907809Z   Using cached semgrep-1.142.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.8938726Z   Using cached semgrep-1.142.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.8967864Z   Using cached semgrep-1.141.1-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.8998526Z   Using cached semgrep-1.141.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.9026910Z   Using cached semgrep-1.140.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.9416530Z Collecting defusedxml~=0.7.1 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9429244Z   Using cached defusedxml-0.7.1-py2.py3-none-any.whl.metadata (32 kB)
+2026-11-08T02:09:42.9462619Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9474020Z   Using cached semgrep-1.139.0-cp310.cp311.cp312.cp313.py310.py311.py312.py313-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.9500754Z Collecting mcp==1.12.2 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9511076Z   Using cached mcp-1.12.2-py3-none-any.whl.metadata (60 kB)
+2026-11-08T02:09:42.9559374Z Collecting jsonschema~=4.20.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9569822Z   Using cached jsonschema-4.20.0-py3-none-any.whl.metadata (8.1 kB)
+2026-11-08T02:09:42.9593354Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9604183Z   Using cached semgrep-1.138.0-cp310.cp311.cp312.cp313.py310.py311.py312.py313-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (2.0 kB)
+2026-11-08T02:09:42.9633965Z   Using cached semgrep-1.137.1-cp310.cp311.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.9 kB)
+2026-11-08T02:09:42.9663074Z   Using cached semgrep-1.137.0-cp310.cp311.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.9 kB)
+2026-11-08T02:09:42.9692251Z   Using cached semgrep-1.136.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9736167Z Collecting jsonschema~=4.6 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9746013Z   Using cached jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+2026-11-08T02:09:42.9769984Z Collecting semgrep<2.0,>=1.100 (from -r requirements-dev.txt (line 5))
+2026-11-08T02:09:42.9779893Z   Using cached semgrep-1.135.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9807781Z   Using cached semgrep-1.134.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9834678Z   Using cached semgrep-1.133.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9861477Z   Using cached semgrep-1.132.1-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9888257Z   Using cached semgrep-1.132.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9915951Z   Using cached semgrep-1.131.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9942588Z   Using cached semgrep-1.130.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9969839Z   Using cached semgrep-1.128.1-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:42.9996637Z   Using cached semgrep-1.128.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0023050Z   Using cached semgrep-1.127.1-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0050584Z   Using cached semgrep-1.127.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0077331Z   Using cached semgrep-1.126.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0104160Z   Using cached semgrep-1.125.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0131417Z   Using cached semgrep-1.124.1-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0158113Z   Using cached semgrep-1.124.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0185586Z   Using cached semgrep-1.123.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0212081Z   Using cached semgrep-1.122.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0238919Z   Using cached semgrep-1.121.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0275988Z   Using cached semgrep-1.120.1-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0303855Z   Using cached semgrep-1.120.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0330733Z   Using cached semgrep-1.119.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (1.8 kB)
+2026-11-08T02:09:43.0357680Z   Using cached semgrep-1.118.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0391630Z   Using cached semgrep-1.117.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0425624Z   Using cached semgrep-1.116.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0460394Z   Using cached semgrep-1.114.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0497447Z   Using cached semgrep-1.113.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0531226Z   Using cached semgrep-1.112.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0565209Z   Using cached semgrep-1.111.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0599052Z   Using cached semgrep-1.110.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0633225Z   Using cached semgrep-1.109.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0667009Z   Using cached semgrep-1.108.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0701410Z   Using cached semgrep-1.107.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0735881Z   Using cached semgrep-1.106.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (21 kB)
+2026-11-08T02:09:43.0769935Z   Using cached semgrep-1.104.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:43.0804527Z   Using cached semgrep-1.103.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:43.0838723Z   Using cached semgrep-1.102.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:43.0872141Z   Using cached semgrep-1.101.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:43.0905435Z   Using cached semgrep-1.100.0-cp39.cp310.cp311.py39.py310.py311-none-musllinux_1_0_x86_64.manylinux2014_x86_64.whl.metadata (20 kB)
+2026-11-08T02:09:43.0939324Z Collecting fastapi<1.0,>=0.115 (from -r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:43.0948569Z   Using cached fastapi-0.162.1-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:43.0996883Z Collecting opentelemetry-api~=1.37.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.1006559Z   Using cached opentelemetry_api-1.37.0-py3-none-any.whl.metadata (1.5 kB)
+2026-11-08T02:09:43.1196852Z Collecting opentelemetry-sdk~=1.37.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.1207573Z   Using cached opentelemetry_sdk-1.37.0-py3-none-any.whl.metadata (1.5 kB)
+2026-11-08T02:09:43.1397070Z Collecting opentelemetry-exporter-otlp-proto-http~=1.37.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.1408210Z   Using cached opentelemetry_exporter_otlp_proto_http-1.37.0-py3-none-any.whl.metadata (2.3 kB)
+2026-11-08T02:09:43.1603403Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.1613610Z   Using cached opentelemetry_instrumentation_requests-0.66b2-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:43.1810535Z Collecting opentelemetry-instrumentation-threading~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.1820802Z   Using cached opentelemetry_instrumentation_threading-0.66b2-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:43.2006756Z Collecting peewee~=3.14 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.2017659Z   Using cached peewee-3.19.0-py3-none-any.whl.metadata (7.0 kB)
+2026-11-08T02:09:43.2284643Z Collecting pyjwt<3,>=2.15.0 (from pyjwt[crypto]<3,>=2.15.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.2295853Z   Using cached pyjwt-2.15.1-py3-none-any.whl.metadata (3.5 kB)
+2026-11-08T02:09:43.2498595Z Collecting requests~=2.22 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.2510924Z   Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-08T02:09:43.2775516Z Collecting rich>=13.5.2 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.2787133Z   Using cached rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+2026-11-08T02:09:43.3657539Z Collecting ruamel.yaml>=0.18.15 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.3670101Z   Using cached ruamel_yaml-0.19.1-py3-none-any.whl.metadata (16 kB)
+2026-11-08T02:09:43.3977550Z Collecting ruamel.yaml.clib==0.2.15 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.3990620Z   Using cached ruamel_yaml_clib-0.2.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (3.5 kB)
+2026-11-08T02:09:43.4221255Z Collecting semantic-version~=2.10.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.4232835Z   Using cached semantic_version-2.10.0-py2.py3-none-any.whl.metadata (9.7 kB)
+2026-11-08T02:09:43.4383374Z Collecting structlog~=26.1.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.4393877Z   Using cached structlog-26.1.0-py3-none-any.whl.metadata (9.7 kB)
+2026-11-08T02:09:43.4699289Z Collecting tomli~=2.4.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.4710861Z   Using cached tomli-2.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (10 kB)
+2026-11-08T02:09:43.4943140Z Collecting urllib3~=2.0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.4953961Z   Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-08T02:09:43.5115993Z Collecting wcmatch~=8.3 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.5126364Z   Using cached wcmatch-8.5.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-08T02:09:43.5360538Z Collecting importlib-metadata<8.8.0,>=6.0 (from opentelemetry-api~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.5370996Z   Using cached importlib_metadata-8.7.1-py3-none-any.whl.metadata (4.7 kB)
+2026-11-08T02:09:43.5420932Z Collecting fastapi<1.0,>=0.115 (from -r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:43.5430893Z   Using cached fastapi-0.162.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5464913Z INFO: pip is looking at multiple versions of fastapi to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:43.5477498Z   Using cached fastapi-0.161.1-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5521485Z   Using cached fastapi-0.161.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5563376Z   Using cached fastapi-0.160.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5607538Z   Using cached fastapi-0.159.1-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5652101Z   Using cached fastapi-0.159.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5695636Z   Using cached fastapi-0.158.2-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5727782Z INFO: pip is still looking at multiple versions of fastapi to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:43.5739391Z   Using cached fastapi-0.158.1-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5782001Z   Using cached fastapi-0.158.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5825708Z   Using cached fastapi-0.157.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5867536Z   Using cached fastapi-0.156.8-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5909953Z   Using cached fastapi-0.156.7-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5941849Z INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+2026-11-08T02:09:43.5953217Z   Using cached fastapi-0.156.6-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.5995191Z   Using cached fastapi-0.156.5-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6036541Z   Using cached fastapi-0.156.4-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6078300Z   Using cached fastapi-0.156.3-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6120236Z   Using cached fastapi-0.156.2-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6162493Z   Using cached fastapi-0.156.1-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6204806Z   Using cached fastapi-0.156.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6246674Z   Using cached fastapi-0.155.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6288592Z   Using cached fastapi-0.154.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6330954Z   Using cached fastapi-0.153.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6373080Z   Using cached fastapi-0.152.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6415320Z   Using cached fastapi-0.151.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6458469Z   Using cached fastapi-0.150.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6509869Z   Using cached fastapi-0.149.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6552622Z   Using cached fastapi-0.148.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6596542Z   Using cached fastapi-0.147.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6638945Z   Using cached fastapi-0.146.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6682392Z   Using cached fastapi-0.145.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6725373Z   Using cached fastapi-0.144.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6768690Z   Using cached fastapi-0.143.5-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6822002Z   Using cached fastapi-0.143.4-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6869011Z   Using cached fastapi-0.143.3-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6913947Z   Using cached fastapi-0.143.2-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.6961601Z   Using cached fastapi-0.143.1-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.7006103Z   Using cached fastapi-0.143.0-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.7050458Z   Using cached fastapi-0.142.4-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.7095197Z   Using cached fastapi-0.142.3-py3-none-any.whl.metadata (26 kB)
+2026-11-08T02:09:43.7138880Z   Using cached fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:43.7182745Z   Using cached fastapi-0.142.1-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:43.7227056Z   Using cached fastapi-0.142.0-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:43.7272328Z   Using cached fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
+2026-11-08T02:09:43.7474354Z Collecting httpx-sse>=0.4 (from mcp==1.29.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.7484823Z   Using cached httpx_sse-0.4.3-py3-none-any.whl.metadata (9.7 kB)
+2026-11-08T02:09:43.7655616Z Collecting pydantic-settings>=2.5.2 (from mcp==1.29.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.7665969Z   Using cached pydantic_settings-2.16.2-py3-none-any.whl.metadata (4.0 kB)
+2026-11-08T02:09:43.7840437Z Collecting python-multipart>=0.0.9 (from mcp==1.29.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.7851573Z   Using cached python_multipart-0.0.33-py3-none-any.whl.metadata (6.3 kB)
+2026-11-08T02:09:43.8274240Z Collecting sse-starlette>=1.6.1 (from mcp==1.29.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.8286564Z   Using cached sse_starlette-3.7.0-py3-none-any.whl.metadata (15 kB)
+2026-11-08T02:09:43.8663519Z Collecting zipp>=3.20 (from importlib-metadata<8.8.0,>=6.0->opentelemetry-api~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.8674463Z   Using cached zipp-4.1.2-py3-none-any.whl.metadata (3.6 kB)
+2026-11-08T02:09:43.8826760Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema~=4.25.1->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.8837484Z   Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+2026-11-08T02:09:43.9037816Z Collecting referencing>=0.28.4 (from jsonschema~=4.25.1->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:43.9049511Z   Using cached referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+2026-11-08T02:09:44.1492829Z Collecting rpds-py>=0.7.1 (from jsonschema~=4.25.1->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.1505454Z   Using cached rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+2026-11-08T02:09:44.1850835Z Collecting googleapis-common-protos~=1.52 (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.1862148Z   Using cached googleapis_common_protos-1.76.0-py3-none-any.whl.metadata (8.5 kB)
+2026-11-08T02:09:44.2171566Z Collecting opentelemetry-exporter-otlp-proto-common==1.37.0 (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.2181701Z   Using cached opentelemetry_exporter_otlp_proto_common-1.37.0-py3-none-any.whl.metadata (1.8 kB)
+2026-11-08T02:09:44.2527852Z Collecting opentelemetry-proto==1.37.0 (from opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.2539910Z   Using cached opentelemetry_proto-1.37.0-py3-none-any.whl.metadata (2.3 kB)
+2026-11-08T02:09:44.3710818Z Collecting protobuf<7.0,>=5.0 (from opentelemetry-proto==1.37.0->opentelemetry-exporter-otlp-proto-http~=1.37.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.3721865Z   Using cached protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
+2026-11-08T02:09:44.4059350Z Collecting opentelemetry-instrumentation==0.66b2 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.4070148Z   Using cached opentelemetry_instrumentation-0.66b2-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.4234049Z Collecting opentelemetry-semantic-conventions==0.66b2 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.4243239Z   Using cached opentelemetry_semantic_conventions-0.66b2-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.4411428Z Collecting opentelemetry-util-http==0.66b2 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.4420787Z   Using cached opentelemetry_util_http-0.66b2-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7556153Z Collecting wrapt<3.0.0,>=1.0.0 (from opentelemetry-instrumentation==0.66b2->opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7568713Z   Using cached wrapt-2.5.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.6 kB)
+2026-11-08T02:09:44.7608745Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7619964Z   Using cached opentelemetry_instrumentation_requests-0.66b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7644174Z Collecting opentelemetry-instrumentation==0.66b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7654263Z   Using cached opentelemetry_instrumentation-0.66b1-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.7675811Z Collecting opentelemetry-semantic-conventions==0.66b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7685653Z   Using cached opentelemetry_semantic_conventions-0.66b1-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.7704314Z Collecting opentelemetry-util-http==0.66b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7713903Z   Using cached opentelemetry_util_http-0.66b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7738273Z INFO: pip is looking at multiple versions of opentelemetry-semantic-conventions to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:44.7748333Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7758174Z   Using cached opentelemetry_instrumentation_requests-0.66b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7780385Z Collecting opentelemetry-instrumentation==0.66b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7789973Z   Using cached opentelemetry_instrumentation-0.66b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.7810656Z Collecting opentelemetry-semantic-conventions==0.66b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7823659Z   Using cached opentelemetry_semantic_conventions-0.66b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.7842261Z Collecting opentelemetry-util-http==0.66b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7852000Z   Using cached opentelemetry_util_http-0.66b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7876538Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7886051Z   Using cached opentelemetry_instrumentation_requests-0.65b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7908145Z Collecting opentelemetry-instrumentation==0.65b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7917967Z   Using cached opentelemetry_instrumentation-0.65b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.7938234Z Collecting opentelemetry-semantic-conventions==0.65b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7947652Z   Using cached opentelemetry_semantic_conventions-0.65b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.7965961Z Collecting opentelemetry-util-http==0.65b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.7975258Z   Using cached opentelemetry_util_http-0.65b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.7999932Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8010927Z   Using cached opentelemetry_instrumentation_requests-0.64b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8033494Z Collecting opentelemetry-instrumentation==0.64b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8042948Z   Using cached opentelemetry_instrumentation-0.64b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8063060Z Collecting opentelemetry-semantic-conventions==0.64b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8072542Z   Using cached opentelemetry_semantic_conventions-0.64b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.8091317Z Collecting opentelemetry-util-http==0.64b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8100720Z   Using cached opentelemetry_util_http-0.64b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8125331Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8134744Z   Using cached opentelemetry_instrumentation_requests-0.63b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8157436Z Collecting opentelemetry-instrumentation==0.63b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8167065Z   Using cached opentelemetry_instrumentation-0.63b1-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8187298Z Collecting opentelemetry-semantic-conventions==0.63b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8196694Z   Using cached opentelemetry_semantic_conventions-0.63b1-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.8217738Z Collecting opentelemetry-util-http==0.63b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8227142Z   Using cached opentelemetry_util_http-0.63b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8254527Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8263574Z   Using cached opentelemetry_instrumentation_requests-0.63b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8286830Z Collecting opentelemetry-instrumentation==0.63b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8296188Z   Using cached opentelemetry_instrumentation-0.63b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8316736Z Collecting opentelemetry-semantic-conventions==0.63b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8326384Z   Using cached opentelemetry_semantic_conventions-0.63b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.8345321Z Collecting opentelemetry-util-http==0.63b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8354523Z   Using cached opentelemetry_util_http-0.63b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8379664Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8389345Z   Using cached opentelemetry_instrumentation_requests-0.62b1-py3-none-any.whl.metadata (2.7 kB)
+2026-11-08T02:09:44.8412059Z Collecting opentelemetry-instrumentation==0.62b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8421497Z   Using cached opentelemetry_instrumentation-0.62b1-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8442227Z Collecting opentelemetry-semantic-conventions==0.62b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8451494Z   Using cached opentelemetry_semantic_conventions-0.62b1-py3-none-any.whl.metadata (2.5 kB)
+2026-11-08T02:09:44.8470179Z Collecting opentelemetry-util-http==0.62b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8479609Z   Using cached opentelemetry_util_http-0.62b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8500759Z INFO: pip is still looking at multiple versions of opentelemetry-semantic-conventions to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:44.8509091Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8518771Z   Using cached opentelemetry_instrumentation_requests-0.62b0-py3-none-any.whl.metadata (2.7 kB)
+2026-11-08T02:09:44.8542044Z Collecting opentelemetry-instrumentation==0.62b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8551663Z   Using cached opentelemetry_instrumentation-0.62b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8572944Z Collecting opentelemetry-semantic-conventions==0.62b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8582479Z   Using cached opentelemetry_semantic_conventions-0.62b0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-08T02:09:44.8603015Z Collecting opentelemetry-util-http==0.62b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8612235Z   Using cached opentelemetry_util_http-0.62b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8637550Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8647207Z   Using cached opentelemetry_instrumentation_requests-0.61b0-py3-none-any.whl.metadata (2.7 kB)
+2026-11-08T02:09:44.8671249Z Collecting opentelemetry-instrumentation==0.61b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8680454Z   Using cached opentelemetry_instrumentation-0.61b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8701730Z Collecting opentelemetry-semantic-conventions==0.61b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8711611Z   Using cached opentelemetry_semantic_conventions-0.61b0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-08T02:09:44.8732333Z Collecting opentelemetry-util-http==0.61b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8742453Z   Using cached opentelemetry_util_http-0.61b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8768522Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8778334Z   Using cached opentelemetry_instrumentation_requests-0.60b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8801422Z Collecting opentelemetry-instrumentation==0.60b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8811045Z   Using cached opentelemetry_instrumentation-0.60b1-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8831746Z Collecting opentelemetry-semantic-conventions==0.60b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8841280Z   Using cached opentelemetry_semantic_conventions-0.60b1-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.8859837Z Collecting opentelemetry-util-http==0.60b1 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8869358Z   Using cached opentelemetry_util_http-0.60b1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8894208Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8903473Z   Using cached opentelemetry_instrumentation_requests-0.60b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.8926700Z Collecting opentelemetry-instrumentation==0.60b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8936272Z   Using cached opentelemetry_instrumentation-0.60b0-py3-none-any.whl.metadata (7.2 kB)
+2026-11-08T02:09:44.8959194Z Collecting opentelemetry-semantic-conventions==0.60b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.8987199Z   Using cached opentelemetry_semantic_conventions-0.60b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.8998889Z Collecting opentelemetry-util-http==0.60b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9005819Z   Using cached opentelemetry_util_http-0.60b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.9031577Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9040931Z   Using cached opentelemetry_instrumentation_requests-0.59b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.9063446Z Collecting opentelemetry-instrumentation==0.59b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9072468Z   Using cached opentelemetry_instrumentation-0.59b0-py3-none-any.whl.metadata (7.1 kB)
+2026-11-08T02:09:44.9092491Z Collecting opentelemetry-semantic-conventions==0.59b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9101586Z   Using cached opentelemetry_semantic_conventions-0.59b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.9119896Z Collecting opentelemetry-util-http==0.59b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9128740Z   Using cached opentelemetry_util_http-0.59b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.9147625Z INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+2026-11-08T02:09:44.9155481Z Collecting opentelemetry-instrumentation-requests~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9166127Z   Using cached opentelemetry_instrumentation_requests-0.58b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.9188184Z Collecting opentelemetry-instrumentation==0.58b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9197364Z   Using cached opentelemetry_instrumentation-0.58b0-py3-none-any.whl.metadata (7.1 kB)
+2026-11-08T02:09:44.9217515Z Collecting opentelemetry-semantic-conventions==0.58b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9226488Z   Using cached opentelemetry_semantic_conventions-0.58b0-py3-none-any.whl.metadata (2.4 kB)
+2026-11-08T02:09:44.9243910Z Collecting opentelemetry-util-http==0.58b0 (from opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9252552Z   Using cached opentelemetry_util_http-0.58b0-py3-none-any.whl.metadata (2.6 kB)
+2026-11-08T02:09:44.9300099Z Collecting wrapt<2.0.0,>=1.0.0 (from opentelemetry-instrumentation==0.58b0->opentelemetry-instrumentation-requests~=0.58b0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9309834Z   Using cached wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
+2026-11-08T02:09:44.9342826Z Collecting opentelemetry-instrumentation-threading~=0.58b0 (from semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:44.9352227Z   Using cached opentelemetry_instrumentation_threading-0.66b1-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9368018Z INFO: pip is looking at multiple versions of opentelemetry-instrumentation-threading to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:44.9380409Z   Using cached opentelemetry_instrumentation_threading-0.66b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9406374Z   Using cached opentelemetry_instrumentation_threading-0.65b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9431817Z   Using cached opentelemetry_instrumentation_threading-0.64b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9457322Z   Using cached opentelemetry_instrumentation_threading-0.63b1-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9482461Z   Using cached opentelemetry_instrumentation_threading-0.63b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9508443Z   Using cached opentelemetry_instrumentation_threading-0.62b1-py3-none-any.whl.metadata (2.2 kB)
+2026-11-08T02:09:44.9524983Z INFO: pip is still looking at multiple versions of opentelemetry-instrumentation-threading to determine which version is compatible with other requirements. This could take a while.
+2026-11-08T02:09:44.9537257Z   Using cached opentelemetry_instrumentation_threading-0.62b0-py3-none-any.whl.metadata (2.2 kB)
+2026-11-08T02:09:44.9562767Z   Using cached opentelemetry_instrumentation_threading-0.61b0-py3-none-any.whl.metadata (2.2 kB)
+2026-11-08T02:09:44.9589277Z   Using cached opentelemetry_instrumentation_threading-0.60b1-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9614952Z   Using cached opentelemetry_instrumentation_threading-0.60b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9640843Z   Using cached opentelemetry_instrumentation_threading-0.59b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9656129Z INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+2026-11-08T02:09:44.9668234Z   Using cached opentelemetry_instrumentation_threading-0.58b0-py3-none-any.whl.metadata (2.1 kB)
+2026-11-08T02:09:44.9892768Z Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:44.9902386Z   Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-08T02:09:45.6216645Z Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1.0,>=0.115->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 1))
+2026-11-08T02:09:45.6227923Z   Using cached pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-08T02:09:45.7606714Z Collecting cryptography>=3.4.0 (from pyjwt[crypto]<3,>=2.15.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:45.7617962Z   Using cached cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.4 kB)
+2026-11-08T02:09:45.9925265Z Collecting charset_normalizer<4,>=2 (from requests~=2.22->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:45.9936549Z   Using cached charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-08T02:09:46.0305978Z Collecting httptools>=0.8.0 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.0316446Z   Using cached httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+2026-11-08T02:09:46.0488477Z Collecting python-dotenv>=0.13 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.0498103Z   Using cached python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-08T02:09:46.0804755Z Collecting pyyaml>=5.1 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.0817953Z   Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-08T02:09:46.1136429Z Collecting uvloop>=0.15.1 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.1148873Z   Using cached uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+2026-11-08T02:09:46.2787088Z Collecting watchfiles>=0.20 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.2799742Z   Using cached watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-11-08T02:09:46.6048113Z Collecting websockets>=13.0 (from uvicorn[standard]<1.0,>=0.34->-r /home/runner/work/CS763-proj/CS763-proj/requirements.txt (line 2))
+2026-11-08T02:09:46.6061100Z   Using cached websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-08T02:09:46.6226435Z Collecting bracex>=2.1.1 (from wcmatch~=8.3->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.6238883Z   Using cached bracex-3.2.2-py3-none-any.whl.metadata (3.3 kB)
+2026-11-08T02:09:46.7132258Z Collecting cffi>=2.0.0 (from cryptography>=3.4.0->pyjwt[crypto]<3,>=2.15.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.7145058Z   Using cached cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+2026-11-08T02:09:46.7329877Z Collecting pycparser (from cffi>=2.0.0->cryptography>=3.4.0->pyjwt[crypto]<3,>=2.15.0->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.7340389Z   Using cached pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+2026-11-08T02:09:46.7480890Z Collecting face>=20.1.1 (from glom>=23.3->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.7491905Z   Using cached face-26.0.1-py3-none-any.whl.metadata (1.8 kB)
+2026-11-08T02:09:46.7775689Z Collecting markdown-it-py>=2.2.0 (from rich>=13.5.2->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.7787501Z   Using cached markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-08T02:09:46.8014168Z Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.5.2->semgrep<2.0,>=1.100->-r requirements-dev.txt (line 5))
+2026-11-08T02:09:46.8025231Z   Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+2026-11-08T02:09:46.8175529Z Using cached semgrep-1.184.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl (72.3 MB)
+2026-11-08T02:09:46.8386828Z Using cached opentelemetry_api-1.37.0-py3-none-any.whl (65 kB)
+2026-11-08T02:09:46.8394607Z Using cached fastapi-0.141.1-py3-none-any.whl (131 kB)
+2026-11-08T02:09:46.8403328Z Using cached mcp-1.29.0-py3-none-any.whl (223 kB)
+2026-11-08T02:09:46.8413080Z Using cached ruamel_yaml_clib-0.2.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (788 kB)
+2026-11-08T02:09:46.8423630Z Using cached uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-08T02:09:46.8432317Z Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-11-08T02:09:46.8440981Z Using cached pytest-9.2.0-py3-none-any.whl (411 kB)
+2026-11-08T02:09:46.8451205Z Using cached ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.6 MB)
+2026-11-08T02:09:46.8489531Z Using cached boltons-21.0.0-py2.py3-none-any.whl (193 kB)
+2026-11-08T02:09:46.8498635Z Using cached click-8.4.2-py3-none-any.whl (119 kB)
+2026-11-08T02:09:46.8507570Z Using cached click_option_group-0.5.9-py3-none-any.whl (11 kB)
+2026-11-08T02:09:46.8516103Z Using cached colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+2026-11-08T02:09:46.8524397Z Using cached exceptiongroup-1.2.2-py3-none-any.whl (16 kB)
+2026-11-08T02:09:46.8532820Z Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-11-08T02:09:46.8541419Z Using cached importlib_metadata-8.7.1-py3-none-any.whl (27 kB)
+2026-11-08T02:09:46.8549962Z Using cached jsonschema-4.25.1-py3-none-any.whl (90 kB)
+2026-11-08T02:09:46.8558693Z Using cached opentelemetry_exporter_otlp_proto_http-1.37.0-py3-none-any.whl (19 kB)
+2026-11-08T02:09:46.8567667Z Using cached opentelemetry_exporter_otlp_proto_common-1.37.0-py3-none-any.whl (18 kB)
+2026-11-08T02:09:46.8576113Z Using cached opentelemetry_proto-1.37.0-py3-none-any.whl (72 kB)
+2026-11-08T02:09:46.8584870Z Using cached googleapis_common_protos-1.76.0-py3-none-any.whl (307 kB)
+2026-11-08T02:09:46.8594182Z Using cached opentelemetry_instrumentation_requests-0.58b0-py3-none-any.whl (12 kB)
+2026-11-08T02:09:46.8602523Z Using cached opentelemetry_semantic_conventions-0.58b0-py3-none-any.whl (207 kB)
+2026-11-08T02:09:46.8611458Z Using cached opentelemetry_instrumentation-0.58b0-py3-none-any.whl (33 kB)
+2026-11-08T02:09:46.8620042Z Using cached opentelemetry_util_http-0.58b0-py3-none-any.whl (7.7 kB)
+2026-11-08T02:09:46.8628688Z Using cached opentelemetry_instrumentation_threading-0.58b0-py3-none-any.whl (9.3 kB)
+2026-11-08T02:09:46.8637077Z Using cached opentelemetry_sdk-1.37.0-py3-none-any.whl (131 kB)
+2026-11-08T02:09:46.8645780Z Using cached peewee-3.19.0-py3-none-any.whl (411 kB)
+2026-11-08T02:09:46.8655323Z Using cached pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-08T02:09:46.8663658Z Using cached protobuf-6.33.6-cp39-abi3-manylinux2014_x86_64.whl (323 kB)
+2026-11-08T02:09:46.8672970Z Using cached pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-08T02:09:46.8683008Z Using cached pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-08T02:09:46.8697451Z Using cached pyjwt-2.15.1-py3-none-any.whl (33 kB)
+2026-11-08T02:09:46.8706429Z Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-08T02:09:46.8715086Z Using cached charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+2026-11-08T02:09:46.8723685Z Using cached idna-3.20-py3-none-any.whl (69 kB)
+2026-11-08T02:09:46.8732167Z Using cached semantic_version-2.10.0-py2.py3-none-any.whl (15 kB)
+2026-11-08T02:09:46.8740749Z Using cached structlog-26.1.0-py3-none-any.whl (73 kB)
+2026-11-08T02:09:46.8749722Z Using cached tomli-2.4.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (253 kB)
+2026-11-08T02:09:46.8758761Z Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-08T02:09:46.8767325Z Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-08T02:09:46.8776152Z Using cached wcmatch-8.5.2-py3-none-any.whl (39 kB)
+2026-11-08T02:09:46.8784899Z Using cached wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (88 kB)
+2026-11-08T02:09:46.8793332Z Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+2026-11-08T02:09:46.8801665Z Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-08T02:09:46.8810084Z Using cached anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-08T02:09:46.8818991Z Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-11-08T02:09:46.8827783Z Using cached bracex-3.2.2-py3-none-any.whl (14 kB)
+2026-11-08T02:09:46.8836409Z Using cached certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-08T02:09:46.8845448Z Using cached cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl (4.8 MB)
+2026-11-08T02:09:46.8868995Z Using cached cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+2026-11-08T02:09:46.8878136Z Using cached glom-25.12.0-py3-none-any.whl (103 kB)
+2026-11-08T02:09:46.8886999Z Using cached face-26.0.1-py3-none-any.whl (57 kB)
+2026-11-08T02:09:46.8895644Z Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-08T02:09:46.8904546Z Using cached httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (552 kB)
+2026-11-08T02:09:46.8914463Z Using cached httpx_sse-0.4.3-py3-none-any.whl (9.0 kB)
+2026-11-08T02:09:46.8922939Z Using cached iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-08T02:09:46.8931648Z Using cached jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-11-08T02:09:46.8940414Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-08T02:09:46.8949410Z Using cached pydantic_settings-2.16.2-py3-none-any.whl (81 kB)
+2026-11-08T02:09:46.8958327Z Using cached pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-08T02:09:46.8971456Z Using cached python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-08T02:09:46.8980103Z Using cached python_multipart-0.0.33-py3-none-any.whl (32 kB)
+2026-11-08T02:09:46.8989301Z Using cached pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-11-08T02:09:46.9000759Z Using cached referencing-0.37.0-py3-none-any.whl (26 kB)
+2026-11-08T02:09:46.9009511Z Using cached rich-15.0.0-py3-none-any.whl (310 kB)
+2026-11-08T02:09:46.9019212Z Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+2026-11-08T02:09:46.9028123Z Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+2026-11-08T02:09:46.9036884Z Using cached rpds_py-2026.9.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (371 kB)
+2026-11-08T02:09:46.9046649Z Using cached ruamel_yaml-0.19.1-py3-none-any.whl (118 kB)
+2026-11-08T02:09:46.9055771Z Using cached sse_starlette-3.7.0-py3-none-any.whl (18 kB)
+2026-11-08T02:09:46.9064226Z Using cached starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-08T02:09:46.9072964Z Using cached typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-08T02:09:46.9082493Z Using cached uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.5 MB)
+2026-11-08T02:09:46.9107345Z Using cached watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+2026-11-08T02:09:46.9117858Z Using cached websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-08T02:09:46.9126760Z Using cached zipp-4.1.2-py3-none-any.whl (10 kB)
+2026-11-08T02:09:46.9144959Z Using cached pycparser-3.12-py3-none-any.whl (62 kB)
+2026-11-08T02:09:47.2141871Z Installing collected packages: peewee, boltons, zipp, wrapt, websockets, uvloop, urllib3, typing-extensions, tomli, structlog, semantic-version, ruff, ruamel.yaml.clib, ruamel.yaml, rpds-py, pyyaml, python-multipart, python-dotenv, pyjwt, pygments, pycparser, protobuf, pluggy, packaging, opentelemetry-util-http, mdurl, iniconfig, idna, httpx-sse, httptools, h11, face, exceptiongroup, colorama, click, charset_normalizer, certifi, bracex, attrs, annotated-types, annotated-doc, wcmatch, uvicorn, typing-inspection, requests, referencing, pytest, pydantic-core, opentelemetry-proto, markdown-it-py, importlib-metadata, httpcore, googleapis-common-protos, glom, click-option-group, cffi, anyio, watchfiles, starlette, rich, pydantic, opentelemetry-exporter-otlp-proto-common, opentelemetry-api, jsonschema-specifications, httpx, cryptography, sse-starlette, pydantic-settings, opentelemetry-semantic-conventions, jsonschema, fastapi, opentelemetry-sdk, opentelemetry-instrumentation, mcp, opentelemetry-instrumentation-threading, opentelemetry-instrumentation-requests, opentelemetry-exporter-otlp-proto-http, semgrep
+2026-11-08T02:09:53.1379452Z 
+2026-11-08T02:09:53.1435923Z Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 boltons-21.0.0 bracex-3.2.2 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.4.2 click-option-group-0.5.9 colorama-0.4.6 cryptography-50.0.2 exceptiongroup-1.2.2 face-26.0.1 fastapi-0.141.1 glom-25.12.0 googleapis-common-protos-1.76.0 h11-0.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 httpx-sse-0.4.3 idna-3.20 importlib-metadata-8.7.1 iniconfig-2.3.1 jsonschema-4.25.1 jsonschema-specifications-2025.9.1 markdown-it-py-4.2.0 mcp-1.29.0 mdurl-0.1.2 opentelemetry-api-1.37.0 opentelemetry-exporter-otlp-proto-common-1.37.0 opentelemetry-exporter-otlp-proto-http-1.37.0 opentelemetry-instrumentation-0.58b0 opentelemetry-instrumentation-requests-0.58b0 opentelemetry-instrumentation-threading-0.58b0 opentelemetry-proto-1.37.0 opentelemetry-sdk-1.37.0 opentelemetry-semantic-conventions-0.58b0 opentelemetry-util-http-0.58b0 packaging-26.3 peewee-3.19.0 pluggy-1.7.0 protobuf-6.33.6 pycparser-3.12 pydantic-2.14.3 pydantic-core-2.50.4 pydantic-settings-2.16.2 pygments-2.21.0 pyjwt-2.15.1 pytest-9.2.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rich-15.0.0 rpds-py-2026.9.1 ruamel.yaml-0.19.1 ruamel.yaml.clib-0.2.15 ruff-0.17.4 semantic-version-2.10.0 semgrep-1.184.0 sse-starlette-3.7.0 starlette-1.10.0 structlog-26.1.0 tomli-2.4.1 typing-extensions-4.16.0 typing-inspection-0.4.5 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 wcmatch-8.5.2 websockets-17.4 wrapt-1.17.3 zipp-4.1.2
+2026-11-08T02:09:53.5414706Z ##[group]Run ruff check .
+2026-11-08T02:09:53.5414986Z [36;1mruff check .[0m
+2026-11-08T02:09:53.5415191Z [36;1mruff format .[0m
+2026-11-08T02:09:53.5461097Z shell: /usr/bin/bash -e {0}
+2026-11-08T02:09:53.5461325Z env:
+2026-11-08T02:09:53.5461570Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5461955Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:09:53.5462314Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5462629Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5462940Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5463256Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:09:53.5463520Z ##[endgroup]
+2026-11-08T02:09:53.5590169Z All checks passed!
+2026-11-08T02:09:53.5665601Z 2 files reformatted, 5 files left unchanged
+2026-11-08T02:09:53.5700706Z ##[group]Run python -m pytest -q
+2026-11-08T02:09:53.5700991Z [36;1mpython -m pytest -q[0m
+2026-11-08T02:09:53.5747847Z shell: /usr/bin/bash -e {0}
+2026-11-08T02:09:53.5748097Z env:
+2026-11-08T02:09:53.5748357Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5748748Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:09:53.5749131Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5749447Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5749773Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:53.5750109Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:09:53.5750406Z ##[endgroup]
+2026-11-08T02:09:54.3390732Z .                                                                        [100%]
+2026-11-08T02:09:54.3391231Z =============================== warnings summary ===============================
+2026-11-08T02:09:54.3391951Z ../../../../../opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fastapi/testclient.py:1
+2026-11-08T02:09:54.3393311Z   /opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+2026-11-08T02:09:54.3394668Z     from starlette.testclient import TestClient as TestClient  # noqa
+2026-11-08T02:09:54.3394913Z 
+2026-11-08T02:09:54.3395117Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-08T02:09:54.3395474Z 1 passed, 1 warning in 0.26s
+2026-11-08T02:09:54.4210888Z ##[group]Run docker run --rm -v "$GITHUB_WORKSPACE:/work:ro" aquasec/trivy:0.68.2 fs --scanners vuln --detection-priority comprehensive --severity HIGH,CRITICAL --ignore-unfixed --exit-code 0 /work
+2026-11-08T02:09:54.4211957Z [36;1mdocker run --rm -v "$GITHUB_WORKSPACE:/work:ro" aquasec/trivy:0.68.2 fs --scanners vuln --detection-priority comprehensive --severity HIGH,CRITICAL --ignore-unfixed --exit-code 0 /work[0m
+2026-11-08T02:09:54.4257514Z shell: /usr/bin/bash -e {0}
+2026-11-08T02:09:54.4257737Z env:
+2026-11-08T02:09:54.4257976Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:54.4258335Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:09:54.4258848Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:54.4259156Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:54.4259459Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:09:54.4259817Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:09:54.4260084Z ##[endgroup]
+2026-11-08T02:09:54.5043100Z Unable to find image 'aquasec/trivy:0.68.2' locally
+2026-11-08T02:09:55.3184456Z 0.68.2: Pulling from aquasec/trivy
+2026-11-08T02:09:55.6066280Z 070bf0bbc310: Pulling fs layer
+2026-11-08T02:09:55.6068971Z 55fe6d546401: Pulling fs layer
+2026-11-08T02:09:55.6069669Z 014e56e61396: Pulling fs layer
+2026-11-08T02:09:55.6070241Z 859a733a5341: Pulling fs layer
+2026-11-08T02:09:55.7075777Z 070bf0bbc310: Download complete
+2026-11-08T02:09:55.9075813Z 014e56e61396: Download complete
+2026-11-08T02:09:55.9076524Z 55fe6d546401: Download complete
+2026-11-08T02:09:56.0101422Z 014e56e61396: Pull complete
+2026-11-08T02:09:56.4076605Z 859a733a5341: Download complete
+2026-11-08T02:09:56.4094459Z 55fe6d546401: Pull complete
+2026-11-08T02:09:56.8948911Z 070bf0bbc310: Pull complete
+2026-11-08T02:09:56.8957782Z 859a733a5341: Pull complete
+2026-11-08T02:09:56.8958500Z Digest: sha256:05d0126976bdedcd0782a0336f77832dbea1c81b9cc5e4b3a5ea5d2ec863aca7
+2026-11-08T02:09:56.8959189Z Status: Downloaded newer image for aquasec/trivy:0.68.2
+2026-11-08T02:10:01.1304988Z 2026-11-08T02:10:01Z	INFO	[vulndb] Need to update DB
+2026-11-08T02:10:01.1305463Z 2026-11-08T02:10:01Z	INFO	[vulndb] Downloading vulnerability DB...
+2026-11-08T02:10:01.1305975Z 2026-11-08T02:10:01Z	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-11-08T02:10:06.6706021Z 33.81 MiB / 132.45 MiB [--------------->____________________________________________] 25.52% ? p/s ?81.68 MiB / 132.45 MiB [------------------------------------>_______________________] 61.67% ? p/s ?130.93 MiB / 132.45 MiB [---------------------------------------------------------->] 98.85% ? p/s ?132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 164.40 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 164.40 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 164.40 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 153.79 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 153.79 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 153.79 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 143.87 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 143.87 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 143.87 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 134.59 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 134.59 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 134.59 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 125.91 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 125.91 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 125.91 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 117.78 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 117.78 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [------------------------------------------->] 100.00% 117.78 MiB p/s ETA 0s132.45 MiB / 132.45 MiB [-----------------------------------------------] 100.00% 33.08 MiB p/s 4.2s2026-11-08T02:10:06Z	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-11-08T02:10:06.7580434Z 2026-11-08T02:10:06Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-11-08T02:10:06.7601172Z 
+2026-11-08T02:10:06.7601636Z Report Summary
+2026-11-08T02:10:06.7601832Z 
+2026-11-08T02:10:06.7602269Z ┌──────────────────┬──────┬─────────────────┐
+2026-11-08T02:10:06.7602731Z │      Target      │ Type │ Vulnerabilities │
+2026-11-08T02:10:06.7603150Z ├──────────────────┼──────┼─────────────────┤
+2026-11-08T02:10:06.7603541Z │ requirements.txt │ pip  │        0        │
+2026-11-08T02:10:06.7604131Z └──────────────────┴──────┴─────────────────┘
+2026-11-08T02:10:06.7604438Z Legend:
+2026-11-08T02:10:06.7604653Z - '-': Not scanned
+2026-11-08T02:10:06.7604956Z - '0': Clean (no security findings detected)
+2026-11-08T02:10:06.7605191Z 
+2026-11-08T02:10:06.7605808Z 2026-11-08T02:10:06Z	WARN	[pip] Unable to find python `site-packages` directory. License detection is skipped.	err="unable to find path to Python executable"
+2026-11-08T02:10:06.7606671Z 2026-11-08T02:10:06Z	INFO	Number of language-specific files	num=1
+2026-11-08T02:10:06.7607207Z 2026-11-08T02:10:06Z	INFO	[pip] Detecting vulnerabilities...
+2026-11-08T02:10:16.1187354Z ##[group]Run semgrep scan --config p/python app tests
+2026-11-08T02:10:16.1187717Z [36;1msemgrep scan --config p/python app tests[0m
+2026-11-08T02:10:16.1232083Z shell: /usr/bin/bash -e {0}
+2026-11-08T02:10:16.1232325Z env:
+2026-11-08T02:10:16.1232561Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:16.1232932Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:10:16.1233272Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:16.1233577Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:16.1234096Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:16.1234406Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:10:16.1234671Z ##[endgroup]
+2026-11-08T02:10:17.7489544Z                
+2026-11-08T02:10:17.7489866Z                
+2026-11-08T02:10:17.7490327Z ┌─────────────┐
+2026-11-08T02:10:17.7490524Z │ Scan Status │
+2026-11-08T02:10:17.7490804Z └─────────────┘
+2026-11-08T02:10:17.7492160Z   Scanning 6 files tracked by git with 151 Code rules:
+2026-11-08T02:10:17.7496852Z   Scanning 2 files with 151 python rules.
+2026-11-08T02:10:17.9762296Z                 
+2026-11-08T02:10:17.9762626Z                 
+2026-11-08T02:10:17.9763145Z ┌──────────────┐
+2026-11-08T02:10:17.9763429Z │ Scan Summary │
+2026-11-08T02:10:17.9763828Z └──────────────┘
+2026-11-08T02:10:17.9764162Z ✅ Scan completed successfully.
+2026-11-08T02:10:17.9764564Z  • Findings: 0 (0 blocking)
+2026-11-08T02:10:17.9764893Z  • Rules run: 151
+2026-11-08T02:10:17.9765180Z  • Targets scanned: 2
+2026-11-08T02:10:17.9765403Z  • Parsed lines: ~100.0%
+2026-11-08T02:10:17.9765632Z  • Scan skipped: 
+2026-11-08T02:10:17.9765883Z    ◦ Files matching .semgrepignore patterns: 4
+2026-11-08T02:10:17.9766186Z  • Scan was limited to files tracked by git
+2026-11-08T02:10:17.9766596Z  • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+2026-11-08T02:10:17.9767039Z Ran 151 rules on 2 files: 0 findings.
+2026-11-08T02:10:17.9767393Z (need more rules? `semgrep login` for additional free Semgrep Registry rules)
+2026-11-08T02:10:17.9767632Z 
+2026-11-08T02:10:17.9890607Z If Semgrep missed a finding, please send us feedback to let us know!
+2026-11-08T02:10:17.9891211Z See https://semgrep.dev/docs/reporting-false-negatives/
+2026-11-08T02:10:18.5018718Z ##[group]Run SonarSource/sonarqube-scan-action@v8.4.1
+2026-11-08T02:10:18.5019011Z with:
+2026-11-08T02:10:18.5019196Z   projectBaseDir: .
+2026-11-08T02:10:18.5019390Z   scannerVersion: 8.3.1.16491
+2026-11-08T02:10:18.5019724Z   scannerBinariesUrl: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli
+2026-11-08T02:10:18.5020089Z   skipSignatureVerification: false
+2026-11-08T02:10:18.5020300Z env:
+2026-11-08T02:10:18.5020511Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:18.5020854Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-08T02:10:18.5021364Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:18.5021669Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:18.5021973Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-08T02:10:18.5022271Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-08T02:10:18.5022940Z   SONAR_TOKEN: ***
+2026-11-08T02:10:18.5023128Z ##[endgroup]
+2026-11-08T02:10:18.5779029Z Installing Sonar Scanner CLI 8.3.1.16491 for linux-x64...
+2026-11-08T02:10:18.5779918Z Downloading from: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.3.1.16491-linux-x64.zip
+2026-11-08T02:10:18.9998132Z Downloading signature from: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-8.3.1.16491-linux-x64.zip.asc
+2026-11-08T02:10:19.0496530Z Importing SonarSource public key from hkps://keyserver.ubuntu.com...
+2026-11-08T02:10:19.0508554Z [command]/usr/bin/gpg --homedir /home/runner/work/_temp/gpg-42c4c3f1 --batch --keyserver hkps://keyserver.ubuntu.com --recv-keys 679F1EE92B19609DE816FDE81DB198F93525EC1A
+2026-11-08T02:10:19.0562997Z gpg: keybox '/home/runner/work/_temp/gpg-42c4c3f1/pubring.kbx' created
+2026-11-08T02:10:20.2377287Z gpg: /home/runner/work/_temp/gpg-42c4c3f1/trustdb.gpg: trustdb created
+2026-11-08T02:10:20.2380519Z gpg: key 1DB198F93525EC1A: public key "SonarSource S.A. <infra@sonarsource.com>" imported
+2026-11-08T02:10:20.2427577Z gpg: Total number processed: 1
+2026-11-08T02:10:20.2428120Z gpg:               imported: 1
+2026-11-08T02:10:20.2434773Z Successfully imported key from hkps://keyserver.ubuntu.com
+2026-11-08T02:10:20.2435513Z ✓ SonarSource public key imported successfully
+2026-11-08T02:10:20.2436069Z Verifying GPG signature...
+2026-11-08T02:10:20.2447224Z [command]/usr/bin/gpg --homedir /home/runner/work/_temp/gpg-42c4c3f1 --batch --verify /home/runner/work/_temp/213700f7-3632-470d-b2a2-af7cc2dfe76b /home/runner/work/_temp/a8a35ef7-e826-464f-99bd-6753956c44dd
+2026-11-08T02:10:20.3298808Z gpg: Signature made Mon Nov  2 14:30:12 2026 UTC
+2026-11-08T02:10:20.3299387Z gpg:                using RSA key 06D0369BE1D0B06997DA66E8C33B56C147B01975
+2026-11-08T02:10:20.3304186Z gpg: Good signature from "SonarSource S.A. <infra@sonarsource.com>" [unknown]
+2026-11-08T02:10:20.3308781Z gpg: WARNING: This key is not certified with a trusted signature!
+2026-11-08T02:10:20.3309325Z gpg:          There is no indication that the signature belongs to the owner.
+2026-11-08T02:10:20.3309860Z Primary key fingerprint: 679F 1EE9 2B19 609D E816  FDE8 1DB1 98F9 3525 EC1A
+2026-11-08T02:10:20.3310395Z      Subkey fingerprint: 06D0 369B E1D0 B069 97DA  66E8 C33B 56C1 47B0 1975
+2026-11-08T02:10:20.3318538Z ✓ GPG signature verification passed
+2026-11-08T02:10:20.3340566Z [command]/usr/bin/unzip -o -q /home/runner/work/_temp/a8a35ef7-e826-464f-99bd-6753956c44dd.zip
+2026-11-08T02:10:22.1561816Z Sonar Scanner CLI cached to: /opt/hostedtoolcache/sonar-scanner-cli/8.3.1-build.16491/linux-x64
+2026-11-08T02:10:22.1574141Z [command]/opt/hostedtoolcache/sonar-scanner-cli/8.3.1-build.16491/linux-x64/bin/sonar-scanner -Dsonar.projectBaseDir=.
+2026-11-08T02:10:22.4101205Z 02:10:22.407 INFO  Scanner configuration file: /opt/hostedtoolcache/sonar-scanner-cli/8.3.1-build.16491/linux-x64/conf/sonar-scanner.properties
+2026-11-08T02:10:22.4108058Z 02:10:22.410 INFO  Project root configuration file: /home/runner/work/CS763-proj/CS763-proj/sonar-project.properties
+2026-11-08T02:10:22.4225379Z 02:10:22.422 INFO  SonarScanner CLI 8.3.1.16491
+2026-11-08T02:10:22.4275991Z 02:10:22.427 INFO  Linux 7.0.0-1019-azure amd64
+2026-11-08T02:10:24.7411405Z 02:10:24.740 INFO  Communicating with SonarQube Cloud
+2026-11-08T02:10:24.7416433Z 02:10:24.741 INFO  JRE provisioning: os[linux], arch[x86_64]
+2026-11-08T02:10:28.1425425Z 02:10:28.141 INFO  Starting SonarScanner Engine...
+2026-11-08T02:10:28.1430215Z 02:10:28.141 INFO  Java 21.0.13 Eclipse Adoptium (64-bit)
+2026-11-08T02:10:30.5578280Z 02:10:30.557 INFO  Load global settings
+2026-11-08T02:10:31.5779651Z 02:10:31.577 INFO  Load global settings (done) | time=1019ms
+2026-11-08T02:10:31.5798610Z 02:10:31.579 INFO  Server id: 1BD809FA-AWHW8ct9-T_TB3XqouNu
+2026-11-08T02:10:31.5880991Z 02:10:31.587 INFO  Found an active CI vendor: 'Github Actions'
+2026-11-08T02:10:31.8493119Z 02:10:31.847 INFO  Loading required plugins
+2026-11-08T02:10:31.8494301Z 02:10:31.847 INFO  Load plugins index
+2026-11-08T02:10:32.0790228Z 02:10:32.078 INFO  Load plugins index (done) | time=231ms
+2026-11-08T02:10:32.1414835Z 02:10:32.140 INFO  Load/download plugins
+2026-11-08T02:10:32.8743116Z 02:10:32.873 INFO  Load/download plugins (done) | time=732ms
+2026-11-08T02:10:32.9666214Z 02:10:32.966 INFO  Loaded core extensions: a3s, sca, architecture
+2026-11-08T02:10:33.1927875Z 02:10:33.191 INFO  Load project settings for component key: 'ramired2_CS763-proj'
+2026-11-08T02:10:33.5010516Z 02:10:33.499 INFO  Load project settings for component key: 'ramired2_CS763-proj' (done) | time=308ms
+2026-11-08T02:10:33.7824973Z 02:10:33.781 INFO  Process project properties
+2026-11-08T02:10:33.8030782Z 02:10:33.802 INFO  Project key: ramired2_CS763-proj
+2026-11-08T02:10:33.8031332Z 02:10:33.802 INFO  Base dir: /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:10:33.8031906Z 02:10:33.802 INFO  Working dir: /home/runner/work/CS763-proj/CS763-proj/.scannerwork
+2026-11-08T02:10:33.8297086Z 02:10:33.827 INFO  Check ALM binding of project 'ramired2_CS763-proj'
+2026-11-08T02:10:34.0388430Z 02:10:34.038 INFO  Detected project binding: BOUND
+2026-11-08T02:10:34.0389339Z 02:10:34.038 INFO  Check ALM binding of project 'ramired2_CS763-proj' (done) | time=211ms
+2026-11-08T02:10:34.0431369Z 02:10:34.042 INFO  Load branch configuration
+2026-11-08T02:10:34.0529741Z 02:10:34.051 INFO  Github event: push
+2026-11-08T02:10:34.0530562Z 02:10:34.052 INFO  Auto-configuring branch 'main'
+2026-11-08T02:10:34.0537809Z 02:10:34.053 INFO  Load branch configuration (done) | time=11ms
+2026-11-08T02:10:34.0593966Z 02:10:34.058 INFO  Create analysis
+2026-11-08T02:10:34.4195588Z 02:10:34.419 INFO  Branch name: main, type: long
+2026-11-08T02:10:34.4196262Z 02:10:34.419 INFO  Create analysis (done) | time=360ms
+2026-11-08T02:10:34.8671516Z 02:10:34.866 INFO  Load quality profiles
+2026-11-08T02:10:35.2594730Z 02:10:35.258 INFO  Load quality profiles (done) | time=392ms
+2026-11-08T02:10:35.2738467Z 02:10:35.272 INFO  Load active rules
+2026-11-08T02:10:35.9173340Z 02:10:35.916 INFO  Load active rules (done) | time=643ms
+2026-11-08T02:10:36.1374919Z 02:10:36.136 INFO  Organization key: ramired2
+2026-11-08T02:10:36.1545103Z 02:10:36.153 INFO  Preprocessing files...
+2026-11-08T02:10:36.2029803Z 02:10:36.201 INFO  1 language detected in 10 preprocessed files (done) | time=46ms
+2026-11-08T02:10:36.2039844Z 02:10:36.202 INFO  0 files ignored because of inclusion/exclusion patterns
+2026-11-08T02:10:36.2040441Z 02:10:36.202 INFO  0 files ignored because of scm ignore settings
+2026-11-08T02:10:36.3465171Z 02:10:36.344 INFO  Loading plugins for detected languages
+2026-11-08T02:10:36.3465745Z 02:10:36.345 INFO  Load/download plugins
+2026-11-08T02:10:37.1107101Z 02:10:37.110 INFO  Load/download plugins (done) | time=765ms
+2026-11-08T02:10:37.3795080Z 02:10:37.378 INFO  Load project repositories
+2026-11-08T02:10:37.6205994Z 02:10:37.620 INFO  Load project repositories (done) | time=241ms
+2026-11-08T02:10:37.6587533Z 02:10:37.657 INFO  Indexing files...
+2026-11-08T02:10:37.6588509Z 02:10:37.657 INFO  Project configuration:
+2026-11-08T02:10:37.6588986Z 02:10:37.657 INFO    Excluded sources: **/build-wrapper-dump.json
+2026-11-08T02:10:37.6714948Z 02:10:37.670 INFO  10 files indexed (done) | time=12ms
+2026-11-08T02:10:37.6734568Z 02:10:37.671 INFO  Quality profile for py: Sonar way core
+2026-11-08T02:10:40.4397186Z 02:10:40.435 INFO  ------------- Run sensors on module ramired2_CS763-proj
+2026-11-08T02:10:40.5145312Z 02:10:40.513 INFO  Load metrics repository
+2026-11-08T02:10:40.7063647Z 02:10:40.705 INFO  Load metrics repository (done) | time=194ms
+2026-11-08T02:10:40.7156043Z 02:10:40.714 INFO  Sensor cache enabled
+2026-11-08T02:10:40.7204571Z 02:10:40.719 INFO  Load sensor cache
+2026-11-08T02:10:42.2060820Z 02:10:42.205 INFO  Load sensor cache (181 KB) | time=1486ms
+2026-11-08T02:10:43.1593429Z 02:10:43.158 INFO  Sensor IaC YAML File Type Classification Sensor [iac]
+2026-11-08T02:10:43.1629280Z 02:10:43.162 INFO  Sensor IaC YAML File Type Classification Sensor [iac] (done) | time=3ms
+2026-11-08T02:10:43.1631512Z 02:10:43.162 INFO  Sensor Python Sensor [python]
+2026-11-08T02:10:43.2935022Z 02:10:43.292 INFO  Starting global symbols computation
+2026-11-08T02:10:43.2964590Z 02:10:43.294 INFO  3 source files to be analyzed
+2026-11-08T02:10:43.4382013Z 02:10:43.437 INFO  3/3 source files have been analyzed
+2026-11-08T02:10:43.4400372Z 02:10:43.439 INFO  Finished step global symbols computation in 144ms
+2026-11-08T02:10:43.4615120Z 02:10:43.458 INFO  Starting rules execution
+2026-11-08T02:10:43.4672875Z 02:10:43.458 INFO  3 source files to be analyzed
+2026-11-08T02:10:44.9984846Z 02:10:44.996 INFO  3/3 source files have been analyzed
+2026-11-08T02:10:45.0014669Z 02:10:44.996 INFO  Finished step rules execution in 1538ms
+2026-11-08T02:10:45.0045114Z 02:10:44.996 INFO  The Python analyzer was able to leverage cached data from previous analyses for 0 out of 3 files. These files were not parsed.
+2026-11-08T02:10:45.0074664Z 02:10:44.997 INFO  Sensor Python Sensor [python] (done) | time=1835ms
+2026-11-08T02:10:45.0104577Z 02:10:45.000 INFO  Sensor Cobertura Sensor for Python coverage [python]
+2026-11-08T02:10:45.0160197Z 02:10:45.005 INFO  Sensor Cobertura Sensor for Python coverage [python] (done) | time=6ms
+2026-11-08T02:10:45.0174868Z 02:10:45.005 INFO  Sensor PythonXUnitSensor [python]
+2026-11-08T02:10:45.0205002Z 02:10:45.009 INFO  Sensor PythonXUnitSensor [python] (done) | time=4ms
+2026-11-08T02:10:45.0214999Z 02:10:45.012 INFO  Sensor Python Dependency Sensor [python]
+2026-11-08T02:10:45.0215779Z 02:10:45.014 INFO  Sensor Python Dependency Sensor [python] (done) | time=3ms
+2026-11-08T02:10:45.0216805Z 02:10:45.014 INFO  Sensor Scan Manifest Module Properties Collector [commona3scontextcollector]
+2026-11-08T02:10:45.7082570Z 02:10:45.707 INFO  Sensor Scan Manifest Module Properties Collector [commona3scontextcollector] (done) | time=692ms
+2026-11-08T02:10:45.7084559Z 02:10:45.708 INFO  Sensor PythonModuleSecuritySensor [securitypythonfrontend]
+2026-11-08T02:10:45.7094644Z 02:10:45.709 INFO  Sensor PythonModuleSecuritySensor [securitypythonfrontend] (done) | time=1ms
+2026-11-08T02:10:45.7095429Z 02:10:45.709 INFO  Sensor Python HTML templates processing [securitypythonfrontend]
+2026-11-08T02:10:45.7127983Z 02:10:45.712 INFO  Sensor Python HTML templates processing [securitypythonfrontend] (done) | time=3ms
+2026-11-08T02:10:45.7128824Z 02:10:45.712 INFO  Sensor IaC hadolint report Sensor [iac]
+2026-11-08T02:10:45.7134699Z 02:10:45.713 INFO  Sensor IaC hadolint report Sensor [iac] (done) | time=0ms
+2026-11-08T02:10:45.7135502Z 02:10:45.713 INFO  Sensor Java Config Sensor [iac]
+2026-11-08T02:10:45.7137732Z 02:10:45.713 INFO  There are no files to be analyzed for the Java language
+2026-11-08T02:10:45.7139665Z 02:10:45.713 INFO  Sensor Java Config Sensor [iac] (done) | time=0ms
+2026-11-08T02:10:45.7143254Z 02:10:45.714 INFO  Sensor IaC Docker Sensor [iac]
+2026-11-08T02:10:45.7169219Z 02:10:45.716 INFO  There are no files to be analyzed for the Docker language
+2026-11-08T02:10:45.7170384Z 02:10:45.716 INFO  Sensor IaC Docker Sensor [iac] (done) | time=2ms
+2026-11-08T02:10:45.7171041Z 02:10:45.716 INFO  Sensor IaC GitHub Actions Sensor [iac]
+2026-11-08T02:10:45.7185963Z 02:10:45.717 INFO  There are no files to be analyzed for the GitHub Actions language
+2026-11-08T02:10:45.7188371Z 02:10:45.717 INFO  Sensor IaC GitHub Actions Sensor [iac] (done) | time=0ms
+2026-11-08T02:10:45.7188921Z 02:10:45.717 INFO  Sensor IaC actionlint report Sensor [iac]
+2026-11-08T02:10:45.7189467Z 02:10:45.717 INFO  Sensor IaC actionlint report Sensor [iac] (done) | time=0ms
+2026-11-08T02:10:45.7190388Z 02:10:45.718 INFO  Sensor IaC Shell Sensor [iac]
+2026-11-08T02:10:45.7190952Z 02:10:45.718 INFO  There are no files to be analyzed for the Shell language
+2026-11-08T02:10:45.7191527Z 02:10:45.718 INFO  Sensor IaC Shell Sensor [iac] (done) | time=0ms
+2026-11-08T02:10:45.7195246Z 02:10:45.718 INFO  Sensor EnterpriseTextAndSecretsSensor [textenterprise]
+2026-11-08T02:10:45.7324273Z 02:10:45.731 INFO  Available processors: 4
+2026-11-08T02:10:45.7325965Z 02:10:45.732 INFO  Using 4 threads for analysis.
+2026-11-08T02:10:46.0392873Z 02:10:46.038 INFO  The following rules are activated in the quality profile but will not raise any issue, because they are being rolled out progressively: secrets:S8135, secrets:S8136. You can enable it by setting: sonar.featureflag.cloud-security-enable-secrets-S8135, sonar.featureflag.cloud-security-enable-secrets-S8136 to true.
+2026-11-08T02:10:46.0997752Z 02:10:46.099 INFO  Start fetching files for the text and secrets analysis
+2026-11-08T02:10:46.1060150Z 02:10:46.105 INFO  Using Git CLI to retrieve dirty files
+2026-11-08T02:10:46.1124867Z 02:10:46.112 INFO  Retrieving language associated files and files included via "sonar.text.inclusions" that are tracked by git
+2026-11-08T02:10:46.1137520Z 02:10:46.113 INFO  Starting the text and secrets analysis
+2026-11-08T02:10:46.1148383Z 02:10:46.114 INFO  3 source files to be analyzed for the text and secrets analysis
+2026-11-08T02:10:46.1244713Z 02:10:46.123 INFO  3/3 source files have been analyzed for the text and secrets analysis
+2026-11-08T02:10:46.1258870Z 02:10:46.125 INFO  Start fetching files for the binary file analysis
+2026-11-08T02:10:46.1261450Z 02:10:46.125 INFO  There are no files to be analyzed for the binary file analysis
+2026-11-08T02:10:46.1318938Z 02:10:46.131 INFO  Sensor EnterpriseTextAndSecretsSensor [textenterprise] (done) | time=412ms
+2026-11-08T02:10:46.1322487Z 02:10:46.131 INFO  Sensor javabugs [dbd]
+2026-11-08T02:10:46.1386833Z 02:10:46.138 INFO  No IR files have been included for analysis.
+2026-11-08T02:10:46.1422636Z 02:10:46.141 INFO  Sensor javabugs [dbd] (done) | time=7ms
+2026-11-08T02:10:46.1423537Z 02:10:46.141 INFO  Sensor pythonbugs [dbd]
+2026-11-08T02:10:46.1749684Z 02:10:46.174 INFO  Analyzing 1/42 functions to detect bugs.
+2026-11-08T02:10:46.2419666Z 02:10:46.241 INFO  Sensor pythonbugs [dbd] (done) | time=101ms
+2026-11-08T02:10:46.2424634Z 02:10:46.241 INFO  Sensor PythonSecuritySensor [security]
+2026-11-08T02:10:46.2471746Z 02:10:46.246 INFO  32 taint analysis rules enabled.
+2026-11-08T02:10:46.5441532Z 02:10:46.543 INFO  Analyzing 5536 UCFGs to detect vulnerabilities.
+2026-11-08T02:10:47.4233244Z 02:10:47.422 INFO  No entry points found.
+2026-11-08T02:10:47.4245106Z 02:10:47.423 INFO  python security sensor: Begin: 2026-11-08T02:10:46.243778676Z, End: 2026-11-08T02:10:47.422479375Z, Duration: 00:00:01.178
+2026-11-08T02:10:47.4252343Z   Resolve files to analyze: Begin: 2026-11-08T02:10:46.246907631Z, End: 2026-11-08T02:10:46.247653211Z, Duration: 00:00:00.000
+2026-11-08T02:10:47.4253387Z   Load type hierarchy and UCFGs: Begin: 2026-11-08T02:10:46.247842751Z, End: 2026-11-08T02:10:46.543098269Z, Duration: 00:00:00.295
+2026-11-08T02:10:47.4254474Z     Load type hierarchy: Begin: 2026-11-08T02:10:46.247848900Z, End: 2026-11-08T02:10:46.304152226Z, Duration: 00:00:00.056
+2026-11-08T02:10:47.4255324Z     Load UCFGs: Begin: 2026-11-08T02:10:46.304215489Z, End: 2026-11-08T02:10:46.543034415Z, Duration: 00:00:00.238
+2026-11-08T02:10:47.4256589Z   Check cache: Begin: 2026-11-08T02:10:46.543218757Z, End: 2026-11-08T02:10:46.543813514Z, Duration: 00:00:00.000
+2026-11-08T02:10:47.4257418Z     Load cache: Begin: 2026-11-08T02:10:46.543552049Z, End: 2026-11-08T02:10:46.543578478Z, Duration: 00:00:00.000
+2026-11-08T02:10:47.4258267Z   Create runtime call graph: Begin: 2026-11-08T02:10:46.543847875Z, End: 2026-11-08T02:10:46.698334347Z, Duration: 00:00:00.154
+2026-11-08T02:10:47.4259213Z     Variable Type Analysis #1: Begin: 2026-11-08T02:10:46.544301885Z, End: 2026-11-08T02:10:46.627107606Z, Duration: 00:00:00.082
+2026-11-08T02:10:47.4260396Z       Create runtime type propagation graph: Begin: 2026-11-08T02:10:46.544865456Z, End: 2026-11-08T02:10:46.577255076Z, Duration: 00:00:00.032
+2026-11-08T02:10:47.4261333Z       Run SCC (Tarjan) on 11749 nodes: Begin: 2026-11-08T02:10:46.577564332Z, End: 2026-11-08T02:10:46.592847046Z, Duration: 00:00:00.015
+2026-11-08T02:10:47.4262343Z       Propagate runtime types to strongly connected components: Begin: 2026-11-08T02:10:46.592955557Z, End: 2026-11-08T02:10:46.627036882Z, Duration: 00:00:00.034
+2026-11-08T02:10:47.4263338Z     Variable Type Analysis #2: Begin: 2026-11-08T02:10:46.628880852Z, End: 2026-11-08T02:10:46.694626918Z, Duration: 00:00:00.065
+2026-11-08T02:10:47.4264376Z       Create runtime type propagation graph: Begin: 2026-11-08T02:10:46.628888864Z, End: 2026-11-08T02:10:46.653250151Z, Duration: 00:00:00.024
+2026-11-08T02:10:47.4265304Z       Run SCC (Tarjan) on 11682 nodes: Begin: 2026-11-08T02:10:46.653337109Z, End: 2026-11-08T02:10:46.665123906Z, Duration: 00:00:00.011
+2026-11-08T02:10:47.4266300Z       Propagate runtime types to strongly connected components: Begin: 2026-11-08T02:10:46.665180460Z, End: 2026-11-08T02:10:46.694531878Z, Duration: 00:00:00.029
+2026-11-08T02:10:47.4267242Z   Load config: Begin: 2026-11-08T02:10:46.698407936Z, End: 2026-11-08T02:10:47.397156600Z, Duration: 00:00:00.698
+2026-11-08T02:10:47.4268111Z   Compute entry points: Begin: 2026-11-08T02:10:47.397243839Z, End: 2026-11-08T02:10:47.422213713Z, Duration: 00:00:00.024
+2026-11-08T02:10:47.4269645Z 02:10:47.424 INFO  python security sensor peak memory (pre-GC, max allocation pressure): 534 MB
+2026-11-08T02:10:47.4270566Z 02:10:47.424 INFO  python security sensor peak memory (post-GC, max live footprint): 291 MB
+2026-11-08T02:10:47.4271478Z 02:10:47.424 INFO  Sensor PythonSecuritySensor [security] (done) | time=1182ms
+2026-11-08T02:10:47.4272123Z 02:10:47.424 INFO  Sensor DBD End of Execution [dbd]
+2026-11-08T02:10:47.4272736Z 02:10:47.425 INFO  Sensor DBD End of Execution [dbd] (done) | time=0ms
+2026-11-08T02:10:47.4376259Z 02:10:47.436 INFO  ------------- Run sensors on project
+2026-11-08T02:10:47.5854994Z 02:10:47.580 INFO  Sensor BOMSensor [bom]
+2026-11-08T02:10:47.5885617Z 02:10:47.583 INFO  Skipping BOMSensor: CBOM generation is not available
+2026-11-08T02:10:47.5886642Z 02:10:47.584 INFO  Sensor BOMSensor [bom] (done) | time=0ms
+2026-11-08T02:10:47.5887395Z 02:10:47.586 INFO  Sensor SonarPython A3S Context Collector [python]
+2026-11-08T02:10:47.5888177Z 02:10:47.586 INFO  Sensor SonarPython A3S Context Collector [python] (done) | time=0ms
+2026-11-08T02:10:47.5889009Z 02:10:47.586 INFO  Sensor pySecurityContextCollectorSensor [security]
+2026-11-08T02:10:47.5889847Z 02:10:47.586 INFO  Sensor pySecurityContextCollectorSensor [security] (done) | time=0ms
+2026-11-08T02:10:47.5890736Z 02:10:47.587 INFO  Sensor Scan Manifest A3S Context Collector [commona3scontextcollector]
+2026-11-08T02:10:47.5891651Z 02:10:47.587 INFO  Sensor Scan Manifest A3S Context Collector [commona3scontextcollector] (done) | time=0ms
+2026-11-08T02:10:47.5892506Z 02:10:47.587 INFO  Sensor CveReachabilitySensor [cvereachability]
+2026-11-08T02:10:47.8881062Z 02:10:47.887 INFO  py: Analyzing 5536 UCFGs to detect reachable paths.
+2026-11-08T02:10:48.0475320Z 02:10:48.045 INFO  CveReachabilitySensor: Begin: 2026-11-08T02:10:47.580499580Z, End: 2026-11-08T02:10:48.043560237Z, Duration: 00:00:00.463
+2026-11-08T02:10:48.0495680Z   Load type hierarchy and UCFGs for CSHARP: Begin: 2026-11-08T02:10:47.580918678Z, End: 2026-11-08T02:10:47.582774215Z, Duration: 00:00:00.001
+2026-11-08T02:10:48.0505189Z     Load type definitions: Begin: 2026-11-08T02:10:47.581745368Z, End: 2026-11-08T02:10:47.582212146Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0510984Z     Load UCFGs: Begin: 2026-11-08T02:10:47.582308218Z, End: 2026-11-08T02:10:47.582744061Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0512140Z   Load type hierarchy and UCFGs for JAVA: Begin: 2026-11-08T02:10:47.582805111Z, End: 2026-11-08T02:10:47.582877147Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0513634Z     Load type definitions: Begin: 2026-11-08T02:10:47.582825201Z, End: 2026-11-08T02:10:47.582846272Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0514875Z     Load UCFGs: Begin: 2026-11-08T02:10:47.582864008Z, End: 2026-11-08T02:10:47.582869105Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0515988Z   Load type hierarchy and UCFGs for KOTLIN: Begin: 2026-11-08T02:10:47.582887683Z, End: 2026-11-08T02:10:47.582923976Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0517092Z     Load type definitions: Begin: 2026-11-08T02:10:47.582898298Z, End: 2026-11-08T02:10:47.582906761Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0518102Z     Load UCFGs: Begin: 2026-11-08T02:10:47.582915043Z, End: 2026-11-08T02:10:47.582918638Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0519267Z   Load type hierarchy and UCFGs for PYTHON: Begin: 2026-11-08T02:10:47.582934732Z, End: 2026-11-08T02:10:47.886885508Z, Duration: 00:00:00.303
+2026-11-08T02:10:48.0520462Z     Load type definitions: Begin: 2026-11-08T02:10:47.582940721Z, End: 2026-11-08T02:10:47.623541914Z, Duration: 00:00:00.040
+2026-11-08T02:10:48.0521448Z     Load UCFGs: Begin: 2026-11-08T02:10:47.623614101Z, End: 2026-11-08T02:10:47.886824808Z, Duration: 00:00:00.263
+2026-11-08T02:10:48.0522448Z   Process py: Begin: 2026-11-08T02:10:47.582934732Z, End: 2026-11-08T02:10:48.043452058Z, Duration: 00:00:00.460
+2026-11-08T02:10:48.0523498Z   Run processor for py: Begin: 2026-11-08T02:10:47.887123709Z, End: 2026-11-08T02:10:48.043446760Z, Duration: 00:00:00.156
+2026-11-08T02:10:48.0524737Z     Create type hierarchy: Begin: 2026-11-08T02:10:47.912065492Z, End: 2026-11-08T02:10:47.917357378Z, Duration: 00:00:00.005
+2026-11-08T02:10:48.0525790Z     Create runtime call graph: Begin: 2026-11-08T02:10:47.917440361Z, End: 2026-11-08T02:10:48.034535374Z, Duration: 00:00:00.117
+2026-11-08T02:10:48.0526877Z       Variable Type Analysis #1: Begin: 2026-11-08T02:10:47.917908541Z, End: 2026-11-08T02:10:47.981963513Z, Duration: 00:00:00.064
+2026-11-08T02:10:48.0535375Z         Create runtime type propagation graph: Begin: 2026-11-08T02:10:47.918603917Z, End: 2026-11-08T02:10:47.945105141Z, Duration: 00:00:00.026
+2026-11-08T02:10:48.0549374Z         Run SCC (Tarjan) on 11749 nodes: Begin: 2026-11-08T02:10:47.945345806Z, End: 2026-11-08T02:10:47.955335412Z, Duration: 00:00:00.009
+2026-11-08T02:10:48.0550737Z         Propagate runtime types to strongly connected components: Begin: 2026-11-08T02:10:47.955427668Z, End: 2026-11-08T02:10:47.981896303Z, Duration: 00:00:00.026
+2026-11-08T02:10:48.0551976Z       Variable Type Analysis #2: Begin: 2026-11-08T02:10:47.983936753Z, End: 2026-11-08T02:10:48.031098755Z, Duration: 00:00:00.047
+2026-11-08T02:10:48.0553186Z         Create runtime type propagation graph: Begin: 2026-11-08T02:10:47.983945637Z, End: 2026-11-08T02:10:48.001048866Z, Duration: 00:00:00.017
+2026-11-08T02:10:48.0554474Z         Run SCC (Tarjan) on 11682 nodes: Begin: 2026-11-08T02:10:48.001112731Z, End: 2026-11-08T02:10:48.008068722Z, Duration: 00:00:00.006
+2026-11-08T02:10:48.0555734Z         Propagate runtime types to strongly connected components: Begin: 2026-11-08T02:10:48.008104935Z, End: 2026-11-08T02:10:48.031022262Z, Duration: 00:00:00.022
+2026-11-08T02:10:48.0556998Z     Find reachable paths: Begin: 2026-11-08T02:10:48.034591808Z, End: 2026-11-08T02:10:48.038990807Z, Duration: 00:00:00.004
+2026-11-08T02:10:48.0558544Z     Output reachability results: Begin: 2026-11-08T02:10:48.039030806Z, End: 2026-11-08T02:10:48.043418939Z, Duration: 00:00:00.004
+2026-11-08T02:10:48.0559779Z   Load type hierarchy and UCFGs for VBNET: Begin: 2026-11-08T02:10:48.043477255Z, End: 2026-11-08T02:10:48.043550794Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0560952Z     Load type definitions: Begin: 2026-11-08T02:10:48.043508211Z, End: 2026-11-08T02:10:48.043526107Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0561878Z     Load UCFGs: Begin: 2026-11-08T02:10:48.043540719Z, End: 2026-11-08T02:10:48.043546457Z, Duration: 00:00:00.000
+2026-11-08T02:10:48.0562747Z 02:10:48.045 INFO  Sensor CveReachabilitySensor [cvereachability] (done) | time=465ms
+2026-11-08T02:10:48.0563956Z 02:10:48.049 INFO  Sensor IaC Project Sensor [iac]
+2026-11-08T02:10:48.0564624Z 02:10:48.049 INFO  Sensor IaC Project Sensor [iac] (done) | time=1ms
+2026-11-08T02:10:48.0565346Z 02:10:48.050 INFO  Sensor PythonArchitectureSensor [architecture]
+2026-11-08T02:10:48.0565976Z 02:10:48.050 INFO  Architecture analysis is enabled.
+2026-11-08T02:10:48.0566840Z 02:10:48.053 INFO  Found 1 potential Udg file location(s) for "py" in "/home/runner/work/CS763-proj/CS763-proj/.scannerwork"
+2026-11-08T02:10:48.0567885Z 02:10:48.054 INFO  - /home/runner/work/CS763-proj/CS763-proj/.scannerwork/architecture/py
+2026-11-08T02:10:48.1475648Z 02:10:48.147 INFO  * Protobuf reading starting | memory total=900 | free=434 | used=465 (MB)
+2026-11-08T02:10:48.1488081Z 02:10:48.147 INFO  * Reading SonarArchitecture UDG data from "/home/runner/work/CS763-proj/CS763-proj/.scannerwork/architecture/py"
+2026-11-08T02:10:48.1831851Z 02:10:48.182 INFO  * Files successfully loaded: "2" out of "2"
+2026-11-08T02:10:48.1834985Z 02:10:48.183 INFO  * Purging externals (components not scanned) from graphs
+2026-11-08T02:10:48.1836727Z 02:10:48.183 INFO  * Purging excluded nodes from graphs
+2026-11-08T02:10:48.1837561Z 02:10:48.183 INFO  * Protobuf reading complete | memory total=900 | free=430 | used=469 (MB)
+2026-11-08T02:10:48.1969823Z 02:10:48.196 INFO  * Build architecture.graph.py.file_graph.default_perspective hierarchy graph complete (filtered=false) | memory total=900 | free=425 | used=474 (MB)
+2026-11-08T02:10:48.2470552Z 02:10:48.246 INFO  No directives configured
+2026-11-08T02:10:48.2510680Z 02:10:48.250 INFO  * No intended architecture defined or detected, using an empty model
+2026-11-08T02:10:48.3223908Z 02:10:48.321 INFO  Boundary detection is disabled.
+2026-11-08T02:10:48.3311634Z 02:10:48.330 INFO  Sensor PythonArchitectureSensor [architecture] (done) | time=281ms
+2026-11-08T02:10:48.3312677Z 02:10:48.330 INFO  Sensor Architecture Agentic Analysis Context [architecture]
+2026-11-08T02:10:48.3313894Z 02:10:48.330 INFO  Sensor Architecture Agentic Analysis Context [architecture] (done) | time=0ms
+2026-11-08T02:10:48.3314715Z 02:10:48.330 INFO  Sensor Zero Coverage Sensor
+2026-11-08T02:10:48.3369090Z 02:10:48.336 INFO  Sensor Zero Coverage Sensor (done) | time=5ms
+2026-11-08T02:10:48.3372683Z 02:10:48.336 INFO  Sensor Architecture Telemetry [architecture]
+2026-11-08T02:10:48.3373427Z 02:10:48.336 INFO  Sensor Architecture Telemetry [architecture] (done) | time=0ms
+2026-11-08T02:10:48.3374131Z 02:10:48.337 INFO  ------------- Gather SCA dependencies on project
+2026-11-08T02:10:48.4654915Z 02:10:48.464 INFO  Checking for latest CLI
+2026-11-08T02:10:48.4662310Z 02:10:48.465 INFO  Requesting CLI for OS linux and arch amd64
+2026-11-08T02:10:48.6974924Z 02:10:48.696 INFO  Downloading SCA CLI tidelift (attempt 1)
+2026-11-08T02:10:48.8119461Z 02:10:48.810 INFO  Running command: [/home/runner/.sonar/cache/d645489744811bba1f9519d671a6713a350e58487c411bd111eaf11f48db0cfc/tidelift, projects, save-lockfiles, --xz, --xz-filename, /home/runner/work/CS763-proj/CS763-proj/.scannerwork/dependency-files.tar.xz, --directory, /home/runner/work/CS763-proj/CS763-proj, --recursive, --exclude-from-file, /home/runner/work/CS763-proj/CS763-proj/.scannerwork/sca-exclusions-15915088540375464796.txt]
+2026-11-08T02:10:48.8122013Z 02:10:48.811 INFO  Environment properties: {TIDELIFT_ALLOW_MANIFEST_FAILURES=1, TIDELIFT_CLI_INSIDE_SCANNER_ENGINE=1, TIDELIFT_SKIP_UPDATE_CHECK=1, TIDELIFT_CLI_INSIDE_SQC=1}
+2026-11-08T02:10:48.8189761Z 02:10:48.818 INFO  Including file requirements-dev.txt
+2026-11-08T02:10:48.8190295Z 02:10:48.818 INFO  Including file requirements.txt
+2026-11-08T02:10:48.8190720Z 02:10:48.818 INFO  Found 2 file(s)
+2026-11-08T02:10:48.8200020Z 02:10:48.819 INFO  Running '/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3 --version' in /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:10:48.8225599Z 02:10:48.822 INFO  Running '/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3 -m venv /tmp/sonar-temp-virtualenv1067857233' in 
+2026-11-08T02:10:51.0687145Z 02:10:51.068 INFO  Running '/tmp/sonar-temp-virtualenv1067857233/bin/python -m pip install --disable-pip-version-check -r requirements-dev.txt -r requirements.txt' in /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:11:07.2636019Z 02:11:07.261 INFO  Running '/tmp/sonar-temp-virtualenv1067857233/bin/python -m pip install --disable-pip-version-check pipdeptree>=2.21.0,<3.0' in /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:11:07.8465546Z 02:11:07.846 INFO  Running '/tmp/sonar-temp-virtualenv1067857233/bin/python -m pipdeptree --json --exclude setuptools,pip,pipdeptree,packaging,virtualenv,wheel' in /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:11:08.2134482Z 02:11:08.211 INFO  Finished creating "/home/runner/work/CS763-proj/CS763-proj/.scannerwork/dependency-files.tar.xz" with 5 file(s) (3740 bytes)
+2026-11-08T02:11:08.2136656Z 02:11:08.213 INFO  Load SCA project dependencies (done) | time=19875ms
+2026-11-08T02:11:08.2138947Z 02:11:08.213 INFO  CPD Executor 2 files had no CPD blocks
+2026-11-08T02:11:08.2140808Z 02:11:08.213 INFO  CPD Executor Calculating CPD for 0 files
+2026-11-08T02:11:08.2145879Z 02:11:08.214 INFO  CPD Executor CPD calculation finished (done) | time=0ms
+2026-11-08T02:11:08.2156795Z 02:11:08.215 INFO  SCM Publisher SCM provider for this project is: git
+2026-11-08T02:11:08.2164288Z 02:11:08.216 INFO  SCM Publisher 2 source files to be analyzed
+2026-11-08T02:11:08.2182897Z 02:11:08.218 WARN  Shallow clone detected, no blame information will be provided. You can convert to non-shallow with 'git fetch --unshallow'.
+2026-11-08T02:11:08.2200827Z 02:11:08.219 INFO  SCM Publisher 0/2 source files have been analyzed (done) | time=3ms
+2026-11-08T02:11:08.2201421Z 02:11:08.219 WARN  Missing blame information for the following files:
+2026-11-08T02:11:08.2201843Z 02:11:08.219 WARN    * app/main.py
+2026-11-08T02:11:08.2202140Z 02:11:08.219 WARN    * tests/test_main.py
+2026-11-08T02:11:08.2202537Z 02:11:08.219 WARN  This may lead to missing/broken features in SonarCloud
+2026-11-08T02:11:08.2262304Z 02:11:08.225 INFO  SCM revision ID '18cfa7d2b13a4e690cb99902df2f11b12e319709'
+2026-11-08T02:11:08.7325071Z 02:11:08.729 INFO  Analysis report generated in 506ms, dir size=216 KB
+2026-11-08T02:11:08.7378742Z 02:11:08.737 INFO  Analysis report compressed in 8ms, zip size=30 KB
+2026-11-08T02:11:09.1374079Z 02:11:09.136 INFO  Analysis report uploaded in 399ms
+2026-11-08T02:11:09.1387426Z 02:11:09.138 INFO  ANALYSIS SUCCESSFUL, you can find the results at: https://sonarcloud.io/dashboard?id=ramired2_CS763-proj&branch=main
+2026-11-08T02:11:09.1390308Z 02:11:09.138 INFO  Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+2026-11-08T02:11:09.1391468Z 02:11:09.138 INFO  More about the report processing at https://sonarcloud.io/api/ce/task?id=AaG47H5YbE9rxH86FenO
+2026-11-08T02:11:09.1392382Z 02:11:09.138 INFO  ------------- Upload SCA dependency files
+2026-11-08T02:11:09.1393156Z 02:11:09.138 INFO  Uploading SCA dependency files: /home/runner/work/CS763-proj/CS763-proj/.scannerwork/dependency-files.tar.xz
+2026-11-08T02:11:09.4312239Z 02:11:09.430 INFO  Successfully uploaded SCA dependency files
+2026-11-08T02:11:10.6770691Z 02:11:10.676 INFO  Successfully sent architecture data
+2026-11-08T02:11:12.1030260Z 02:11:12.102 INFO  Sensor cache published successfully
+2026-11-08T02:11:12.6427223Z 02:11:12.642 INFO  Analysis total time: 44.456 s
+2026-11-08T02:11:12.6645026Z 02:11:12.663 INFO  SonarScanner Engine completed successfully
+2026-11-08T02:11:12.7532587Z 02:11:12.752 INFO  EXECUTION SUCCESS
+2026-11-08T02:11:12.7538876Z 02:11:12.753 INFO  Total time: 50.347s
+2026-11-08T02:11:12.8571881Z Post job cleanup.
+2026-11-08T02:11:12.9566279Z Cache hit occurred on the primary key setup-python-Linux-x64-26.04-Ubuntu-python-3.12.16-pip-360620dd44eec96aebc712595ab701d0de6303728273928567a6e4921dfbdd6b, not saving cache.
+2026-11-08T02:11:12.9567521Z (node:2782) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-08T02:11:12.9568810Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-08T02:11:12.9744614Z Post job cleanup.
+2026-11-08T02:11:13.0444068Z [command]/usr/bin/git version
+2026-11-08T02:11:13.0482621Z git version 2.56.0
+2026-11-08T02:11:13.0512216Z Temporarily overriding HOME='/home/runner/work/_temp/c2552840-0bba-427e-bc9b-41d0a1d580b5' before making global git config changes
+2026-11-08T02:11:13.0513269Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-08T02:11:13.0516953Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/CS763-proj/CS763-proj
+2026-11-08T02:11:13.0555357Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-08T02:11:13.0588542Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-08T02:11:13.0860549Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-08T02:11:13.0892893Z http.https://github.com/.extraheader
+2026-11-08T02:11:13.0902792Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-08T02:11:13.0936518Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-08T02:11:13.1353446Z Cleaning up orphan processes
+2026-11-08T02:11:13.1673479Z Terminate orphan process: pid (2505) (dirmngr)
+2026-11-08T02:11:13.1737552Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
