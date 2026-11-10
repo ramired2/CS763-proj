@@ -42,7 +42,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
-          cd functional-codebase && python -m pip install -r requirements.txt
           cd functional-codebase && python -m pip install httpx pytest
 
       - name: Check formatting and lint
