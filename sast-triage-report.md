@@ -6,9 +6,17 @@
 |                   |                   |
 
 ## True Positives
+### Semgrep
+There were zero findings.
+
+### SonarQube
 
 
 ## False Positives
+### Semgrep
+There were zero findings.
+
+### SonarQube
 
 
 ## 3 Distinct Vulnerabilities
