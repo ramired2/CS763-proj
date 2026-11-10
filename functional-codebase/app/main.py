@@ -13,7 +13,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from math import isclose
 from statistics import fmean, pstdev
 from typing import Annotated, Any, Literal
