@@ -66,7 +66,7 @@ jobs:
           /work
 
       - name: Run Semgrep SAST
-        run: semgrep scan --config p/python app tests
+        run: cd functional-codebase && semgrep scan --config p/python app tests
 
       - name: Scan with SonarQube
         uses: SonarSource/sonarqube-scan-action@v8.4.1
