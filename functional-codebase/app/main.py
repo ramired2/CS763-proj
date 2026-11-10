@@ -6,13 +6,13 @@
 #
 # AI Contribution: 95%
 #
-# Human Modifications: Added quick comments describing the purpose of each 
-#                       function and class
+# Human Modifications:  Added quick comments describing the purpose of each 
+#                       function and class, remove unused json import, and
+#                       use datetime.UTC for now_utc()
 #
 
 from __future__ import annotations
 
-import json
 from datetime import datetime, timezone
 from math import isclose
 from statistics import fmean, pstdev
@@ -33,7 +33,7 @@ def new_id() -> str:
 
 # return UTC timestamp
 def now_utc() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace(
+    return datetime.UTC.now(timezone.utc).isoformat(timespec="seconds").replace(
         "+00:00", "Z"
     )
 
