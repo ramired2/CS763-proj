@@ -13,7 +13,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timezone, UTC
 from math import isclose
 from statistics import fmean, pstdev
 from typing import Annotated, Any, Literal
@@ -33,7 +33,7 @@ def new_id() -> str:
 
 # return UTC timestamp
 def now_utc() -> str:
-    return datetime.UTC.now(timezone.utc).isoformat(timespec="seconds").replace(
+    return datetime.UTC.now(UTC).isoformat(timespec="seconds").replace(
         "+00:00", "Z"
     )
 
