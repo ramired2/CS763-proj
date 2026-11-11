@@ -16,6 +16,8 @@ There were zero true positives found.
 There were zero true positives found.
 
 ## False Positives
+Semgrep reported 0 findings even after using the rulesets: p/python, p/owasp-top-ten, and p/security-audit.
+SonarQube reported 0 vulnerabilities or security hotspots.
 ### Semgrep
 There were zero false positives found.
 
