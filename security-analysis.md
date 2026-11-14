@@ -1,9 +1,9 @@
 # Security Analysis
 
 ## AI Usage Log
-| AI Contribution % | Summary of prompt |
-| :---------------: | ----------------- |
-|                   |                   |
+| AI Contribution % | Summary of prompt                                             |
+| :---------------: | ------------------------------------------------------------- |
+|        10%        | Different types of mitigation strategies used in the industry |
 
 ### Security Requirements
 ### Authentication
@@ -117,6 +117,9 @@ Availability
 * The system will validate an existing faculty_instructor can create a report summary of their course, lab, project
 * The system will validate that reviews and project summaries are only available to faculty_instructors
 
+### DFD
+![DFD](./dfd.jpg)
+
 ### STRIDE Matrix
 | Data Flow/ Boundary/ Component | STRIDE Type Applicable                         |
 | ------------------------------ | ---------------------------------------------- |
@@ -128,8 +131,20 @@ Availability
 | Web Server                     | Spoofing                                       |
 
 ## Proposed Mitigations
-Proposed mitigatioins include 
-* Confirm identities of users
-* Confirm users have the correct permissions for their desired actions
-* Frequently scanning the code for any security concerns from SonarQube or Semgrep
-* Check security requirements are still applicable/ need to be updated when new features are implemented
+In terms of security concerns with authentication of users, incorporating the use of 
+sessions that last for a specific amount of time before they are expired would be beneficial. 
+Before a user can commit any action, be that editing, deleting, or creating a review in the 
+case of a student_peers and faculty_instructors, or creating rubrics, project 
+summaries/reports for faculty_instructors it is important tp confirm users have the correct 
+permissions for their desired actions. As such every time an API call is made, the authorization 
+of the user making the call would need to be authenticated first. Similarly, every time 
+an API call is made, the call and the user attempting the call would be added to a log 
+for audit and accountability purposes. This would help deter users from attempting to access
+ information they should not. 
+As for the information being passed for the API calls, it would be imperative to validate 
+the information being passed like IDs, feedback, and scores. It would further be 
+beneficiary to implement the appropriate error handling. This would help solve concerns 
+of missuing the service. In a similar vein, it would be important to add rate and request size limits 
+in order to prevent the service from being overloaded and consistently monitoring the health of the API 
+for resilience purposes. It would further be important to frequently scan the project with SonarQube, 
+Semgrep, or any of the other dependencies and update any vulnerabilities found.
