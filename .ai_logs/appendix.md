@@ -215,3 +215,27 @@ sonar.tests=functional-codebase/tests
 **Response**
 
 Appended this conversation's functional-codebase and SonarQube prompts and response summaries to this appendix, with representative code and CI configuration snippets.
+
+## Security Analysis
+
+### November 14 — Industry mitigation strategy examples
+
+**Prompt**
+
+> List different examples of mitigation strategies used in the industry
+
+**Response**
+
+Suggested adding the following industry practices under **Proposed Mitigations** in `security-analysis.md`:
+
+- **Authentication:** Use a trusted identity provider (OIDC/OAuth 2.0), require MFA for faculty and administrators, and expire or revoke sessions.
+- **Authorization:** Enforce role-based and project/course-level access checks on the server for every request. Verify the user owns a review before allowing edits or deletion.
+- **Review anonymity:** Keep reviewer identity separate from review content; return only the role to project owners, and restrict access to identity mappings.
+- **Input handling:** Validate IDs, score ranges, and field lengths on the server. Use parameterized database queries and context-aware output encoding. Avoid banning all special characters in feedback.
+- **Data protection:** Use HTTPS/TLS in transit and encryption at rest for stored evaluation data. Store secrets in a managed secrets vault and rotate them.
+- **Audit and accountability:** Log authentication and sensitive actions—such as review edits and report downloads—without logging credentials or unnecessarily exposing review content. Protect logs from modification.
+- **Abuse prevention:** Apply rate limits, request-size limits, and throttling to submission and report endpoints.
+- **Resilience:** Maintain encrypted backups, monitor service health, and test recovery procedures.
+- **Secure development:** Run dependency and static-analysis scans in CI, review findings, and update vulnerable dependencies.
+
+The response noted that these are examples, and controls should be selected to match project requirements and be verifiable in tests.
