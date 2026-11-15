@@ -84,13 +84,21 @@ Availability
 * All faculty_instructors can access the list of evaluations for the specific course/lab they teach
 
 ## Abuse Cases
-* As an attacker, I want to edit teacher-faculty's review, so that I can score a review they made as lower and they submitted.
+* As an attacker, I want to edit a faculty_instructor's review, so that I can score a review they made as lower than they submitted.
 * As an attacker, I want to download a report of a projects reviews, so that I can have the projects statistics.
-* As an attacker, I want to access a review a student made, so that I can pinpoint who the anonymous student review is.
+* As an attacker, I want to access a review a student made, so that I can expose the scores they made.
 * As an attacker, I want to edit the rubric, so that I can change the status as not in use for deletion.
-* As an attacker, I want to edit the criteria max scores as higher, so that the review scores will look as low scores for a project.
+* As an attacker, I want to edit the criteria max scores as higher, so that the review scores will appear as graded lower for a project.
 
 ## Attack Trees (3)
+#### As an attacker, I want to edit a faculty_instructor's review, so that I can score a review they made as lower than they submitted.
+![Attack tree for an attacker editing a teachers review scores](./imgs/attack_tree_1.jpg)
+
+#### As an attacker, I want to edit the rubric, so that I can change the status as not in use for deletion.
+![Attack tree for an attacker editing a teachers rubric status](./imgs/attack_2.jpg)
+
+#### As an attacker, I want to access a review a student made, so that I can expose the scores they made.
+![Attack tree for an attacker accessing a studen't review](./imgs/attack_3.jpg)
 
 ## Attack Surface Mapping
 * All resource
@@ -118,7 +126,7 @@ Availability
 * The system will validate that reviews and project summaries are only available to faculty_instructors
 
 ### DFD
-![DFD](./dfd.jpg)
+![DFD](./imgs/attack)
 
 ### STRIDE Matrix
 | Data Flow/ Boundary/ Component | STRIDE Type Applicable                         |
