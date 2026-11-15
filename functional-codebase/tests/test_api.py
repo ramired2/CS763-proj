@@ -11,9 +11,7 @@
 #
 
 from copy import deepcopy
-
 import pytest
-
 from app.main import API_PREFIX, app, create_store
 from fastapi.testclient import TestClient
 
