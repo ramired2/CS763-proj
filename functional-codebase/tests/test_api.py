@@ -7,14 +7,15 @@
 # AI Contribution: 95%
 #
 # Human Modifications: Added quick comments describing the purpose of each def
+#                       moved import for TestClient bc of lint error
 #
 
 from copy import deepcopy
 
 import pytest
-from fastapi.testclient import TestClient
 
 from app.main import API_PREFIX, app, create_store
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
