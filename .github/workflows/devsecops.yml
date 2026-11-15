@@ -3,9 +3,9 @@
 # Prompt summary: create a github actions workflow that uses trivy and sempgrep,
 #                 fix test error retrieving a variable, and changing to not use shallow close as per SonarQube 
 #
-# AI Contribution: 93%
+# AI Contribution: 90%
 #
-# Human Modifications: changed some error codes 
+# Human Modifications: changed some error codes, changed so it references functional-codebase
 #
 
 name: DevSecOps
@@ -43,9 +43,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          cd functional-codebase && python -m pip install --upgrade pip
           python -m pip install -r requirements-dev.txt
-          cd functional-codebase && python -m pip install httpx pytest
+          python -m pip install httpx pytest
 
       - name: Check formatting and lint
         run: |

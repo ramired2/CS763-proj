@@ -12,8 +12,8 @@ ENV VIRTUAL_ENV=/opt/venv
 RUN python -m venv "$VIRTUAL_ENV"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-WORKDIR /build
-COPY requirements.txt .
+WORKDIR /functional-codebase/build
+COPY functional-codebase/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
@@ -25,12 +25,14 @@ ENV VIRTUAL_ENV=/opt/venv \
     PYTHONUNBUFFERED=1
 
 COPY --from=builder /opt/venv /opt/venv
-WORKDIR /app
-COPY app ./app
+WORKDIR /functional-codebase/app
+COPY functional-codebase/app ./app
 
+WORKDIR /functional-codebase
+COPY functional-codebase/app ./app
 RUN groupadd --system app \
-    && useradd --system --gid app --home-dir /app app \
-    && chown -R app:app /app
+    && useradd --system --gid app --home-dir /home/app app \
+    && chown -R app:app /functional-codebase
 
 USER app
 EXPOSE 8000
