@@ -1,18 +1,21 @@
 # # Tool: Luna-6 GPT
 #
 # Prompt summary:   Create a FastAPI app given the requirements outlined in
-#                   projectPortalDomain which was edited to only have the 
-#                   Domain 3 information with 9 test cases
+#                   projectPortalDomain which was edited to only have the
+#                   Domain 3 information with 9 test cases. Added a databse compoenent
+#                   using PostgreSQL to store data
 #
 # AI Contribution: 95%
 #
-# Human Modifications:  Added quick comments describing the purpose of each 
+# Human Modifications:  Added quick comments describing the purpose of each
 #                       function and class, remove unused json import, and
 #                       use datetime.UTC for now_utc()
 #
 
 from __future__ import annotations
 
+import logging
+import os
 from datetime import UTC, datetime
 from math import isclose
 from statistics import fmean, pstdev
@@ -20,22 +23,31 @@ from typing import Annotated, Any, Literal
 from uuid import uuid4
 
 from fastapi import FastAPI, HTTPException, Query, Request, Response, status
+from psycopg import Connection, connect
+from psycopg import Error as PsycopgError
+from psycopg.rows import dict_row
+from psycopg.types.json import Jsonb
 from pydantic import BaseModel, Field, model_validator
+from starlette.concurrency import run_in_threadpool
 from starlette.responses import JSONResponse
 
 API_PREFIX = "/api/v1/evaluations"
+STATE_TABLE = "evaluation_gateway_state"
+STATE_LOCK_ID = 7632026
 ReviewRole = Literal["faculty_instructor", "student_peer"]
 ScopeType = Literal["project", "course", "lab"]
+logger = logging.getLogger(__name__)
+
 
 # create new ID
 def new_id() -> str:
     return str(uuid4())
 
+
 # return UTC timestamp
 def now_utc() -> str:
-    return datetime.now(UTC).isoformat(timespec="seconds").replace(
-        "+00:00", "Z"
-    )
+    return datetime.now(UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+
 
 # single criteria in a rubric
 class Criterion(BaseModel):
@@ -43,6 +55,7 @@ class Criterion(BaseModel):
     description: str
     weight: float = Field(gt=0, le=1)
     max_points: float = Field(gt=0)
+
 
 # create rubric w criteria and scope
 class RubricCreate(BaseModel):
@@ -59,6 +72,7 @@ class RubricCreate(BaseModel):
             raise ValueError("Criterion weights must sum to 1")
         return self
 
+
 # update rubric w criteria
 class RubricUpdate(BaseModel):
     name: str | None = None
@@ -73,21 +87,25 @@ class RubricUpdate(BaseModel):
             raise ValueError("Criterion weights must sum to 1")
         return self
 
+
 # input score in a review
 class ScoreInput(BaseModel):
     criterion_id: str
     score: float = Field(ge=0)
     feedback: str
 
+
 # create a review w a reviewer role and scores
 class ReviewCreate(BaseModel):
     reviewer_role: ReviewRole
     scores: list[ScoreInput] = Field(min_length=1)
 
+
 # update a review w a reviewer role and scores
 class ReviewUpdate(BaseModel):
     reviewer_role: ReviewRole | None = None
     scores: list[ScoreInput] | None = Field(default=None, min_length=1)
+
 
 # create a store to hold courses, labs, projects, rubrics, and reviews
 def create_store() -> dict[str, Any]:
@@ -108,8 +126,8 @@ def create_store() -> dict[str, Any]:
         },
     ]
     return {
-        "courses": {"CS501", "CS502", "CS503"},
-        "labs": {"lab-cybersec", "lab-systems", "lab-unused"},
+        "courses": ["CS501", "CS502", "CS503"],
+        "labs": ["lab-cybersec", "lab-systems", "lab-unused"],
         "projects": {
             "project-101": {
                 "project_id": "project-101",
@@ -188,19 +206,120 @@ def create_store() -> dict[str, Any]:
 
 
 app = FastAPI(title="Peer Review and Evaluation Gateway", version="1.0.0")
-app.state.store = create_store()
+
+
+def load_database_state(database_url: str) -> tuple[Connection, dict[str, Any]]:
+    """Open a transaction and load the shared JSONB state document."""
+    connection = connect(database_url, row_factory=dict_row)
+    try:
+        connection.execute(
+            f"""
+            CREATE TABLE IF NOT EXISTS {STATE_TABLE} (
+                state_id SMALLINT PRIMARY KEY CHECK (state_id = 1),
+                payload JSONB NOT NULL
+            )
+            """
+        )
+        connection.execute("SELECT pg_advisory_xact_lock(%s)", (STATE_LOCK_ID,))
+        connection.execute(
+            f"""
+            INSERT INTO {STATE_TABLE} (state_id, payload)
+            VALUES (1, %s)
+            ON CONFLICT (state_id) DO NOTHING
+            """,
+            (Jsonb(create_store()),),
+        )
+        row = connection.execute(
+            f"SELECT payload FROM {STATE_TABLE} WHERE state_id = 1 FOR UPDATE"
+        ).fetchone()
+        if row is None:
+            raise RuntimeError("The evaluation state row could not be initialized")
+        return connection, row["payload"]
+    except Exception:
+        connection.rollback()
+        connection.close()
+        raise
+
+
+def finish_database_request(
+    connection: Connection, store: dict[str, Any], persist: bool
+) -> None:
+    try:
+        if persist:
+            connection.execute(
+                f"UPDATE {STATE_TABLE} SET payload = %s WHERE state_id = 1",
+                (Jsonb(store),),
+            )
+            connection.commit()
+        else:
+            connection.rollback()
+    finally:
+        connection.close()
+
+
+@app.middleware("http")
+async def postgres_state_middleware(request: Request, call_next: Any) -> Response:
+    # Tests can supply an isolated store without requiring a running PostgreSQL server.
+    if hasattr(request.app.state, "store"):
+        request.state.store = request.app.state.store
+        return await call_next(request)
+
+    database_url = os.getenv("DATABASE_URL")
+    if not database_url:
+        logger.error("DATABASE_URL is not configured")
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content={"detail": "Database is not configured"},
+        )
+
+    connection = None
+    try:
+        connection, store = await run_in_threadpool(load_database_state, database_url)
+        request.state.store = store
+        response = await call_next(request)
+        request_connection, connection = connection, None
+        await run_in_threadpool(
+            finish_database_request,
+            request_connection,
+            request.state.store,
+            response.status_code < status.HTTP_400_BAD_REQUEST,
+        )
+        return response
+    except PsycopgError:
+        if connection is not None:
+            request_connection, connection = connection, None
+            await run_in_threadpool(
+                finish_database_request, request_connection, {}, False
+            )
+        logger.exception("PostgreSQL request failed")
+        return JSONResponse(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            content={"detail": "Database request failed"},
+        )
+    except Exception:
+        if connection is not None:
+            request_connection, connection = connection, None
+            await run_in_threadpool(
+                finish_database_request, request_connection, {}, False
+            )
+        raise
+
 
 # get store from request
 def store_for(request: Request) -> dict[str, Any]:
-    return request.app.state.store
+    if hasattr(request.state, "store"):
+        return request.state.store
+    raise RuntimeError("Request store was not initialized")
 
-# get item from store 
+
+# get item from store
 # err 404 if not found
 def get_item(items: dict[str, Any], key: str, kind: str) -> dict[str, Any]:
     item = items.get(key)
     if item is None:
         raise HTTPException(status_code=404, detail=f"{kind} not found")
     return item
+
 
 # get projects from scope, type, and id
 def projects_for_scope(
@@ -215,11 +334,13 @@ def projects_for_scope(
         if project[f"{scope_type}_id"] == scope_id
     ]
 
+
 # check if rurbic is being used by any project
 def rubric_is_in_use(store: dict[str, Any], rubric_id: str) -> bool:
     return any(
         project["rubric_id"] == rubric_id for project in store["projects"].values()
     )
+
 
 # check review scores for duplicates, missing criteria, and exceeding max points
 def check_review_scores(
@@ -236,7 +357,8 @@ def check_review_scores(
         raise HTTPException(status_code=422, detail="Duplicate criterion score")
     if set(submitted_ids) != set(criteria):
         raise HTTPException(
-            status_code=422, detail="Scores must match all criteria in the project rubric"
+            status_code=422,
+            detail="Scores must match all criteria in the project rubric",
         )
     for score in scores:
         criterion = criteria[score.criterion_id]
@@ -245,6 +367,7 @@ def check_review_scores(
                 status_code=422,
                 detail=f"Score exceeds max_points for {score.criterion_id}",
             )
+
 
 # calc weighted grade for review using rubric criteria weights and max points
 def review_grade(store: dict[str, Any], review: dict[str, Any]) -> float:
@@ -257,6 +380,7 @@ def review_grade(store: dict[str, Any], review: dict[str, Any]) -> float:
         * 100
         for score in review["scores"]
     )
+
 
 # calc summary/statistics of reviews for a project and role
 #  includes mean scores, grade distribution
@@ -321,10 +445,12 @@ def role_summary(
         "grade_distribution": distribution,
     }
 
+
 # check health of the API
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
 
 # create a rubric
 @app.post(
@@ -365,7 +491,8 @@ def create_rubric(body: RubricCreate, request: Request) -> dict[str, Any]:
         project["rubric_id"] = rubric_id
     return rubric
 
-# list rubrics 
+
+# list rubrics
 @app.get(f"{API_PREFIX}/rubrics")
 def list_rubrics(
     request: Request,
@@ -403,15 +530,15 @@ def list_rubrics(
         }
         rubric_ids = scoped_rubrics | project_rubrics
     return [
-        store["rubrics"][rubric_id]
-        for rubric_id in rubric_ids
-        if rubric_id is not None
+        store["rubrics"][rubric_id] for rubric_id in rubric_ids if rubric_id is not None
     ]
+
 
 # get rubric by ID
 @app.get(f"{API_PREFIX}/rubrics/{{rubric_id}}")
 def get_rubric(rubric_id: str, request: Request) -> dict[str, Any]:
     return get_item(store_for(request)["rubrics"], rubric_id, "Rubric")
+
 
 # update rubric by ID
 @app.put(f"{API_PREFIX}/rubrics/{{rubric_id}}")
@@ -426,6 +553,7 @@ def update_rubric(
     rubric["updated_at"] = now_utc()
     return rubric
 
+
 # delete rubric by ID
 @app.delete(
     f"{API_PREFIX}/rubrics/{{rubric_id}}",
@@ -439,6 +567,7 @@ def delete_rubric(rubric_id: str, request: Request) -> Response:
     del store["rubrics"][rubric_id]
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
+
 # get summary of reviews for one project
 @app.get(f"{API_PREFIX}/projects/{{project_id}}/summary")
 def project_summary(project_id: str, request: Request) -> dict[str, Any]:
@@ -451,6 +580,7 @@ def project_summary(project_id: str, request: Request) -> dict[str, Any]:
         "faculty_instructor": role_summary(store, project_id, "faculty_instructor"),
         "student_peer": role_summary(store, project_id, "student_peer"),
     }
+
 
 # submit review for a project
 @app.post(
@@ -474,6 +604,7 @@ def submit_review(
     store["reviews"][review_id] = review
     return review
 
+
 # list reviews for project
 @app.get(f"{API_PREFIX}/projects/{{project_id}}/reviews")
 def list_reviews(
@@ -494,10 +625,13 @@ def list_reviews(
     return sorted(
         reviews,
         key=lambda review: (
-            review_grade(store, review) if sort_by == "grade" else review["submitted_at"]
+            review_grade(store, review)
+            if sort_by == "grade"
+            else review["submitted_at"]
         ),
         reverse=sort_order == "desc",
     )
+
 
 # get review by ID for project
 @app.get(f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}")
@@ -507,6 +641,7 @@ def get_review(project_id: str, review_id: str, request: Request) -> dict[str, A
     if review["project_id"] != project_id:
         raise HTTPException(status_code=404, detail="Review not found for project")
     return review
+
 
 # update review by ID for project
 @app.put(f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}")
@@ -526,6 +661,7 @@ def update_review(
     review.update(updates)
     return review
 
+
 # delete review by ID for project
 @app.delete(
     f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}",
@@ -538,6 +674,7 @@ def delete_review(project_id: str, review_id: str, request: Request) -> Response
         raise HTTPException(status_code=404, detail="Review not found for project")
     del store["reviews"][review_id]
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 # generate report of projects w review summaries
 @app.get(f"{API_PREFIX}/reports")
@@ -569,9 +706,7 @@ def reports(
             for role in (summary["faculty_instructor"], summary["student_peer"])
             if role["mean_scores"]["overall_weighted_grade"] is not None
         ]
-        if min_score is not None and (
-            not grades or max(grades) < min_score
-        ):
+        if min_score is not None and (not grades or max(grades) < min_score):
             continue
         project_reports.append(summary)
     report = {
@@ -586,6 +721,7 @@ def reports(
         "projects": project_reports,
     }
     if sort_by == "mean_score":
+
         def mean_grade(summary: dict[str, Any]) -> float:
             grades = [
                 summary[role]["mean_scores"]["overall_weighted_grade"]
@@ -601,5 +737,7 @@ def reports(
         )
     return JSONResponse(
         content=report,
-        headers={"Content-Disposition": 'attachment; filename="evaluation-report.json"'},
+        headers={
+            "Content-Disposition": 'attachment; filename="evaluation-report.json"'
+        },
     )
