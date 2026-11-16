@@ -239,3 +239,110 @@ Suggested adding the following industry practices under **Proposed Mitigations**
 - **Secure development:** Run dependency and static-analysis scans in CI, review findings, and update vulnerable dependencies.
 
 The response noted that these are examples, and controls should be selected to match project requirements and be verifiable in tests.
+
+## PostgreSQL and API Design Follow-up
+
+### November 15 — Incorporate PostgreSQL into `main.py`
+
+**Prompt**
+
+> incorporate the usage of a postgresql database for main.py
+
+**Response**
+
+Updated the functional FastAPI app to persist its state in PostgreSQL using a JSONB state document. Added Psycopg, request middleware that loads and locks the shared state and saves successful requests transactionally, a PostgreSQL service and persistent volume in Docker Compose, and setup instructions. Explained that the single JSONB document is a prototype approach that serializes requests; normalized tables are more appropriate for higher-throughput production use.
+
+**Representative implementation**
+
+```python
+row = connection.execute(
+    f"SELECT payload FROM {STATE_TABLE} WHERE state_id = 1 FOR UPDATE"
+).fetchone()
+return connection, row["payload"]
+```
+
+```python
+if persist:
+    connection.execute(
+        f"UPDATE {STATE_TABLE} SET payload = %s WHERE state_id = 1",
+        (Jsonb(store),),
+    )
+    connection.commit()
+```
+
+### November 15 — Identify GitHub secrets needed
+
+**Prompt**
+
+> Is there information I need to put as a secret in GitHub? If there is list them
+
+**Response**
+
+Identified `SONAR_TOKEN` as the secret directly used by the current CI workflow. If PostgreSQL is provisioned in CI or deployment, store its connection credentials as `DATABASE_URL` (preferably the full connection string) or `POSTGRES_PASSWORD` for the Compose setup. The functional tests use an isolated store, so they do not need database credentials. Do not commit credentials or add them to the README.
+
+### November 15 — Determine whether CRUD uses PostgreSQL
+
+**Prompt**
+
+> the API calls do not seem to use the database for the CRUD functions, it looks like it continues to get it from the create_store. Explain if the database is being used or not
+
+**Response**
+
+Explained that PostgreSQL is used during normal API requests indirectly through middleware: the middleware reads the JSONB state, handlers perform CRUD on the request's in-memory dictionary, then successful requests persist the updated state. `create_store()` seeds the database only when the state row is first inserted. Tests bypass PostgreSQL by setting `app.state.store`. The app stores one JSONB document rather than normalized relational records.
+
+**Request store access**
+
+```python
+def store_for(request: Request) -> dict[str, Any]:
+    if hasattr(request.state, "store"):
+        return request.state.store
+    raise RuntimeError("Request store was not initialized")
+```
+
+### November 15 — Assess whether the design uses Singleton
+
+**Prompt**
+
+> For the design pattern, does it take a singleton approach? Explain in 100 words or less if it is not.
+
+**Response**
+
+Explained that it is not the Singleton design pattern. The FastAPI app is created once per process and the database uses one shared state row, which looks singleton-like, but there is no Singleton class controlling access; requests open separate database connections. Described the design as a shared database record with per-request access.
+
+### November 15 — Assess whether the design uses Repository
+
+**Prompt**
+
+> For the design pattern, does it take a more repository approach then? Explain in 100 words or less if it is not.
+
+**Response**
+
+Explained that it is not a Repository pattern: handlers directly manipulate dictionaries, while middleware loads and saves the whole document. `store_for()` is only an access helper. A repository design would expose persistence operations such as `ReviewRepository.get_by_id()` and `ReviewRepository.save()` to separate storage details from handlers.
+
+**Illustrative repository-style interface**
+
+```python
+review = review_repository.get_by_id(review_id)
+review_repository.save(review)
+```
+
+### November 15 — Identify how FastAPI captures request payloads
+
+**Prompt**
+
+> explain how to identify how a HTTP request payload is captured by the framework
+
+**Response**
+
+Explained that FastAPI endpoint parameters typed as Pydantic models are parsed and validated from the JSON request body. Route parameters come from the URL; simple scalar parameters are generally query parameters. For example, `body: ReviewCreate` tells FastAPI to validate the payload with `ReviewCreate` (including nested `ScoreInput` values); invalid or missing required data normally receives a `422` response before the handler runs.
+
+```python
+class ReviewCreate(BaseModel):
+    reviewer_role: ReviewRole
+    scores: list[ScoreInput] = Field(min_length=1)
+
+def submit_review(
+    project_id: str, body: ReviewCreate, request: Request
+) -> dict[str, Any]:
+    ...
+```
