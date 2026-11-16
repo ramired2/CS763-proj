@@ -506,7 +506,7 @@ def check_review_scores(
 
     # get the different criterion IDs for scoring purposes
     # if criterion did not get saved for some reason, this would not run, an error 
-    # would be raised in 499
+    # would be raised
     submitted_ids = [score.criterion_id for score in scores]
 
     # error handling for if someone scored a criterion twice
@@ -871,7 +871,10 @@ def project_summary(project_id: str, request: Request) -> dict[str, Any]:
 ```
 
 ```
-# submit review for a project
+# Submit a review for a specific project. Validates that there are no errors in 
+# the current reviews before doing so.
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.post(
     f"{API_PREFIX}/projects/{{project_id}}/reviews",
     status_code=status.HTTP_201_CREATED,
@@ -880,9 +883,14 @@ def submit_review(
     project_id: str, body: ReviewCreate, request: Request
 ) -> dict[str, Any]:
     store = store_for(request)
+    # Get the project the review is for
     get_item(store["projects"], project_id, "Project")
+
+    # check that the current scores are valid, so that a review cannot be 
+    # submitted if there exist errors with the reviews already 
     check_review_scores(store, project_id, body.scores)
     review_id = new_id()
+    # New review 
     review = {
         "review_id": review_id,
         "project_id": project_id,
@@ -890,13 +898,17 @@ def submit_review(
         "submitted_at": now_utc(),
         "scores": [score.model_dump() for score in body.scores],
     }
+
+    # Save the review
     store["reviews"][review_id] = review
     return review
 
 ```
 
 ```
-# list reviews for project
+# list reviews for a project given specific parameters 
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.get(f"{API_PREFIX}/projects/{{project_id}}/reviews")
 def list_reviews(
     project_id: str,
@@ -906,13 +918,19 @@ def list_reviews(
     sort_order: Literal["asc", "desc"] = "asc",
 ) -> list[dict[str, Any]]:
     store = store_for(request)
+    # Get the project
     get_item(store["projects"], project_id, "Project")
+
+    # for all reviews if the review project ID matches the project ID
+    # and the score for reviews are above the minimum score
     reviews = [
         review
         for review in store["reviews"].values()
         if review["project_id"] == project_id
         and (min_grade is None or review_grade(store, review) >= min_grade)
     ]
+
+    # return the reviews by the established sort order
     return sorted(
         reviews,
         key=lambda review: (
@@ -925,17 +943,25 @@ def list_reviews(
 ```
 
 ```
-# get review by ID for project
+# Get the review by its review ID and project ID
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.get(f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}")
 def get_review(project_id: str, review_id: str, request: Request) -> dict[str, Any]:
     store = store_for(request)
+    # Get the review by its review ID
     review = get_item(store["reviews"], review_id, "Review")
+
+    # if the review's project ID does not match the project_id then an error is raised
     if review["project_id"] != project_id:
         raise HTTPException(status_code=404, detail="Review not found for project")
     return review
 ```
 ```
-# update review by ID for project
+# Update a review by ID for a project, project ID is also used
+# has error validation for if the project ID does not match the rubric's project ID
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.put(f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}")
 def update_review(
     project_id: str,
@@ -944,34 +970,53 @@ def update_review(
     request: Request,
 ) -> dict[str, Any]:
     store = store_for(request)
+    # get the review
     review = get_item(store["reviews"], review_id, "Review")
+
+    # if the review's project ID does not match the project ID given, raise an error
     if review["project_id"] != project_id:
         raise HTTPException(status_code=404, detail="Review not found for project")
+    # stores updated review
     updates = body.model_dump(exclude_unset=True, exclude_none=True)
+
+    # checks that the updated version has scores (may or may not have values)
     if "scores" in updates:
+        # checks the scores are valid inputs
         check_review_scores(store, project_id, body.scores or [])
+    # updates the review 
     review.update(updates)
     return review
 ```
 
 ```
-# delete review by ID for project
+# Deletes a review
+# Returns a status code of 204 NO_CONTENT, which is a bit misleading as someone
+# can assume there was no content found to delete so it ran into some error.
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.delete(
     f"{API_PREFIX}/projects/{{project_id}}/reviews/{{review_id}}",
     status_code=status.HTTP_204_NO_CONTENT,
 )
 def delete_review(project_id: str, review_id: str, request: Request) -> Response:
     store = store_for(request)
+    # get the review
     review = get_item(store["reviews"], review_id, "Review")
+
+    # check if the review's project ID is the same as the project ID 
     if review["project_id"] != project_id:
         raise HTTPException(status_code=404, detail="Review not found for project")
+    # delete the review
     del store["reviews"][review_id]
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 ```
 
 ```
-# generate report of projects w review summaries
+# Generates a report of all projects in a project, course, lab
+# Does error handling for if no project was found
+# There is no authorization that a valid user is attempting to request this
+# there is no validation that the user has the permissions to request this
 @app.get(f"{API_PREFIX}/reports")
 def reports(
     request: Request,
@@ -983,6 +1028,8 @@ def reports(
     sort_order: Literal["asc", "desc"] = "asc",
 ) -> Response:
     store = store_for(request)
+    # list of projects given a [project_id, course_id, lab_id] was given
+    # and the project is associated w a review
     projects = [
         project
         for project in store["projects"].values()
@@ -991,19 +1038,27 @@ def reports(
         and (lab_id is None or project["lab_id"] == lab_id)
         and project["rubric_id"] is not None
     ]
+
+    # if no projects were found raise an error
     if project_id is not None and not projects:
         raise HTTPException(status_code=404, detail="Project not found")
     project_reports = []
+
+    # for each project generate a summary 
     for project in projects:
         summary = project_summary(project["project_id"], request)
+        # for both student_peers and faculty_instructors, get their respective scores
         grades = [
             role["mean_scores"]["overall_weighted_grade"]
             for role in (summary["faculty_instructor"], summary["student_peer"])
             if role["mean_scores"]["overall_weighted_grade"] is not None
         ]
+        # if the scores are valid
         if min_score is not None and (not grades or max(grades) < min_score):
             continue
         project_reports.append(summary)
+
+    # filter details for the report being generated
     report = {
         "filters": {
             "course_id": course_id,
@@ -1015,21 +1070,28 @@ def reports(
         },
         "projects": project_reports,
     }
-    if sort_by == "mean_score":
 
+    # if sorting by mean score
+    if sort_by == "mean_score":
+        # calculate mean grade for faculty_instructors and student_peer
         def mean_grade(summary: dict[str, Any]) -> float:
             grades = [
+                # for faculty_instructor and student_peer get the mean scores
                 summary[role]["mean_scores"]["overall_weighted_grade"]
                 for role in ("faculty_instructor", "student_peer")
                 if summary[role]["mean_scores"]["overall_weighted_grade"] is not None
             ]
+            # return a total mean score
             return fmean(grades) if grades else -1
 
+        # order report by mean scores
         report["projects"].sort(key=mean_grade, reverse=sort_order == "desc")
     else:
+        # otherwise sort by project ID
         report["projects"].sort(
             key=lambda summary: summary["project_id"], reverse=sort_order == "desc"
         )
+    # return JSON report in file
     return JSONResponse(
         content=report,
         headers={
@@ -1039,7 +1101,35 @@ def reports(
 ```
 
 ### 2.3 The AI Agent's "Security Sins" (Evaluating Code Deficiencies)
-> 
+> The prompt I fed Copilot went into a bit of information of what I expected from it.
+ While its main purpose was to create the functional-codebase folder with test 
+ cases included as some subfolder, I specified the need for a happy path approach, 
+ a definition of what 'functional-codebase' is meant to do and have based on the 
+ master spec, and a series of test cases that need to be included. Copilot did attempt, 
+ to use the spec.md from PA1, even after I mentioned in my prompt that the master spec be used,
+  so I had to specify again where the code requirements and instructions should stem from. 
+  Moreover, I did specify at some later point the need to include postgreSQL, where 
+  Copilot mainly still uses the JSONB it initially created. 
+  In terms of the code it generated, it does make sense why it would not focus 
+  on using secure code as AI tends to need a specific instructions of how to do things. 
+  Otherwise, it tends to jump to a lot of different conclusions which lead to unexpected results.  
+  In this case, because I did not specify it should focus its efforts on making sure it 
+  produces secure code for functional-codebase, it would not take security into account.
+  Not unless it was mentioned in the master spec from where it pulled its information from.
+
+> Without specifying security requirements in my prompts or modifying the master spec to include such 
+information, the code falls into BOLA/IDOR, race conditions, and input injection vulnerabilities.
+In terms of BOLA/IDOR, the code generated does expose a file name, and IDs of different projects, criterions, 
+rubrics, etc. Not only that, but there is no authentication checks for a valid user or authorization for if a user has 
+permission to perform speicifc API calls. As such, this could lead to valid student_peers attempting to create 
+a report, which should only be allowed for a faculty_instructor. Or a student_peer attempting 
+to access another student_peers review, which should remain anonymous. This was a major 
+shortcut that Copilot took. As for race conditions, there is not a lot of concern, as when PostgreSQL
+was added, Copilot put a lock in the definition load_database_state. There is concern for situations
+ where the lock gets stuck and there is a queue of queries that don't get sent. 
+There is also concerns for input injection, as none of the code sanitizes any inputs.
+ It takes them at face value. This, would also be a big concern from the code 
+ generated. 
 
 \================================================================================
 
