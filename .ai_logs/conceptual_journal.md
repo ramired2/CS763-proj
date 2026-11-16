@@ -1100,6 +1100,240 @@ def reports(
     )
 ```
 
+#### Test.py (imports not included)
+```
+# helps with automized testing
+client = TestClient(app)
+```
+```
+# reset the store before ea test
+@pytest.fixture(autouse=True)
+def reset_store() -> None:
+    app.state.store = deepcopy(create_store())
+```
+
+```
+# retrieves a submitted project evaluation
+def test_retrieving_a_submitted_evaluation() -> None:
+    # gets the review for a project project-101
+    response = client.get(f"{API_PREFIX}/projects/project-101/reviews")
+
+    # check got code 200
+    assert response.status_code == 200
+    # get review in object
+    reviews = response.json()
+
+    # check review has reviews 101 and 102
+    assert {review["review_id"] for review in reviews} == {"review-101", "review-102"}
+    # check scores are in the review
+    assert all(review["scores"] for review in reviews)
+```
+
+```
+# submit an individual evaluation
+def test_submitting_an_individual_evaluation() -> None:
+    # gets response from creating a review 
+    response = client.post(
+        f"{API_PREFIX}/projects/project-101/reviews",
+        json={
+            "reviewer_role": "student_peer",
+            "scores": [
+                {
+                    "criterion_id": "criterion-analysis",
+                    "score": 4,
+                    "feedback": "Reasoning is clear.",
+                },
+                {
+                    "criterion_id": "criterion-design",
+                    "score": 5,
+                    "feedback": "The design is complete.",
+                },
+            ],
+        },
+    )
+
+    # check got status code 201
+    assert response.status_code == 201
+
+    # get review in object format
+    review = response.json()
+
+    # check the reviewed project was "project-101"
+    assert review["project_id"] == "project-101"
+    # check the role was a student_peer
+    assert review["reviewer_role"] == "student_peer"
+    # check it contains feedback
+    assert review["scores"][0]["feedback"] == "Reasoning is clear."
+    # check the review ID not in the review
+    assert "reviewer_id" not in review
+```
+
+```
+# edit a rubric that is not in use
+def test_editing_a_rubric_that_is_not_in_use() -> None:
+    # get response of editing a rubric
+    response = client.put(
+        f"{API_PREFIX}/rubrics/rubric-102",
+        json={"name": "Updated rubric", "description": "Updated description."},
+    )
+
+    # check status code was 200
+    assert response.status_code == 200
+
+    # check the response has name has the updated rubric name
+    assert response.json()["name"] == "Updated rubric"
+    # check the review has the updated description
+    assert response.json()["description"] == "Updated description."
+```
+
+```
+# delete a rubric that is not in use
+def test_deleting_a_rubric_that_is_not_in_use() -> None:
+    # get response for deleting a rubric
+    response = client.delete(f"{API_PREFIX}/rubrics/rubric-102")
+
+    # check the status code was 204
+    assert response.status_code == 204
+    # check the rubric ID is no longer in rubrics
+    assert "rubric-102" not in app.state.store["rubrics"]
+```
+
+```
+# create a new evaluation schema
+def test_creating_an_evaluation_schema() -> None:
+    # get response for creating an evaluation schema
+    response = client.post(
+        f"{API_PREFIX}/rubrics",
+        json={
+            "name": "CS503 rubric",
+            "description": "Rubric for the CS503 course.",
+            "scope_type": "course",
+            "scope_id": "CS503",
+            "criteria": [
+                {
+                    "name": "Research",
+                    "description": "Research quality.",
+                    "weight": 0.7,
+                    "max_points": 5,
+                },
+                {
+                    "name": "Communication",
+                    "description": "Communication quality.",
+                    "weight": 0.3,
+                    "max_points": 5,
+                },
+            ],
+        },
+    )
+    # check status code was 201
+    assert response.status_code == 201
+    # get rubric in object format
+    rubric = response.json()
+    # check it contains a course type
+    assert rubric["scope_type"] == "course"
+    # check the scope type is CS503
+    assert rubric["scope_id"] == "CS503"
+    # check the number of criterions is two
+    assert len(rubric["criteria"]) == 2
+```
+
+```
+# retrieve an aggregated summary report for a project
+def test_retrieving_an_aggregated_summary_report_for_a_project() -> None:
+    # get response for creating an individual project summary
+    response = client.get(f"{API_PREFIX}/projects/project-101/summary")
+
+    # check status code was 200
+    assert response.status_code == 200
+
+    # get summary in object format
+    summary = response.json()
+
+    # check summary has project ID project-101
+    assert summary["project_id"] == "project-101"
+
+    # for faculty_instructor and student_peer
+    for role in ("faculty_instructor", "student_peer"):
+        # check it has a statistics, mean_scores, and grade_distribution
+        assert set(summary[role]) == {
+            "statistics",
+            "mean_scores",
+            "grade_distribution",
+        }
+
+        # check it has at one review count
+        assert summary[role]["statistics"]["review_count"] == 1
+
+        # check the mean scores is above 0
+        assert summary[role]["mean_scores"]["overall_weighted_grade"] > 0
+
+        # check the sum of the grade distribution is one 
+        assert sum(summary[role]["grade_distribution"].values()) == 1
+```
+
+```
+# retrieve a specific review for a project
+def test_retrieving_a_specific_review_for_a_project() -> None:
+    # get a response for getting a specific review for a project
+    response = client.get(f"{API_PREFIX}/projects/project-101/reviews/review-101")
+
+    # check status code is 200
+    assert response.status_code == 200
+
+    # get review in object
+    review = response.json()
+
+    # check review ID was review-101
+    assert review["review_id"] == "review-101"
+    # check review was made by a faculty_instructor
+    assert review["reviewer_role"] == "faculty_instructor"
+```
+
+```
+# edit a specific review for a project
+def test_editing_a_specific_review_for_a_project() -> None:
+    # get response for editing a review for a project
+    response = client.put(
+        f"{API_PREFIX}/projects/project-101/reviews/review-101",
+        json={
+            "scores": [
+                {
+                    "criterion_id": "criterion-analysis",
+                    "score": 3,
+                    "feedback": "Updated analysis feedback.",
+                },
+                {
+                    "criterion_id": "criterion-design",
+                    "score": 4,
+                    "feedback": "Updated design feedback.",
+                },
+            ]
+        },
+    )
+
+    # check status code was 200
+    assert response.status_code == 200
+    # get review in object format
+    review = response.json()
+
+    # check score was updated to 3
+    assert review["scores"][0]["score"] == 3
+    # check feedback was updated to "updated analysis feedback"
+    assert review["scores"][0]["feedback"] == "Updated analysis feedback."
+```
+
+```
+# remove a specific review for a project
+def test_removing_a_specific_review_for_a_project() -> None:
+    # get response for deleting a review for a project
+    response = client.delete(f"{API_PREFIX}/projects/project-101/reviews/review-101")
+
+    # check response was 204
+    assert response.status_code == 204
+    # check review no longer exists in the store of reviews 
+    assert "review-101" not in app.state.store["reviews"]
+```
+
 ### 2.3 The AI Agent's "Security Sins" (Evaluating Code Deficiencies)
 > The prompt I fed Copilot went into a bit of information of what I expected from it.
  While its main purpose was to create the functional-codebase folder with test 
