@@ -65,12 +65,17 @@ addition to the fact that there are new connections being opened that then load 
 ### 2.2 Defensive Edge-Case Evaluation (Line-by-Line Code Review)
 #### main.py (imports were not included)
 ```
-# 
+# set prefix for API
 API_PREFIX = "/api/v1/evaluations"
+# used for DB table
 STATE_TABLE = "evaluation_gateway_state"
+# used for locking when loading DB
 STATE_LOCK_ID = 7632026
+# different types of acceptable user types
 ReviewRole = Literal["faculty_instructor", "student_peer"]
+# different types of scopes for projects
 ScopeType = Literal["project", "course", "lab"]
+# acces logging functionality
 logger = logging.getLogger(__name__)
 ```
 
@@ -1098,6 +1103,21 @@ def reports(
             "Content-Disposition": 'attachment; filename="evaluation-report.json"'
         },
     )
+```
+
+#### SonarQube project properties
+```# key for my project
+sonar.projectKey=ramired2_CS763-proj
+# the organization for my project
+sonar.organization=ramired2
+# main source for app 
+sonar.sources=functional-codebase/app
+# source for tests
+sonar.tests=functional-codebase/tests
+# type encoding being used 
+sonar.sourceEncoding=UTF-8
+# python version being used
+sonar.python.version=3.12
 ```
 
 #### Test.py (imports not included)
