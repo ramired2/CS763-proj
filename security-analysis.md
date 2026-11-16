@@ -126,7 +126,7 @@ Availability
 * The system will validate that reviews and project summaries are only available to faculty_instructors
 
 ### DFD
-![DFD](./imgs/dfd)
+![DFD](./imgs/dfd.jpg)
 
 ### STRIDE Matrix
 | Data Flow/ Boundary/ Component | STRIDE Type Applicable                         |
