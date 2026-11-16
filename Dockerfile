@@ -2,9 +2,9 @@
 #
 # Prompt summary: create a Dockerfile for a FastAPI app using Python with a virtual env 
 #
-# AI Contribution: 100%
+# AI Contribution: 90%
 #
-# Human Modifications: I did not have to change anything
+# Human Modifications: modified so it is referencing functional-codebase
 
 FROM python:3.12-slim AS builder
 

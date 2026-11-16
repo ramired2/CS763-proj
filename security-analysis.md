@@ -3,7 +3,7 @@
 ## AI Usage Log
 | AI Contribution % | Summary of prompt                                             |
 | :---------------: | ------------------------------------------------------------- |
-|        10%        | Different types of mitigation strategies used in the industry |
+|        10%        | Different types of mitigation strategies used in the industry and examples of the type of information that should be included for security requirements. |
 
 ### Security Requirements
 ### Authentication

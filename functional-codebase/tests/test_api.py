@@ -1,7 +1,7 @@
 # Tool: Luna-6 GPT
 #
 # Prompt summary:   Create a FastAPI app given the requirements outlined in
-#                   projectPortalDomain which was edited to only have the 
+#                   projectPortalDomain which was edited to only have the
 #                   Domain 3 information with 9 test cases
 #
 # AI Contribution: 95%
@@ -18,10 +18,12 @@ from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
+
 # reset the store before ea test
 @pytest.fixture(autouse=True)
 def reset_store() -> None:
     app.state.store = deepcopy(create_store())
+
 
 # retrieve a submitted evaluation for a project
 def test_retrieving_a_submitted_evaluation() -> None:
@@ -31,6 +33,7 @@ def test_retrieving_a_submitted_evaluation() -> None:
     reviews = response.json()
     assert {review["review_id"] for review in reviews} == {"review-101", "review-102"}
     assert all(review["scores"] for review in reviews)
+
 
 # submit an individual evaluation
 def test_submitting_an_individual_evaluation() -> None:
@@ -60,6 +63,7 @@ def test_submitting_an_individual_evaluation() -> None:
     assert review["scores"][0]["feedback"] == "Reasoning is clear."
     assert "reviewer_id" not in review
 
+
 # edit a rubric that is not in use
 def test_editing_a_rubric_that_is_not_in_use() -> None:
     response = client.put(
@@ -71,12 +75,14 @@ def test_editing_a_rubric_that_is_not_in_use() -> None:
     assert response.json()["name"] == "Updated rubric"
     assert response.json()["description"] == "Updated description."
 
+
 # delete a rubric that is not in use
 def test_deleting_a_rubric_that_is_not_in_use() -> None:
     response = client.delete(f"{API_PREFIX}/rubrics/rubric-102")
 
     assert response.status_code == 204
     assert "rubric-102" not in app.state.store["rubrics"]
+
 
 # create a new evaluation schema
 def test_creating_an_evaluation_schema() -> None:
@@ -109,6 +115,7 @@ def test_creating_an_evaluation_schema() -> None:
     assert rubric["scope_id"] == "CS503"
     assert len(rubric["criteria"]) == 2
 
+
 # retrieve an aggregated summary report for a project
 def test_retrieving_an_aggregated_summary_report_for_a_project() -> None:
     response = client.get(f"{API_PREFIX}/projects/project-101/summary")
@@ -126,16 +133,16 @@ def test_retrieving_an_aggregated_summary_report_for_a_project() -> None:
         assert summary[role]["mean_scores"]["overall_weighted_grade"] > 0
         assert sum(summary[role]["grade_distribution"].values()) == 1
 
+
 # retrieve a specific review for a project
 def test_retrieving_a_specific_review_for_a_project() -> None:
-    response = client.get(
-        f"{API_PREFIX}/projects/project-101/reviews/review-101"
-    )
+    response = client.get(f"{API_PREFIX}/projects/project-101/reviews/review-101")
 
     assert response.status_code == 200
     review = response.json()
     assert review["review_id"] == "review-101"
     assert review["reviewer_role"] == "faculty_instructor"
+
 
 # edit a specific review for a project
 def test_editing_a_specific_review_for_a_project() -> None:
@@ -162,11 +169,10 @@ def test_editing_a_specific_review_for_a_project() -> None:
     assert review["scores"][0]["score"] == 3
     assert review["scores"][0]["feedback"] == "Updated analysis feedback."
 
+
 # remove a specific review for a project
 def test_removing_a_specific_review_for_a_project() -> None:
-    response = client.delete(
-        f"{API_PREFIX}/projects/project-101/reviews/review-101"
-    )
+    response = client.delete(f"{API_PREFIX}/projects/project-101/reviews/review-101")
 
     assert response.status_code == 204
     assert "review-101" not in app.state.store["reviews"]
